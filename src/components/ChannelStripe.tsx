@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { ALL_CHANNELS, ChannelItem } from "../types";
-import { Search, CheckCircle, Radio } from "lucide-react";
+import { ALL_CHANNELS } from "../types";
+import { Radio } from "lucide-react";
 
 const DE_CHANNELS = [
   { id: "ard",     name: "ARD",        sub: "Das Erste",     logo: "/logos/ard.png",     bg: "#003CA6" },
@@ -56,29 +55,6 @@ function ChannelCard({ ch }: { ch: typeof DE_CHANNELS[0] }) {
 }
 
 export default function ChannelStripe() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResult, setSearchResult] = useState<{ message: string; matches: ChannelItem[] } | null>(null);
-
-  const handleSearch = (q: string) => {
-    setSearchQuery(q);
-    if (!q.trim()) { setSearchResult(null); return; }
-
-    const matched = ALL_CHANNELS.filter(c =>
-      c.name.toLowerCase().includes(q.toLowerCase()) ||
-      c.category.toLowerCase().includes(q.toLowerCase()) ||
-      c.country.toLowerCase().includes(q.toLowerCase())
-    );
-
-    setSearchResult({
-      message: matched.length > 0
-        ? `${matched.length} Sender gefunden`
-        : `"${q}" ist in unserer Datenbank mit 59.000+ Feeds enthalten`,
-      matches: matched.length > 0
-        ? matched.slice(0, 4)
-        : [{ id: "custom", name: `${q} HD Stream`, category: "Live", country: "DE/EU", logoColor: "from-[#014E45] to-[#00201c]", logoText: "OK" }]
-    });
-  };
-
   const tripled1 = [...ROW1, ...ROW1, ...ROW1];
   const tripled2 = [...ROW2, ...ROW2, ...ROW2];
 
@@ -113,55 +89,12 @@ export default function ChannelStripe() {
         </div>
 
         {/* Row 2 — scrolls right */}
-        <div className="overflow-hidden -mx-4 md:-mx-6 mb-6 select-none pointer-events-none">
+        <div className="overflow-hidden -mx-4 md:-mx-6 select-none pointer-events-none">
           <div className="animate-scroll-reverse flex gap-3 px-4">
             {tripled2.map((ch, i) => (
               <ChannelCard key={`r2-${ch.id}-${i}`} ch={ch} />
             ))}
           </div>
-        </div>
-
-        {/* Search bar */}
-        <div className="bg-black/20 rounded-xl px-3 py-3 border border-white/10 relative z-10">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
-            <input
-              type="text"
-              placeholder="Sender suchen… Sky Sport, ZDF, HBO…"
-              value={searchQuery}
-              onChange={e => handleSearch(e.target.value)}
-              className="w-full bg-black/20 border border-white/10 rounded-full py-2 pl-9 pr-4 text-[11px] text-white placeholder-white/25 focus:outline-none focus:border-white/[35] transition-all"
-            />
-          </div>
-
-          {searchResult ? (
-            <div className="mt-2 animate-in fade-in duration-200">
-              <p className="text-[9px] font-bold text-white/60 mb-1.5 flex items-center gap-1">
-                <CheckCircle className="w-3 h-3 text-white/50 shrink-0" />
-                {searchResult.message}
-              </p>
-              <div className="flex gap-2 overflow-x-auto scrollbar-none pb-0.5">
-                {searchResult.matches.map((ch, i) => (
-                  <div key={i} className="shrink-0 flex items-center gap-1.5 py-1 px-2 bg-white/5 rounded-lg border border-white/[8]">
-                    <span className="text-[9px] font-semibold text-white whitespace-nowrap">{ch.name}</span>
-                    <span className="text-[8px] text-white/30 bg-black/20 px-1 py-0.5 rounded font-mono">4K</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="flex gap-1.5 mt-2 flex-wrap">
-              {["Sky Sport", "ZDF", "RTL", "ARTE", "DAZN", "ARD"].map(s => (
-                <button
-                  key={s}
-                  onClick={() => handleSearch(s)}
-                  className="bg-white/5 hover:bg-white/10 text-white/40 hover:text-white/70 text-[9px] font-medium py-0.5 px-2 rounded-full border border-white/[8] transition-colors"
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
       </div>
