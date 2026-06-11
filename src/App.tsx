@@ -47,10 +47,7 @@ export default function App() {
         {/* VIDEO SHOWCASE: Autoplay service preview video */}
         <VideoShowcase />
 
-        {/* SECTION 2: DIGITAL CHANNELS STRIPE (2 dynamic tickers scrolling left and right + interactive channel check tool) */}
-        <ChannelStripe />
-
-        {/* SECTION 2.5: LIVE SPORTS SECTION (Vertical photo cards + Today's live match schedules) */}
+        {/* SECTION 2.5: LIVE SPORTS SECTION */}
         <LiveSports onPricingClick={() => scrollToSection("pricing-section")} />
 
         {/* SECTION 3: VOD MOVIE GRID (cinematic filters, blockbusters collection) */}
@@ -58,6 +55,9 @@ export default function App() {
 
         {/* SECTION 4: INFORMATIVE SUBSCRIPTION PACKAGES (3, 6, 12 Months selection layout) */}
         <Pricing onSelectPlan={handleSelectPlan} />
+
+        {/* SECTION 4.5: DIGITAL CHANNELS STRIPE — placed after pricing */}
+        <ChannelStripe />
 
         {/* SECTION 5: CUSTOMER LOVE LETTERS REVIEWS (Black rounded section with user avatars and star reviews) */}
         <Testimonials />
