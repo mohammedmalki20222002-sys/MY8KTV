@@ -8,9 +8,9 @@ export default function Hero({ onPricingClick }: HeroProps) {
   const devices = ["🖥️ Smart TV", "🔥 Fire Stick", "🍏 Apple TV", "🤖 Android", "💻 PC"];
 
   return (
-    <section className="px-4 md:px-8 max-w-7xl mx-auto w-full pt-6 pb-8">
+    <section className="px-4 md:px-8 max-w-7xl mx-auto w-full pt-10 pb-12 sm:pt-6 sm:pb-8 min-h-[88vh] sm:min-h-0 flex flex-col justify-center sm:block">
 
-      <div className="flex flex-col gap-4 max-w-2xl">
+      <div className="flex flex-col gap-5 sm:gap-4 max-w-2xl">
 
         {/* Trust badge */}
         <div className="inline-flex items-center gap-1.5 bg-neutral-900/5 border border-neutral-200/60 rounded-full px-3 py-1 self-start">
@@ -22,7 +22,7 @@ export default function Hero({ onPricingClick }: HeroProps) {
 
         {/* Headline */}
         <div>
-          <h1 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.05] tracking-[-0.03em] font-extrabold text-neutral-900">
+          <h1 className="text-[2.1rem] sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.05] tracking-[-0.03em] font-extrabold text-neutral-900">
             <span className="serif-display italic font-light text-neutral-700">4K-Qualität,</span>
             <br />
             auf all deinen Geräten.
