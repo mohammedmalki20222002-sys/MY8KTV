@@ -1,21 +1,38 @@
+import { useState } from "react";
+
 const VIDEO_URL = import.meta.env.VITE_VIDEO_URL || "/serien-und-filme.mp4";
 
 export default function VideoShowcase() {
+  const [videoFailed, setVideoFailed] = useState(false);
+
   return (
-    <section className="relative w-full overflow-hidden bg-black">
-      <video
-        src={VIDEO_URL}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full h-auto block max-h-[620px] object-cover"
-      />
+    <section className="relative w-full overflow-hidden bg-black" style={{ minHeight: "420px" }}>
+      {!videoFailed && (
+        <video
+          src={VIDEO_URL}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onError={() => setVideoFailed(true)}
+          className="w-full h-auto block max-h-[620px] object-cover"
+        />
+      )}
+
+      {videoFailed && (
+        <div
+          className="w-full"
+          style={{
+            minHeight: "420px",
+            background: "linear-gradient(135deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)",
+          }}
+        />
+      )}
 
       {/* Dark gradient overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.10) 60%, transparent 100%)" }}
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.30) 60%, transparent 100%)" }}
       />
 
       {/* Titles */}
