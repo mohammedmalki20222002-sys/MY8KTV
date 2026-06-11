@@ -120,10 +120,15 @@ export default function ChannelStripe() {
         </div>
 
         {/* Divider + worldwide label */}
-        <div className="flex items-center gap-3 mb-5 relative z-10 px-1">
-          <div className="h-px flex-1 bg-white/10" />
-          <span className="text-[9px] font-black font-mono uppercase tracking-[0.22em] text-white/35 shrink-0">🌍 Weltweite Sender</span>
-          <div className="h-px flex-1 bg-white/10" />
+        <div className="relative z-10 my-7 px-1">
+          <div className="h-px bg-white/10 mb-6" />
+          <div className="flex items-end gap-3 flex-wrap">
+            <span className="text-[9px] font-black font-mono uppercase tracking-[0.28em] text-white/40">🌍</span>
+            <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-none">
+              Weltweite{" "}
+              <span className="serif-display italic font-light text-white/60">Sender.</span>
+            </h3>
+          </div>
         </div>
 
         {/* Row 3 — worldwide, scrolls left */}
