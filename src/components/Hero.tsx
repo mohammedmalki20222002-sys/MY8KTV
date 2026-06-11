@@ -9,12 +9,16 @@ export default function Hero({ onPricingClick }: HeroProps) {
   const devices = ["🖥️ Smart TV", "🔥 Fire Stick", "🍏 Apple TV", "🤖 Android", "💻 PC"];
 
   return (
-    <section className="px-4 md:px-8 max-w-7xl mx-auto w-full pt-10 pb-10 sm:pt-8 sm:pb-10 min-h-[88vh] sm:min-h-0 flex flex-col justify-center sm:block">
+    <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-8 sm:py-10 md:py-12">
 
-      <div className="grid grid-cols-1 sm:grid-cols-[1fr_340px] lg:grid-cols-[1fr_400px] gap-5 items-stretch">
+      {/* Two-column grid:
+          Mobile  (< 640px):  single column, stacked
+          Tablet  (640-1023): 2 equal columns side by side
+          Desktop (≥ 1024px): hero wider, card narrower          */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] gap-6 lg:gap-8 items-start">
 
         {/* ── Left: hero content ──────────────────────────────────── */}
-        <div className="flex flex-col gap-5 sm:gap-4">
+        <div className="flex flex-col gap-5 sm:gap-4 order-2 sm:order-1">
 
           {/* Trust badge */}
           <div className="inline-flex items-center gap-1.5 bg-neutral-900/5 border border-neutral-200/60 rounded-full px-3 py-1 self-start">
@@ -26,8 +30,10 @@ export default function Hero({ onPricingClick }: HeroProps) {
 
           {/* Headline */}
           <div>
-            <h1 className="text-[3rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] tracking-[-0.04em] font-black text-neutral-900">
-              <span className="serif-display italic font-light text-[#014E45]" style={{ fontSize: "1.08em" }}>4K-Qualität,</span>
+            <h1 className="text-[2.6rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.0] tracking-[-0.04em] font-black text-neutral-900">
+              <span className="serif-display italic font-light text-[#014E45]" style={{ fontSize: "1.08em" }}>
+                4K-Qualität,
+              </span>
               <br />
               auf all deinen Geräten.
             </h1>
@@ -35,15 +41,16 @@ export default function Hero({ onPricingClick }: HeroProps) {
               Das beste IPTV in Deutschland
             </p>
             <p className="mt-3 text-sm text-neutral-500 leading-relaxed max-w-md">
-              Über <span className="font-semibold text-neutral-900">59.000 Live-Sender</span> und <span className="font-semibold text-neutral-900">200.000+ VOD</span> — sofort auf jedem Gerät, ohne Vertrag.
+              Über <span className="font-semibold text-neutral-900">59.000 Live-Sender</span> und{" "}
+              <span className="font-semibold text-neutral-900">200.000+ VOD</span> — sofort auf jedem Gerät, ohne Vertrag.
             </p>
           </div>
 
           {/* Stats row */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 sm:gap-6">
             {[
-              { v: "59K",  l: "Sender" },
-              { v: "200K", l: "VOD" },
+              { v: "59K",  l: "Sender"   },
+              { v: "200K", l: "VOD"      },
               { v: "4K",   l: "Ultra HD" },
             ].map(({ v, l }) => (
               <div key={l}>
@@ -70,7 +77,8 @@ export default function Hero({ onPricingClick }: HeroProps) {
           {/* Device pills */}
           <div className="flex gap-1.5 overflow-x-auto scrollbar-none pb-0.5">
             {devices.map(d => (
-              <span key={d} className="shrink-0 px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-[10px] font-semibold rounded-full border border-neutral-900/[8] transition-colors whitespace-nowrap">
+              <span key={d}
+                className="shrink-0 px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-[10px] font-semibold rounded-full border border-neutral-900/[8] transition-colors whitespace-nowrap">
                 {d}
               </span>
             ))}
@@ -79,7 +87,10 @@ export default function Hero({ onPricingClick }: HeroProps) {
         </div>
 
         {/* ── Right: WM announcement card ─────────────────────────── */}
-        <Announcement onPricingClick={onPricingClick} />
+        {/* On mobile it appears first (order-1) so it's at the top */}
+        <div className="order-1 sm:order-2">
+          <Announcement onPricingClick={onPricingClick} />
+        </div>
 
       </div>
     </section>
