@@ -18,20 +18,20 @@ export default function Hero({ onPricingClick }: HeroProps) {
           <img
             src="/wm-banner.png"
             alt="WM 2026"
-            className="absolute right-0 top-0 h-full w-full sm:w-[55%] md:w-[52%] lg:w-[48%] object-cover object-top"
+            className="absolute right-0 top-0 h-full w-full sm:w-[62%] md:w-[58%] lg:w-[55%] object-cover object-top"
           />
-          {/* Left green gradient — covers photo on mobile, fades on desktop */}
+          {/* Left green gradient — lighter so photo shows through more */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, #013d37 0%, #013d37 35%, rgba(1,61,55,0.97) 45%, rgba(1,61,55,0.85) 58%, rgba(1,61,55,0.30) 75%, transparent 100%)",
+                "linear-gradient(to right, rgba(1,46,42,0.96) 0%, rgba(1,46,42,0.90) 28%, rgba(1,46,42,0.70) 42%, rgba(1,46,42,0.30) 58%, rgba(1,46,42,0.08) 72%, transparent 100%)",
             }}
           />
           {/* Bottom gradient for mobile readability */}
           <div
             className="absolute inset-0 sm:hidden"
-            style={{ background: "linear-gradient(to top, rgba(1,46,42,0.98) 40%, transparent 100%)" }}
+            style={{ background: "linear-gradient(to top, rgba(1,46,42,0.92) 35%, rgba(1,46,42,0.30) 65%, transparent 100%)" }}
           />
         </div>
 
