@@ -6,22 +6,24 @@ interface HeroProps {
 
 const WM_CHANNELS = [
   // German Free TV
-  { id: "ard",    name: "ARD",        sub: "Das Erste",    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/ARD_Logo_2019.svg/120px-ARD_Logo_2019.svg.png",        bg: "#003CA6", type: "Free",    flag: "🇩🇪" },
-  { id: "zdf",    name: "ZDF",        sub: "ZDF HD",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/ZDF_logo.svg/120px-ZDF_logo.svg.png",                  bg: "#000000", type: "Free",    flag: "🇩🇪" },
-  { id: "rtl",    name: "RTL",        sub: "RTL HD",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/RTL_2019_logo.svg/120px-RTL_2019_logo.svg.png",        bg: "#E8001A", type: "Free",    flag: "🇩🇪" },
-  { id: "sat1",   name: "SAT.1",      sub: "SAT.1 HD",     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Sat1-logo.svg/120px-Sat1-logo.svg.png",                bg: "#003087", type: "Free",    flag: "🇩🇪" },
+  { id: "ard",   name: "ARD",        sub: "Das Erste",    logo: "https://logo.clearbit.com/ard.de",           bg: "#003CA6", type: "Free", flag: "🇩🇪" },
+  { id: "zdf",   name: "ZDF",        sub: "ZDF HD",       logo: "https://logo.clearbit.com/zdf.de",           bg: "#161616", type: "Free", flag: "🇩🇪" },
+  { id: "rtl",   name: "RTL",        sub: "RTL HD",       logo: "https://logo.clearbit.com/rtl.de",           bg: "#E8001A", type: "Free", flag: "🇩🇪" },
+  { id: "sat1",  name: "SAT.1",      sub: "SAT.1 HD",     logo: "https://logo.clearbit.com/sat1.de",          bg: "#1A3A8F", type: "Free", flag: "🇩🇪" },
+  { id: "pro7",  name: "ProSieben",  sub: "ProSieben HD", logo: "https://logo.clearbit.com/prosieben.de",     bg: "#CC0000", type: "Free", flag: "🇩🇪" },
   // German Premium / PPV
-  { id: "sky",    name: "Sky Sport",  sub: "Sky WM",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Sky_Deutschland_Logo_2020.svg/120px-Sky_Deutschland_Logo_2020.svg.png", bg: "#E4002B", type: "PPV", flag: "🇩🇪" },
-  { id: "mag",    name: "MagentaTV",  sub: "Telekom",      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/MagentaTV_Logo.svg/120px-MagentaTV_Logo.svg.png",     bg: "#E20074", type: "VIP",    flag: "🇩🇪" },
-  { id: "dazn",   name: "DAZN",       sub: "DAZN WM",      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DAZN_word_logo.svg/120px-DAZN_word_logo.svg.png",     bg: "#111111", type: "PPV",    flag: "🌍"  },
-  // International
-  { id: "bein",   name: "beIN Sports",sub: "beIN 1",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/BeIN_Sports_logo.svg/120px-BeIN_Sports_logo.svg.png", bg: "#6B0FA8", type: "PPV",    flag: "🌍"  },
-  { id: "bbc",    name: "BBC Sport",  sub: "BBC One",      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/BBC_Sport_logo_2021.svg/120px-BBC_Sport_logo_2021.svg.png", bg: "#CC0000", type: "Free", flag: "🇬🇧" },
-  { id: "itv",    name: "ITV",        sub: "ITV1 HD",      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/ITV_logo_2013.svg/120px-ITV_logo_2013.svg.png",       bg: "#0057A8", type: "Free",   flag: "🇬🇧" },
-  { id: "tf1",    name: "TF1",        sub: "TF1 France",   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/TF1_logo_2013.svg/120px-TF1_logo_2013.svg.png",       bg: "#0066CC", type: "Free",   flag: "🇫🇷" },
-  { id: "espn",   name: "ESPN",       sub: "ESPN WM",      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/120px-ESPN_wordmark.svg.png",       bg: "#CC0000", type: "PPV",    flag: "🇺🇸" },
-  { id: "fox",    name: "Fox Sports", sub: "FS1 WM",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Fox_Sports_Logo.svg/120px-Fox_Sports_Logo.svg.png",   bg: "#003DA5", type: "PPV",    flag: "🇺🇸" },
-  { id: "canal",  name: "Canal+",     sub: "Canal+ Sport", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Canal%2B.svg/120px-Canal%2B.svg.png",                 bg: "#1A1A1A", type: "PPV",    flag: "🇫🇷" },
+  { id: "sky",   name: "Sky Sport",  sub: "Sky WM",       logo: "https://logo.clearbit.com/sky.de",           bg: "#E4002B", type: "PPV", flag: "🇩🇪" },
+  { id: "mag",   name: "MagentaTV",  sub: "Telekom",      logo: "https://logo.clearbit.com/magentatv.de",     bg: "#E20074", type: "VIP", flag: "🇩🇪" },
+  { id: "dazn",  name: "DAZN",       sub: "DAZN WM",      logo: "https://logo.clearbit.com/dazn.com",         bg: "#111111", type: "PPV", flag: "🌍"  },
+  // International PPV
+  { id: "bein",  name: "beIN Sports",sub: "beIN 1",       logo: "https://logo.clearbit.com/beinsports.com",   bg: "#6B0FA8", type: "PPV", flag: "🌍"  },
+  { id: "bbc",   name: "BBC Sport",  sub: "BBC One",      logo: "https://logo.clearbit.com/bbc.co.uk",        bg: "#CC0000", type: "Free", flag: "🇬🇧" },
+  { id: "itv",   name: "ITV",        sub: "ITV1 HD",      logo: "https://logo.clearbit.com/itv.com",          bg: "#0057A8", type: "Free", flag: "🇬🇧" },
+  { id: "tf1",   name: "TF1",        sub: "TF1 France",   logo: "https://logo.clearbit.com/tf1.fr",           bg: "#0066CC", type: "Free", flag: "🇫🇷" },
+  { id: "canal", name: "Canal+",     sub: "Canal+ Sport", logo: "https://logo.clearbit.com/canalplus.com",    bg: "#1A1A1A", type: "PPV", flag: "🇫🇷" },
+  { id: "espn",  name: "ESPN",       sub: "ESPN WM",      logo: "https://logo.clearbit.com/espn.com",         bg: "#AA0000", type: "PPV", flag: "🇺🇸" },
+  { id: "fox",   name: "Fox Sports", sub: "FS1 WM",       logo: "https://logo.clearbit.com/foxsports.com",    bg: "#003DA5", type: "PPV", flag: "🇺🇸" },
+  { id: "ssc",   name: "SSC Sport",  sub: "SSC WM",       logo: "https://logo.clearbit.com/ssc.com.sa",       bg: "#006633", type: "PPV", flag: "🌍"  },
 ];
 
 const TYPE_STYLE: Record<string, string> = {
@@ -160,33 +162,39 @@ export default function Hero({ onPricingClick }: HeroProps) {
                   {doubled.map((ch, i) => (
                     <div
                       key={`${ch.id}-${i}`}
-                      className="shrink-0 flex items-center gap-2.5 bg-white/8 hover:bg-white/14 border border-white/10 rounded-xl px-3 py-2 transition-colors cursor-default"
+                      className="shrink-0 flex items-center gap-2.5 bg-white/8 hover:bg-white/14 border border-white/10 rounded-xl px-3 py-2.5 transition-colors cursor-default"
                     >
-                      {/* Logo */}
+                      {/* Logo box */}
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden shrink-0"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden shrink-0 p-1"
                         style={{ backgroundColor: ch.bg }}
                       >
                         <img
                           src={ch.logo}
                           alt={ch.name}
-                          className="w-6 h-6 object-contain"
+                          className="w-full h-full object-contain"
                           onError={e => {
                             const el = e.currentTarget;
                             el.style.display = "none";
-                            if (el.parentElement) {
-                              el.parentElement.innerHTML = `<span style="color:white;font-size:9px;font-weight:900;letter-spacing:-0.5px">${ch.name.slice(0,4)}</span>`;
+                            const parent = el.parentElement;
+                            if (parent) {
+                              parent.innerHTML = `<span style="color:white;font-size:8px;font-weight:900;text-align:center;line-height:1.1;word-break:break-all">${ch.name}</span>`;
                             }
                           }}
                         />
                       </div>
-                      {/* Text */}
-                      <div className="flex flex-col leading-none">
-                        <span className="text-white text-[11px] font-bold whitespace-nowrap">{ch.name}</span>
-                        <div className="flex items-center gap-1 mt-0.5">
-                          <span className="text-[8px] text-white/40">{ch.flag}</span>
-                          <span className={`text-[7px] font-black uppercase tracking-wide px-1 py-px rounded border ${TYPE_STYLE[ch.type]}`}>
+
+                      {/* Text + badges */}
+                      <div className="flex flex-col leading-none gap-1">
+                        <span className="text-white text-[12px] font-bold whitespace-nowrap">{ch.name}</span>
+                        <div className="flex items-center gap-1">
+                          <span className="text-[8px] text-white/35">{ch.flag}</span>
+                          <span className={`text-[7px] font-black uppercase tracking-wide px-1.5 py-px rounded-full border ${TYPE_STYLE[ch.type]}`}>
                             {ch.type}
+                          </span>
+                          {/* 4K badge */}
+                          <span className="text-[7px] font-black uppercase tracking-wide px-1.5 py-px rounded-full border bg-sky-500/20 text-sky-300 border-sky-500/30">
+                            4K
                           </span>
                         </div>
                       </div>
