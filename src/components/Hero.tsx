@@ -161,11 +161,11 @@ export default function Hero({ onPricingClick }: HeroProps) {
                   {doubled.map((ch, i) => (
                     <div
                       key={`${ch.id}-${i}`}
-                      className="shrink-0 flex items-center gap-2.5 bg-white/8 hover:bg-white/14 border border-white/10 rounded-xl px-3 py-2.5 transition-colors cursor-default"
+                      className="shrink-0 flex items-center gap-3 bg-white hover:bg-white/95 border border-black/8 rounded-2xl px-3.5 py-2.5 transition-all duration-200 cursor-default shadow-sm"
                     >
                       {/* Logo box */}
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden shrink-0 p-1"
+                        className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden shrink-0 p-1"
                         style={{ backgroundColor: ch.bg }}
                       >
                         <img
@@ -183,19 +183,10 @@ export default function Hero({ onPricingClick }: HeroProps) {
                         />
                       </div>
 
-                      {/* Text + badges */}
+                      {/* Text */}
                       <div className="flex flex-col leading-none gap-1">
-                        <span className="text-white text-[12px] font-bold whitespace-nowrap">{ch.name}</span>
-                        <div className="flex items-center gap-1">
-                          <span className="text-[8px] text-white/35">{ch.flag}</span>
-                          <span className={`text-[7px] font-black uppercase tracking-wide px-1.5 py-px rounded-full border ${TYPE_STYLE[ch.type]}`}>
-                            {ch.type}
-                          </span>
-                          {/* 4K badge */}
-                          <span className="text-[7px] font-black uppercase tracking-wide px-1.5 py-px rounded-full border bg-sky-500/20 text-sky-300 border-sky-500/30">
-                            4K
-                          </span>
-                        </div>
+                        <span className="text-[#111211] text-[13px] font-bold whitespace-nowrap">{ch.name}</span>
+                        <span className="text-[11px] text-[#014E45]/70 font-medium whitespace-nowrap">{ch.sub}</span>
                       </div>
                     </div>
                   ))}
