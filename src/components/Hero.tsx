@@ -22,8 +22,8 @@ export default function Hero({ onPricingClick }: HeroProps) {
 
         {/* Headline */}
         <div>
-          <h1 className="text-[2.1rem] sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.05] tracking-[-0.03em] font-extrabold text-neutral-900">
-            <span className="serif-display italic font-light text-neutral-700">4K-Qualität,</span>
+          <h1 className="text-[3rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] tracking-[-0.04em] font-black text-neutral-900">
+            <span className="serif-display italic font-light text-[#014E45]" style={{ fontSize: "1.08em" }}>4K-Qualität,</span>
             <br />
             auf all deinen Geräten.
           </h1>
