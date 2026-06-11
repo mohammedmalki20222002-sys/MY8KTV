@@ -256,7 +256,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                     }}
                   >
                     <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>Per WhatsApp bestellen</span>
+                    <span>Jetzt kaufen</span>
                   </a>
 
                 </div>
