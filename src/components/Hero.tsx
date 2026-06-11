@@ -96,7 +96,12 @@ export default function Hero({ onPricingClick }: HeroProps) {
               <br />
               <span className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-5xl leading-[1.08] font-black text-white">
                 Verfolgen Sie die{" "}
-                <span className="serif-display italic font-light" style={{ color: "#F5C842" }}>Weltmeisterschaft WM</span>{" "}
+                <span
+                  className="serif-display italic font-light block sm:inline text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl"
+                  style={{ color: "#F5C842", textShadow: "0 0 40px rgba(245,200,66,0.35)" }}
+                >
+                  Weltmeisterschaft WM
+                </span>{" "}
                 live — überall in Deutschland mit uns.{" "}
                 <span className="serif-display italic text-white/65">Seien Sie dabei!</span>
               </span>
