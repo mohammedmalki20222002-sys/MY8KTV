@@ -2,10 +2,62 @@ import { useState } from "react";
 import { ALL_CHANNELS, ChannelItem } from "../types";
 import { Search, CheckCircle, Radio } from "lucide-react";
 
+const DE_CHANNELS = [
+  { id: "ard",     name: "ARD",        sub: "Das Erste",     logo: "/logos/ard.png",     bg: "#003CA6" },
+  { id: "zdf",     name: "ZDF",        sub: "ZDF HD",        logo: "/logos/zdf.png",     bg: "#161616" },
+  { id: "rtl",     name: "RTL",        sub: "RTL HD",        logo: "/logos/rtl.png",     bg: "#E8001A" },
+  { id: "pro7",    name: "ProSieben",  sub: "Pro7 HD",       logo: "/logos/pro7.png",    bg: "#CC0000" },
+  { id: "sat1",    name: "SAT.1",      sub: "SAT.1 HD",      logo: "/logos/sat1.png",    bg: "#1A3A8F" },
+  { id: "vox",     name: "VOX",        sub: "VOX HD",        logo: "/logos/vox.png",     bg: "#E8670A" },
+  { id: "kabel1",  name: "Kabel Eins", sub: "K1 HD",         logo: "/logos/kabel1.png",  bg: "#CC0000" },
+  { id: "rtl2",    name: "RTL II",     sub: "RTL2 HD",       logo: "/logos/rtl2.png",    bg: "#1A1A2E" },
+  { id: "arte",    name: "ARTE",       sub: "ARTE HD",       logo: "/logos/arte.png",    bg: "#006699" },
+  { id: "ntv",     name: "n-tv",       sub: "Nachrichten",   logo: "/logos/ntv.png",     bg: "#CC0000" },
+  { id: "wdr",     name: "WDR",        sub: "WDR HD",        logo: "/logos/wdr.png",     bg: "#003C78" },
+  { id: "ndr",     name: "NDR",        sub: "NDR HD",        logo: "/logos/ndr.png",     bg: "#003C78" },
+  { id: "br",      name: "BR",         sub: "BR Fernsehen",  logo: "/logos/br.png",      bg: "#005A9C" },
+  { id: "zdfinfo", name: "ZDFinfo",    sub: "ZDFinfo HD",    logo: "/logos/zdfinfo.png", bg: "#161616" },
+  { id: "sport1",  name: "Sport1",     sub: "Sport1 HD",     logo: "/logos/sport1.png",  bg: "#FF0000" },
+  { id: "sky",     name: "Sky Sport",  sub: "Sky WM",        logo: "/logos/sky.png",     bg: "#101010" },
+  { id: "euro1",   name: "Eurosport",  sub: "Eurosport 1",   logo: "/logos/euro1.png",   bg: "#FF6600" },
+  { id: "dazn",    name: "DAZN",       sub: "DAZN Sport",    logo: "/logos/dazn.png",    bg: "#111111" },
+  { id: "bbc",     name: "BBC One",    sub: "BBC WM",        logo: "/logos/bbc.png",     bg: "#CC0000" },
+  { id: "bein",    name: "beIN Sports",sub: "beIN 1",        logo: "/logos/bein.png",    bg: "#6B0FA8" },
+];
+
+const ROW1 = DE_CHANNELS.slice(0, 10);
+const ROW2 = DE_CHANNELS.slice(10, 20);
+
+function ChannelCard({ ch }: { ch: typeof DE_CHANNELS[0] }) {
+  return (
+    <div className="shrink-0 flex items-center gap-3 bg-white border border-black/8 rounded-2xl px-3.5 py-2.5 shadow-sm min-w-[150px]">
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden shrink-0 p-1"
+        style={{ backgroundColor: ch.bg }}
+      >
+        <img
+          src={ch.logo}
+          alt={ch.name}
+          className="w-full h-full object-contain"
+          onError={e => {
+            const el = e.currentTarget;
+            el.style.display = "none";
+            const p = el.parentElement;
+            if (p) p.innerHTML = `<span style="color:white;font-size:8px;font-weight:900;text-align:center;line-height:1.1">${ch.name}</span>`;
+          }}
+        />
+      </div>
+      <div className="flex flex-col leading-none gap-1">
+        <span className="text-[#111211] text-[13px] font-bold whitespace-nowrap">{ch.name}</span>
+        <span className="text-[#014E45]/65 text-[11px] font-medium whitespace-nowrap">{ch.sub}</span>
+      </div>
+    </div>
+  );
+}
+
 export default function ChannelStripe() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState<{ message: string; matches: ChannelItem[] } | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState("DE");
 
   const handleSearch = (q: string) => {
     setSearchQuery(q);
@@ -27,97 +79,50 @@ export default function ChannelStripe() {
     });
   };
 
-  const marqueeChannels = ALL_CHANNELS.slice(0, 12);
-
-  const countries = [
-    { code: "DE", flag: "🇩🇪" },
-    { code: "US", flag: "🇺🇸" },
-    { code: "UK", flag: "🇬🇧" },
-    { code: "FR", flag: "🇫🇷" },
-    { code: "ES", flag: "🇪🇸" },
-    { code: "IT", flag: "🇮🇹" },
-    { code: "TR", flag: "🇹🇷" },
-    { code: "AR", flag: "🇦🇪" },
-  ];
-
-  const visibleChannels = ALL_CHANNELS.filter(ch => ch.country === selectedCountry).slice(0, 12);
+  const tripled1 = [...ROW1, ...ROW1, ...ROW1];
+  const tripled2 = [...ROW2, ...ROW2, ...ROW2];
 
   return (
     <section id="channels-section" className="px-4 md:px-8 max-w-7xl mx-auto w-full py-4">
-      <div className="bg-[#014E45] text-white rounded-2xl py-5 px-4 md:px-6 relative overflow-hidden shadow-lg">
+      <div className="bg-[#014E45] text-white rounded-2xl py-8 px-4 md:px-6 relative overflow-hidden shadow-lg">
 
         <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-        <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-white/3 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-white/[0.03] blur-3xl pointer-events-none" />
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-4 relative z-10">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 bg-black/20 px-2 py-0.5 rounded-full border border-white/10">
-              <Radio className="w-2.5 h-2.5 text-white/60 animate-pulse" />
+        <div className="flex items-center justify-between mb-6 relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 bg-black/20 px-2.5 py-1 rounded-full border border-white/10">
+              <Radio className="w-3 h-3 text-white/60 animate-pulse" />
               <span className="text-[9px] font-black font-mono uppercase tracking-widest text-white/70">59K+ Sender</span>
             </div>
-            <h2 className="text-base font-extrabold tracking-tight text-white">Sender-Katalog</h2>
+            <h2 className="text-lg font-extrabold tracking-tight text-white">Sender-Katalog</h2>
           </div>
-          <span className="hidden sm:block text-[9px] font-mono text-white/40 border border-white/10 bg-black/10 px-2.5 py-0.5 rounded-full">
+          <span className="hidden sm:block text-[9px] font-mono text-white/40 border border-white/10 bg-black/10 px-2.5 py-1 rounded-full">
             {ALL_CHANNELS.length} gelistet
           </span>
         </div>
 
-        {/* Marquee — single slim row */}
-        <div className="relative w-full overflow-hidden mb-4 py-1.5 bg-black/15 rounded-xl border border-white/5 pointer-events-none select-none">
-          <div className="animate-scroll gap-2.5">
-            {[...marqueeChannels, ...marqueeChannels, ...marqueeChannels].map((ch, idx) => (
-              <div key={`m-${ch.id}-${idx}`} className="flex items-center gap-1.5 bg-white/5 border border-white/[8] px-2.5 py-1 rounded-full min-w-max shrink-0">
-                <div className={`w-4 h-4 rounded-full bg-gradient-to-br ${ch.logoColor} flex items-center justify-center text-[6px] font-black text-white shrink-0`}>
-                  {ch.logoText}
-                </div>
-                <span className="text-[9px] font-bold text-white/80 whitespace-nowrap">{ch.name}</span>
-              </div>
+        {/* Row 1 — scrolls left */}
+        <div className="overflow-hidden -mx-4 md:-mx-6 mb-3 select-none pointer-events-none">
+          <div className="animate-scroll flex gap-3 px-4">
+            {tripled1.map((ch, i) => (
+              <ChannelCard key={`r1-${ch.id}-${i}`} ch={ch} />
             ))}
           </div>
         </div>
 
-        {/* Country tabs */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 mb-3 scrollbar-none relative z-10">
-          {countries.map(c => (
-            <button
-              key={c.code}
-              onClick={() => setSelectedCountry(c.code)}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shrink-0 transition-all border ${
-                selectedCountry === c.code
-                  ? "bg-white text-[#014E45] border-white shadow-sm"
-                  : "bg-white/5 text-white/50 border-white/10 hover:bg-white/10 hover:text-white/80"
-              }`}
-            >
-              <span>{c.flag}</span>
-              <span>{c.code}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Horizontal scrollable channel pills */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-4 scrollbar-none -mx-1 px-1 relative z-10">
-          {visibleChannels.map(ch => (
-            <div
-              key={ch.id}
-              className="shrink-0 flex items-center gap-2 bg-black/20 hover:bg-black/30 border border-white/5 hover:border-white/15 rounded-xl px-3 py-2 transition-all cursor-default min-w-[130px]"
-            >
-              <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${ch.logoColor} flex items-center justify-center text-[7px] font-black text-white shrink-0`}>
-                {ch.logoText}
-              </div>
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold text-white truncate leading-tight">{ch.name}</p>
-                <div className="flex items-center gap-1 mt-0.5">
-                  <span className="w-1 h-1 bg-white/40 rounded-full animate-pulse" />
-                  <span className="text-[7px] font-mono text-white/30 uppercase">{ch.category}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Row 2 — scrolls right */}
+        <div className="overflow-hidden -mx-4 md:-mx-6 mb-6 select-none pointer-events-none">
+          <div className="animate-scroll-reverse flex gap-3 px-4">
+            {tripled2.map((ch, i) => (
+              <ChannelCard key={`r2-${ch.id}-${i}`} ch={ch} />
+            ))}
+          </div>
         </div>
 
         {/* Search bar */}
-        <div className="bg-black/20 rounded-xl px-3 py-2.5 border border-white/10 relative z-10">
+        <div className="bg-black/20 rounded-xl px-3 py-3 border border-white/10 relative z-10">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
             <input
@@ -146,7 +151,7 @@ export default function ChannelStripe() {
             </div>
           ) : (
             <div className="flex gap-1.5 mt-2 flex-wrap">
-              {["Sky Sport", "ZDF", "RTL", "HBO", "DAZN", "beIN"].map(s => (
+              {["Sky Sport", "ZDF", "RTL", "ARTE", "DAZN", "ARD"].map(s => (
                 <button
                   key={s}
                   onClick={() => handleSearch(s)}
