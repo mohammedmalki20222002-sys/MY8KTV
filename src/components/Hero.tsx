@@ -1,5 +1,4 @@
 import { ArrowRight, Sparkles } from "lucide-react";
-import Announcement from "./Announcement";
 
 interface HeroProps {
   onPricingClick: () => void;
@@ -9,90 +8,136 @@ export default function Hero({ onPricingClick }: HeroProps) {
   const devices = ["🖥️ Smart TV", "🔥 Fire Stick", "🍏 Apple TV", "🤖 Android", "💻 PC"];
 
   return (
-    <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-8 sm:py-10 md:py-12">
+    <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-4">
 
-      {/* Two-column grid:
-          Mobile  (< 640px):  single column, stacked
-          Tablet  (640-1023): 2 equal columns side by side
-          Desktop (≥ 1024px): hero wider, card narrower          */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] gap-6 lg:gap-8 items-start">
+      {/* ── Unified card ─────────────────────────────────────────── */}
+      <div className="relative w-full rounded-2xl overflow-hidden min-h-[520px] sm:min-h-[460px] md:min-h-[500px] lg:min-h-[540px] flex flex-col">
 
-        {/* ── Left: hero content ──────────────────────────────────── */}
-        <div className="flex flex-col gap-5 sm:gap-4 order-2 sm:order-1">
+        {/* Background: WM photo on the right */}
+        <div className="absolute inset-0">
+          <img
+            src="/wm-banner.png"
+            alt="WM 2026"
+            className="absolute right-0 top-0 h-full w-full sm:w-[55%] md:w-[52%] lg:w-[48%] object-cover object-top"
+          />
+          {/* Left green gradient — covers photo on mobile, fades on desktop */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, #013d37 0%, #013d37 35%, rgba(1,61,55,0.97) 45%, rgba(1,61,55,0.85) 58%, rgba(1,61,55,0.30) 75%, transparent 100%)",
+            }}
+          />
+          {/* Bottom gradient for mobile readability */}
+          <div
+            className="absolute inset-0 sm:hidden"
+            style={{ background: "linear-gradient(to top, rgba(1,46,42,0.98) 40%, transparent 100%)" }}
+          />
+        </div>
 
-          {/* Trust badge */}
-          <div className="inline-flex items-center gap-1.5 bg-neutral-900/5 border border-neutral-200/60 rounded-full px-3 py-1 self-start">
-            <Sparkles className="w-3 h-3 text-[#014E45]" />
-            <span className="text-[11px] font-bold text-neutral-700">TrustScore 4.9</span>
-            <span className="text-neutral-300 text-xs">|</span>
-            <span className="text-[10px] font-bold text-[#014E45]">★★★★★ Verifiziert</span>
+        {/* Decorative circles */}
+        <div className="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-white/[0.03] pointer-events-none" />
+        <div className="absolute bottom-0 left-40 w-48 h-48 rounded-full bg-black/10 blur-3xl pointer-events-none" />
+
+        {/* ── Content ──────────────────────────────────────────────── */}
+        <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between h-full flex-1 gap-6 max-w-[600px]">
+
+          {/* Top: WM badge + trust */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 pl-3 pr-4 py-1.5 rounded-full">
+              <span className="text-base leading-none">⚽</span>
+              <span className="font-black text-[10px] uppercase tracking-[0.2em] text-white">WM 2026 — Live</span>
+            </div>
+            <div className="flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1.5">
+              <Sparkles className="w-3 h-3 text-white/70" />
+              <span className="text-[10px] font-bold text-white/70">TrustScore 4.9 ★★★★★</span>
+            </div>
           </div>
 
-          {/* Headline */}
-          <div>
-            <h1 className="text-[2.6rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.0] tracking-[-0.04em] font-black text-neutral-900">
-              <span className="serif-display italic font-light text-[#014E45]" style={{ fontSize: "1.08em" }}>
+          {/* Middle: headline + description */}
+          <div className="flex flex-col gap-3">
+            {/* Announcement subtitle */}
+            <p className="text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-[0.25em] text-white/40">
+              Das beste IPTV in Deutschland
+            </p>
+
+            {/* Main headline */}
+            <h1 className="text-[2.4rem] sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.0] tracking-[-0.04em] font-black text-white">
+              <span className="serif-display italic font-light text-white/80" style={{ fontSize: "1.06em" }}>
                 4K-Qualität,
               </span>
               <br />
               auf all deinen Geräten.
             </h1>
-            <p className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-neutral-400 mt-2">
-              Das beste IPTV in Deutschland
+
+            {/* WM line */}
+            <p className="text-white/55 text-xs sm:text-sm font-medium leading-snug max-w-sm">
+              Verfolgen Sie die{" "}
+              <span className="serif-display italic text-white/75">Weltmeisterschaft WM</span> live —
+              überall in Deutschland mit uns.{" "}
+              <span className="serif-display italic text-white/60">Seien Sie dabei!</span>
             </p>
-            <p className="mt-3 text-sm text-neutral-500 leading-relaxed max-w-md">
-              Über <span className="font-semibold text-neutral-900">59.000 Live-Sender</span> und{" "}
-              <span className="font-semibold text-neutral-900">200.000+ VOD</span> — sofort auf jedem Gerät, ohne Vertrag.
+
+            {/* Description */}
+            <p className="text-white/45 text-[11px] sm:text-xs leading-relaxed max-w-sm">
+              Über <span className="font-semibold text-white/75">59.000 Live-Sender</span> und{" "}
+              <span className="font-semibold text-white/75">200.000+ VOD</span> — sofort auf jedem Gerät, ohne Vertrag.
             </p>
           </div>
 
-          {/* Stats row */}
-          <div className="flex items-center gap-5 sm:gap-6">
+          {/* Stats */}
+          <div className="flex items-center gap-6 sm:gap-8">
             {[
               { v: "59K",  l: "Sender"   },
               { v: "200K", l: "VOD"      },
               { v: "4K",   l: "Ultra HD" },
-            ].map(({ v, l }) => (
-              <div key={l}>
-                <p className="text-xl font-black leading-none text-neutral-900">{v}</p>
-                <p className="text-[9px] font-mono uppercase tracking-widest text-neutral-400 mt-0.5">{l}</p>
+            ].map(({ v, l }, i) => (
+              <div key={l} className="flex items-center gap-6 sm:gap-8">
+                {i > 0 && <div className="w-px h-6 bg-white/15" />}
+                <div>
+                  <p className="text-xl sm:text-2xl font-black leading-none text-white">{v}</p>
+                  <p className="text-[9px] font-mono uppercase tracking-widest text-white/40 mt-0.5">{l}</p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col gap-2">
-            <button
-              onClick={onPricingClick}
-              className="self-start flex items-center gap-2 bg-[#014E45] hover:bg-[#013d37] text-white font-extrabold text-sm px-7 py-3 rounded-full border-2 border-[#014E45] transition-all shadow-[0_4px_0_#00201c] active:translate-y-0.5 active:shadow-none"
-            >
-              <span>Sofortigen Zugang sichern</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <p className="text-[9px] font-mono text-neutral-400 tracking-wider uppercase">
+          {/* CTA + device pills */}
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={onPricingClick}
+                className="flex items-center gap-2 bg-white text-[#014E45] font-extrabold text-sm px-6 py-2.5 rounded-full
+                           shadow-[0_4px_0_rgba(0,0,0,0.25)] active:translate-y-0.5 active:shadow-none hover:bg-white/90 transition-all"
+              >
+                <span>Jetzt Tarif wählen</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={onPricingClick}
+                className="flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm px-6 py-2.5 rounded-full transition-all"
+              >
+                Sofortigen Zugang sichern
+              </button>
+            </div>
+            <p className="text-[9px] font-mono text-white/30 tracking-wider uppercase">
               Kein Vertrag · Sofortiger Zugang
             </p>
-          </div>
 
-          {/* Device pills */}
-          <div className="flex gap-1.5 overflow-x-auto scrollbar-none pb-0.5">
-            {devices.map(d => (
-              <span key={d}
-                className="shrink-0 px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-[10px] font-semibold rounded-full border border-neutral-900/[8] transition-colors whitespace-nowrap">
-                {d}
-              </span>
-            ))}
+            {/* Device pills */}
+            <div className="flex gap-1.5 overflow-x-auto scrollbar-none pb-0.5 -ml-0.5">
+              {devices.map(d => (
+                <span key={d}
+                  className="shrink-0 px-3 py-1.5 bg-white/10 hover:bg-white/15 text-white/60 text-[10px] font-semibold rounded-full border border-white/10 transition-colors whitespace-nowrap">
+                  {d}
+                </span>
+              ))}
+            </div>
           </div>
 
         </div>
-
-        {/* ── Right: WM announcement card ─────────────────────────── */}
-        {/* On mobile it appears first (order-1) so it's at the top */}
-        <div className="order-1 sm:order-2">
-          <Announcement onPricingClick={onPricingClick} />
-        </div>
-
       </div>
+
     </section>
   );
 }
