@@ -11,6 +11,7 @@ import Hero from "./components/Hero";
 import VideoShowcase from "./components/VideoShowcase";
 import CheckoutModal from "./components/CheckoutModal";
 import { Tv, ShieldCheck, Heart, Sparkles, CheckCircle, Smartphone, Flame } from "lucide-react";
+import Announcement from "./components/Announcement";
 
 export default function App() {
   const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState<PricingPlan | null>(null);
@@ -30,6 +31,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FDFDF7] text-neutral-900 flex flex-col font-sans selection:bg-[#014E45] selection:text-white overflow-x-hidden w-full">
       
+      {/* WM Announcement Banner */}
+      <Announcement onPricingClick={() => scrollToSection("pricing-section")} />
+
       {/* Top sticky styled Header */}
       <Header
         onSportsClick={() => scrollToSection("live-sports-section")}
