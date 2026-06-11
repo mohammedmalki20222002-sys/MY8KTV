@@ -99,6 +99,15 @@ function ZattooLogo() {
   );
 }
 
+function ViaplayLogo() {
+  return (
+    <svg viewBox="0 0 80 30" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="80" height="30" rx="4" fill="#3700B3" />
+      <text x="40" y="20" textAnchor="middle" fontSize="13" fontWeight="900" fill="white" fontFamily="Arial Black, Arial">viaplay</text>
+    </svg>
+  );
+}
+
 // ── Platform data ──────────────────────────────────────────────────────────────
 type LogoType = "img" | "svg";
 
@@ -136,6 +145,8 @@ const DE_PLATFORMS: Platform[] = [
   { id: "ardmed",    name: "ARD Mediathek", sub: "Öffentlich-rechtl.",bg: "#003CA6", logoType: "img", logo: "/logos/ard.png"        },
   { id: "zdfmed",    name: "ZDF Mediathek", sub: "Öffentlich-rechtl.",bg: "#161616", logoType: "img", logo: "/logos/zdf.png"        },
   { id: "disneyDE",  name: "Disney+",       sub: "Disney Deutschland",bg: "#113CCF", logoType: "img", logo: "/logos/disneyplus.png" },
+  { id: "videoland", name: "Videoland",     sub: "RTL Nederland",     bg: "#FF0066", logoType: "img", logo: "/logos/videoland.png"  },
+  { id: "viaplay",   name: "Viaplay",       sub: "Nordic Streaming",  bg: "#3700B3", logoType: "svg", SvgLogo: ViaplayLogo          },
 ];
 
 // ── Platform Card ─────────────────────────────────────────────────────────────
