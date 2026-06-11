@@ -215,10 +215,10 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                   </div>
 
                   {/* Features */}
-                  <ul className="space-y-2.5 flex-1 mb-6">
+                  <ul className="space-y-3 flex-1 mb-6">
                     {plan.features.slice(0, 6).map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2.5">
-                        <span className="w-4 h-4 shrink-0 mt-0.5 rounded-full flex items-center justify-center"
+                      <li key={i} className="flex items-center gap-3">
+                        <span className="w-5 h-5 shrink-0 rounded-full flex items-center justify-center"
                           style={plan.popular ? {
                             background: "rgba(255,255,255,0.18)",
                             border: "1px solid rgba(255,255,255,0.35)",
@@ -226,11 +226,11 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                             background: `rgba(1,78,69,0.10)`,
                             border: `1px solid rgba(1,78,69,0.30)`,
                           }}>
-                          <Check className="w-2.5 h-2.5 stroke-[3]"
+                          <Check className="w-3 h-3 stroke-[3]"
                             style={{ color: plan.popular ? "#fff" : GREEN }} />
                         </span>
-                        <span className="text-[11px] leading-relaxed"
-                          style={{ color: plan.popular ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.65)" }}>
+                        <span className="text-[13px] font-mono font-semibold leading-snug"
+                          style={{ color: plan.popular ? "rgba(255,255,255,0.90)" : "#111211" }}>
                           {feature}
                         </span>
                       </li>
