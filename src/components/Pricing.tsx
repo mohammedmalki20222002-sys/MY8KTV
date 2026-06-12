@@ -16,14 +16,9 @@ const GREEN_D = "#013d37";
 const WA_NUMBER = "447449708976";
 
 function buildWhatsAppUrl(plan: PricingPlan): string {
-  const geraete = plan.devices === 1 ? "1 Gerät" : "2 Geräte";
+  const geraete = plan.devices === 1 ? "1 Gerat" : "2 Gerate";
   const preis   = plan.price.toFixed(2).replace(".", ",");
-  const msg =
-    `Hallo, ich möchte das IPTV Professional Paket bestellen:\n\n` +
-    `⏱ Laufzeit: ${plan.durationMonths} Monate\n` +
-    `📱 Geräte: ${geraete}\n` +
-    `💶 Preis: ${preis} €\n\n` +
-    `Bitte sendet mir die Zugangsdaten schnellstmöglich zu. Vielen Dank!`;
+  const msg = `TV Professional - ${plan.durationMonths} Monate / ${geraete} / ${preis} EUR`;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
