@@ -43,6 +43,7 @@ export default function App() {
       <main className="flex-grow">
         
         {/* SECTION 1: HERO section (Typography displays + devices selector simulators) */}
+        <div className="pt-6 md:pt-10" />
         <Hero onPricingClick={() => scrollToSection("pricing-section")} />
 
         {/* VIDEO SHOWCASE: Autoplay service preview video */}

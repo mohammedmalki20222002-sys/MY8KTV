@@ -10,10 +10,6 @@ export default function Announcement({ onPricingClick }: AnnouncementProps) {
 
       {/* ── Designed announcement title ─────────────────────────── */}
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 bg-[#014E45] text-white pl-3 pr-4 py-1.5 rounded-full shadow-sm">
-          <span className="text-base leading-none">⚽</span>
-          <span className="serif-display italic font-light text-xl sm:text-2xl">WM 2026 — Live</span>
-        </div>
         <div className="h-px flex-1 bg-neutral-200" />
         <span className="serif-display italic font-light text-xl text-neutral-400 whitespace-nowrap">Jetzt dabei sein</span>
       </div>

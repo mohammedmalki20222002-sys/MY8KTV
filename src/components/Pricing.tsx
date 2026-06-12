@@ -6,9 +6,10 @@ interface PricingProps {
   onSelectPlan: (plan: PricingPlan) => void;
 }
 
-const GOLD   = "#C8A400";
-const GOLD_L = "#F0D060";
-const GOLD_D = "#7A5C00";
+const GOLD   = "#D4A820";
+const GOLD_L = "#FFE370";
+const GOLD_D = "#8B6510";
+const GOLD_T = "#FFF0A0";
 const GREEN  = "#014E45";
 const GREEN_D = "#013d37";
 
@@ -80,7 +81,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
             <br />
             <span className="serif-display italic font-light pr-1.5"
               style={{
-                background: `linear-gradient(135deg, ${GOLD_D} 0%, ${GOLD} 35%, ${GOLD_L} 65%, ${GOLD} 100%)`,
+                background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_L} 40%, ${GOLD_T} 65%, ${GOLD_L} 100%)`,
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -116,24 +117,13 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
           {plans.map(plan => (
             <div key={plan.id} className="relative flex flex-col">
 
-              {/* Popular badge */}
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20
-                                flex items-center gap-1.5 px-4 py-1.5 rounded-full
-                                text-[10px] font-black uppercase tracking-[0.12em] text-neutral-900
-                                shadow-[0_4px_16px_rgba(200,164,0,0.45)]"
-                  style={{ background: `linear-gradient(135deg, ${GOLD_D} 0%, ${GOLD} 40%, ${GOLD_L} 70%, ${GOLD} 100%)` }}>
-                  <Crown className="w-3 h-3" />
-                  <span>Beliebtester</span>
-                </div>
-              )}
 
               {/* Card */}
               <div className="flex-1 flex flex-col rounded-2xl overflow-hidden"
                 style={plan.popular ? {
-                  background: `linear-gradient(160deg, ${GREEN_D} 0%, ${GREEN} 60%, ${GREEN_D} 100%)`,
-                  border: `1.5px solid rgba(1,200,140,0.40)`,
-                  boxShadow: `0 0 60px rgba(1,78,69,0.45), 0 12px 40px rgba(0,0,0,0.4)`,
+                  background: `linear-gradient(160deg, #020806 0%, #010e0c 30%, #011a16 55%, #010e0c 80%, #020806 100%)`,
+                  border: `1.5px solid ${GOLD}88`,
+                  boxShadow: `0 0 80px rgba(1,78,69,0.5), 0 0 40px rgba(200,164,0,0.18), 0 16px 50px rgba(0,0,0,0.5)`,
                 } : {
                   background: "#ffffff",
                   border: `1.5px solid rgba(1,78,69,0.20)`,
@@ -144,21 +134,34 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                 <div className="h-1.5 w-full"
                   style={{
                     background: plan.popular
-                      ? `linear-gradient(90deg, transparent, #fff, transparent)`
+                      ? `linear-gradient(90deg, transparent, ${GOLD_L}, transparent)`
                       : `linear-gradient(90deg, transparent, ${GREEN}, transparent)`
                   }} />
 
                 <div className="flex flex-col flex-1 p-6 text-left">
 
+                  {/* Popular title */}
+                  {plan.popular && (
+                    <div className="flex items-center gap-2 mb-4">
+                      <Crown className="w-4 h-4" style={{ color: GOLD }} />
+                      <span className="text-sm font-black uppercase tracking-[0.15em]"
+                        style={{ color: GOLD_T }}>
+                        Beliebtester
+                      </span>
+                    </div>
+                  )}
+
                   {/* Months — big number */}
                   <div className="mb-5">
                     <div className="flex items-end gap-2 leading-none">
                       <span className="text-7xl font-black tracking-tighter leading-none"
-                        style={{ color: plan.popular ? "#fff" : GREEN }}>
+                        style={ plan.popular
+                          ? { background: `linear-gradient(135deg, ${GOLD_D} 0%, ${GOLD} 40%, ${GOLD_L} 100%)`, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }
+                          : { color: GREEN }}>
                         {plan.durationMonths}
                       </span>
                       <span className="text-base font-black mb-3 uppercase tracking-widest"
-                        style={{ color: plan.popular ? "rgba(255,255,255,0.70)" : "rgba(1,78,69,0.65)" }}>
+                        style={{ color: plan.popular ? GOLD_T : "rgba(1,78,69,0.65)" }}>
                         {plan.durationMonths === 1 ? "Monat" : "Monate"}
                       </span>
                     </div>
@@ -166,16 +169,16 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                     {/* Devices badge */}
                     <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
                       style={plan.popular ? {
-                        background: "rgba(255,255,255,0.15)",
-                        border: "1px solid rgba(255,255,255,0.30)",
+                        background: `${GOLD}22`,
+                        border: `1px solid ${GOLD}55`,
                       } : {
                         background: `rgba(1,78,69,0.08)`,
                         border: `1px solid rgba(1,78,69,0.25)`,
                       }}>
                       <Monitor className="w-3.5 h-3.5"
-                        style={{ color: plan.popular ? "#fff" : GREEN }} />
+                        style={{ color: plan.popular ? GOLD : GREEN }} />
                       <span className="text-xs font-black uppercase tracking-wider"
-                        style={{ color: plan.popular ? "#fff" : GREEN }}>
+                        style={{ color: plan.popular ? GOLD_T : GREEN }}>
                         {plan.devices} {plan.devices === 1 ? "Gerät" : "Geräte"}
                       </span>
                     </div>
@@ -184,32 +187,32 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                   {/* Savings badge */}
                   <span className="self-start text-[9px] font-black py-0.5 px-2.5 rounded-full uppercase tracking-wide mb-5"
                     style={plan.popular ? {
-                      background: "rgba(255,255,255,0.18)",
-                      color: "#fff",
-                      border: "1px solid rgba(255,255,255,0.30)",
+                      background: `${GOLD}33`,
+                      color: GOLD_L,
+                      border: `1px solid ${GOLD}66`,
                     } : {
                       background: "rgba(1,78,69,0.10)",
                       color: GREEN,
                       border: `1px solid rgba(1,78,69,0.25)`,
                     }}>
-                    {plan.savings}
+                    <span style={{ color: plan.popular ? GOLD_T : "inherit" }}>{plan.savings}</span>
                   </span>
 
                   {/* Price */}
                   <div className="pb-5 mb-5 border-b"
-                    style={{ borderColor: plan.popular ? "rgba(255,255,255,0.20)" : "rgba(1,78,69,0.15)" }}>
+                    style={{ borderColor: plan.popular ? `${GOLD}33` : "rgba(1,78,69,0.15)" }}>
                     <div className="flex items-end gap-2">
                       <span className="text-3xl font-black tracking-tight leading-none"
-                        style={{ color: plan.popular ? "#fff" : "#111211" }}>
+                        style={{ color: plan.popular ? GOLD_T : "#111211" }}>
                         {plan.price.toFixed(2).replace(".", ",")} €
                       </span>
                       <span className="text-sm font-mono line-through pb-0.5"
-                        style={{ color: plan.popular ? "rgba(255,255,255,0.40)" : "rgba(0,0,0,0.30)" }}>
+                        style={{ color: plan.popular ? `${GOLD}55` : "rgba(0,0,0,0.30)" }}>
                         {plan.originalPrice.toFixed(2).replace(".", ",")} €
                       </span>
                     </div>
                     <p className="serif-display italic font-light text-2xl mt-1.5"
-                      style={{ color: plan.popular ? "rgba(255,255,255,0.75)" : GREEN }}>
+                      style={{ color: plan.popular ? GOLD_T : GREEN }}>
                       ≈ {(plan.price / plan.durationMonths).toFixed(2).replace(".", ",")} € / Monat
                     </p>
                   </div>
@@ -220,17 +223,17 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                       <li key={i} className="flex items-center gap-3">
                         <span className="w-6 h-6 shrink-0 rounded-full flex items-center justify-center"
                           style={plan.popular ? {
-                            background: "rgba(255,255,255,0.18)",
-                            border: "1px solid rgba(255,255,255,0.35)",
+                            background: `${GOLD}22`,
+                            border: `1px solid ${GOLD}55`,
                           } : {
                             background: `rgba(1,78,69,0.10)`,
                             border: `1px solid rgba(1,78,69,0.30)`,
                           }}>
                           <Check className="w-3.5 h-3.5 stroke-[3]"
-                            style={{ color: plan.popular ? "#fff" : GREEN }} />
+                            style={{ color: plan.popular ? GOLD : GREEN }} />
                         </span>
                         <span className="text-[15px] font-mono font-bold leading-snug"
-                          style={{ color: plan.popular ? "#ffffff" : "#0a0a0a" }}>
+                          style={{ color: plan.popular ? GOLD_T : "#0a0a0a" }}>
                           {feature}
                         </span>
                       </li>
@@ -246,9 +249,9 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                                flex items-center justify-center gap-2 transition-all duration-200 no-underline
                                hover:opacity-90 hover:scale-[1.02] active:scale-100"
                     style={plan.popular ? {
-                      background: "#fff",
-                      color: GREEN,
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+                      background: `linear-gradient(135deg, ${GOLD_D} 0%, ${GOLD} 45%, ${GOLD_L} 100%)`,
+                      color: "#1a1200",
+                      boxShadow: `0 4px 24px rgba(200,164,0,0.45)`,
                     } : {
                       background: GREEN,
                       color: "#fff",

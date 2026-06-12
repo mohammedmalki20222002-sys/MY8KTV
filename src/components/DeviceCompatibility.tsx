@@ -57,7 +57,6 @@ export default function DeviceCompatibility({ onPricingClick }: DeviceCompatibil
         {/* Header */}
         <div className="flex items-center justify-between mb-6 px-4 md:px-6">
           <div>
-            <span className="serif-display italic font-light text-2xl text-neutral-400 block mb-1">21+ Geräte</span>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-neutral-900 leading-tight">
               Kompatibel mit{" "}
               <span className="serif-display italic font-light text-[#014E45]">allen Geräten.</span>

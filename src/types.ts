@@ -456,6 +456,7 @@ export const ALL_CHANNELS: ChannelItem[] = [
 const COMMON_FEATURES = [
   "59.000+ Live-Sender",
   "200.000+ Filme & Serien",
+  "Netflix · HBO · Disney+ & mehr",
   "HD | FHD | 4K Qualität",
   "Anti-Freeze-Technologie",
   "Schnelle und stabile Server",
@@ -500,7 +501,7 @@ export const SUBSCRIPTION_PLANS: PricingPlan[] = [
     popular: true,
     savings: "42 % sparen",
     devices: 1,
-    features: ["Cap Player inklusive", ...COMMON_FEATURES]
+    features: COMMON_FEATURES
   },
   {
     id: "p4",
@@ -511,7 +512,7 @@ export const SUBSCRIPTION_PLANS: PricingPlan[] = [
     popular: false,
     savings: "43 % sparen",
     devices: 1,
-    features: ["Cap Player inklusive", ...COMMON_FEATURES]
+    features: COMMON_FEATURES
   },
   // 2 Device plans
   {
@@ -545,7 +546,7 @@ export const SUBSCRIPTION_PLANS: PricingPlan[] = [
     popular: true,
     savings: "41 % sparen",
     devices: 2,
-    features: ["2 Simultane Verbindungen", "Cap Player inklusive", ...COMMON_FEATURES]
+    features: ["2 Simultane Verbindungen", ...COMMON_FEATURES]
   },
   {
     id: "p8",
@@ -556,7 +557,7 @@ export const SUBSCRIPTION_PLANS: PricingPlan[] = [
     popular: false,
     savings: "41 % sparen",
     devices: 2,
-    features: ["2 Simultane Verbindungen", "Cap Player inklusive", ...COMMON_FEATURES]
+    features: ["2 Simultane Verbindungen", ...COMMON_FEATURES]
   }
 ];
 

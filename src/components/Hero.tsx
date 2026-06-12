@@ -71,10 +71,6 @@ export default function Hero({ onPricingClick }: HeroProps) {
 
           {/* Top: WM badge + trust */}
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 pl-3 pr-4 py-1.5 rounded-full">
-              <span className="text-base leading-none">⚽</span>
-              <span className="serif-display italic font-light text-xl text-white">WM 2026 — Live</span>
-            </div>
             <div className="flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1.5">
               <Sparkles className="w-3 h-3 text-white/70" />
               <span className="text-[10px] font-bold text-white/70">TrustScore 4.9 ★★★★★</span>
@@ -102,7 +98,6 @@ export default function Hero({ onPricingClick }: HeroProps) {
                 >
                   Weltmeisterschaft WM
                 </span>{" "}
-                live — überall in Deutschland mit uns.{" "}
                 <span className="serif-display italic text-white/90">Seien Sie dabei!</span>
               </span>
             </h1>
@@ -126,10 +121,6 @@ export default function Hero({ onPricingClick }: HeroProps) {
                 </div>
               ))}
             </div>
-            <p className="text-white/45 text-[11px] sm:text-xs leading-relaxed max-w-sm">
-              Über <span className="font-semibold text-white/75">59.000 Live-Sender</span> und{" "}
-              <span className="font-semibold text-white/75">200.000+ VOD</span> — sofort auf jedem Gerät, ohne Vertrag.
-            </p>
           </div>
 
           {/* CTA + device pills */}
@@ -151,9 +142,6 @@ export default function Hero({ onPricingClick }: HeroProps) {
               </button>
             </div>
             {/* Displaced tagline */}
-            <p className="serif-display italic font-light text-xl sm:text-2xl text-white/80">
-              auf all deinen Geräten.
-            </p>
 
             {/* WM Channel auto-scroll strip */}
             <div className="overflow-hidden -mx-6 sm:-mx-8 md:-mx-10 lg:-mx-12">
