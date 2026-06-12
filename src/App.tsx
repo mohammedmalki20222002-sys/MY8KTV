@@ -74,32 +74,32 @@ export default function App() {
           {/* Logo & copyright column */}
           <div className="md:col-span-4 space-y-4 text-left">
             <div className="flex items-center gap-2">
-              <div className="flex items-end gap-0.5 h-5">
-                <span className="w-1 h-2 bg-white rounded-full"></span>
-                <span className="w-1 h-3 bg-white rounded-full"></span>
-                <span className="w-1 h-4 bg-white rounded-full"></span>
-                <span className="w-1 h-3 bg-white rounded-full"></span>
+              <div className="flex items-end gap-0.5 h-6">
+                <span className="w-1.5 h-2.5 bg-white rounded-full"></span>
+                <span className="w-1.5 h-4 bg-white rounded-full"></span>
+                <span className="w-1.5 h-5 bg-white rounded-full"></span>
+                <span className="w-1.5 h-4 bg-white rounded-full"></span>
               </div>
-              <span className="text-lg font-bold tracking-tight text-white font-sans">
+              <span className="text-2xl font-bold tracking-tight text-white font-sans">
                 IPTV<span className="serif-display italic font-normal text-neutral-400 pl-0.5"> Professional</span>
               </span>
             </div>
-            
-            <p className="text-xs text-neutral-400 leading-relaxed max-w-sm">
+
+            <p className="serif-display italic font-light text-lg text-neutral-400 leading-relaxed max-w-sm">
               Der High-Fidelity-Store für digitales Live-Fernsehen. Keine Verträge, absolut minmierte Latenz und erstklassige Server-Verbindungen.
             </p>
 
-            <p className="text-[11px] font-mono text-neutral-500 pt-3">
+            <p className="serif-display italic font-light text-base text-neutral-500 pt-3">
               Copyright © 2026 IPTV Professional. Alle Rechte vorbehalten.
             </p>
           </div>
 
           {/* Quick links columns */}
           <div className="md:col-span-3 text-left">
-            <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-4 font-bold">
+            <h5 className="serif-display italic font-light text-2xl text-neutral-300 mb-4">
               Abonnements
             </h5>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <button onClick={() => scrollToSection("pricing-section")} className="text-neutral-300 hover:text-white transition-colors">
                   Quartals-Classic (3 Monate)
@@ -119,10 +119,10 @@ export default function App() {
           </div>
 
           <div className="md:col-span-3 text-left">
-            <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-4 font-bold">
+            <h5 className="serif-display italic font-light text-2xl text-neutral-300 mb-4">
               Inhalte & Support
             </h5>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <button onClick={() => scrollToSection("movies-section")} className="text-neutral-300 hover:text-white transition-colors">
                   Filme & Serien VOD-Bibliothek
@@ -143,7 +143,7 @@ export default function App() {
 
           {/* Setup notice badge column */}
           <div className="md:col-span-2 text-left">
-            <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-4 font-bold">
+            <h5 className="serif-display italic font-light text-2xl text-neutral-300 mb-4">
               Server-Status
             </h5>
             <div className="inline-flex items-center gap-1.5 bg-[#014E45]/40 border border-[#014E45] px-3.5 py-1.5 rounded-full text-[10px] font-mono text-[#FDFDF7] font-bold uppercase tracking-wider animate-pulse">

@@ -12,10 +12,10 @@ export default function Announcement({ onPricingClick }: AnnouncementProps) {
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2 bg-[#014E45] text-white pl-3 pr-4 py-1.5 rounded-full shadow-sm">
           <span className="text-base leading-none">⚽</span>
-          <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-[0.2em]">WM 2026 — Live</span>
+          <span className="serif-display italic font-light text-xl sm:text-2xl">WM 2026 — Live</span>
         </div>
         <div className="h-px flex-1 bg-neutral-200" />
-        <span className="text-[9px] font-mono uppercase tracking-widest text-neutral-400 whitespace-nowrap">Jetzt dabei sein</span>
+        <span className="serif-display italic font-light text-xl text-neutral-400 whitespace-nowrap">Jetzt dabei sein</span>
       </div>
 
       {/* ── Card ────────────────────────────────────────────────── */}
@@ -50,7 +50,7 @@ export default function Announcement({ onPricingClick }: AnnouncementProps) {
         <div className="absolute inset-0 z-10 p-4 sm:p-5 flex flex-col justify-between">
 
           {/* Top */}
-          <span className="self-start text-[8px] sm:text-[9px] font-mono font-black uppercase tracking-[0.22em] text-white/50 border border-white/20 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-full">
+          <span className="self-start serif-display italic font-light text-base text-white/60 border border-white/20 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-full">
             FIFA World Cup 2026
           </span>
 

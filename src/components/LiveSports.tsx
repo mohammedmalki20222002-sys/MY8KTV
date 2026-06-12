@@ -138,14 +138,14 @@ export default function LiveSports({ onPricingClick }: LiveSportsProps) {
             Alle Plattformen.{" "}
             <span className="serif-display italic font-light text-white/60">Ein Abo.</span>
           </h2>
-          <p className="text-white/35 text-xs font-mono mt-2 mb-6">
+          <p className="serif-display italic font-light text-xl text-white/40 mt-2 mb-6">
             Netflix · Prime · Disney+ · HBO · Sky · RTL+ · Viaplay · Videoland — alles über uns.
           </p>
         </div>
 
         {/* Row 1 — International, scrolls left */}
         <div className="mb-1.5 relative z-10">
-          <span className="text-[9px] font-black font-mono uppercase tracking-[0.22em] text-white/30">🌍 International</span>
+          <span className="serif-display italic font-light text-xl text-white/40">🌍 International</span>
         </div>
         <div className="overflow-hidden -mx-4 md:-mx-6 mb-4 select-none pointer-events-none">
           <div className="animate-scroll flex gap-3 px-4">
@@ -155,7 +155,7 @@ export default function LiveSports({ onPricingClick }: LiveSportsProps) {
 
         {/* Row 2 — German, scrolls right */}
         <div className="mb-1.5 relative z-10">
-          <span className="text-[9px] font-black font-mono uppercase tracking-[0.22em] text-white/30">🇩🇪 Deutschland & Europa</span>
+          <span className="serif-display italic font-light text-xl text-white/40">🇩🇪 Deutschland & Europa</span>
         </div>
         <div className="overflow-hidden -mx-4 md:-mx-6 mb-8 select-none pointer-events-none">
           <div className="animate-scroll-reverse flex gap-3 px-4">

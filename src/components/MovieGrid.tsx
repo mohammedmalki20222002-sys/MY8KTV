@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Play, Star, ArrowRight } from "lucide-react";
 
 interface MovieGridProps {
@@ -16,7 +17,7 @@ interface MovieItem {
   genre: string;
 }
 
-// ── Row 1: Hollywood Blockbusters (local posters) ─────────────────────────────
+// ── Row 1: Hollywood Blockbusters ────────────────────────────────────────────
 const BLOCKBUSTERS: MovieItem[] = [
   { id: "b1",  title: "Dune: Part Two",               year: "2024", rating: "8.5", badge: "4K",  image: "/movies/dune_part_two_ver2_xxlg.jpg",                          genre: "Sci-Fi"      },
   { id: "b2",  title: "Oppenheimer",                   year: "2023", rating: "8.8", badge: "4K",  image: "/movies/oppenheimer_xlg.jpg",                                  genre: "Drama"       },
@@ -36,9 +37,19 @@ const BLOCKBUSTERS: MovieItem[] = [
   { id: "b16", title: "Lilo & Stitch",                 year: "2025", rating: "7.0", badge: "NEU", image: "/movies/lilo_and_stitch_xlg.jpg",                               genre: "Familie"     },
   { id: "b17", title: "Project Hail Mary",             year: "2025", rating: "8.2", badge: "NEU", image: "/movies/project_hail_mary_xxlg.jpg",                            genre: "Sci-Fi"      },
   { id: "b18", title: "Running Man",                   year: "2025", rating: "7.1", badge: "NEU", image: "/movies/running_man_xxlg.jpg",                                  genre: "Action"      },
+  { id: "b19", title: "Avengers: Doomsday",            year: "2026", rating: "9.1", badge: "NEU", image: `${TMDB}/aBJFsQqjhQhUKX6q8WYoUyCVOYX.jpg`,                    genre: "Action"      },
+  { id: "b20", title: "Spider-Man: Brand New Day",     year: "2026", rating: "8.7", badge: "NEU", image: `${TMDB}/feSiISwgEpVzR1v3zv2n2NSB0kS.jpg`,                    genre: "Action"      },
+  { id: "b21", title: "The Batman Part II",            year: "2026", rating: "8.5", badge: "NEU", image: `${TMDB}/74xTEgt7R36Fpooo50r9T25onhq.jpg`,                    genre: "Crime"       },
+  { id: "b22", title: "Toy Story 5",                   year: "2026", rating: "8.3", badge: "NEU", image: `${TMDB}/bvYjhsbxOBwpm8xLE5BhdA3a65Y.jpg`,                    genre: "Animation"   },
+  { id: "b23", title: "Mandalorian & Grogu",           year: "2026", rating: "8.6", badge: "NEU", image: `${TMDB}/iPg0J9UzAlPj1fgrJ4pCkHmXLls.jpg`,                    genre: "Sci-Fi"      },
+  { id: "b24", title: "Fast X: Part 2",                year: "2026", rating: "7.5", badge: "NEU", image: `${TMDB}/fiVW06jE7z9YnO4trhaMEdclSiC.jpg`,                    genre: "Action"      },
+  { id: "b25", title: "Wicked: Part Two",              year: "2026", rating: "8.4", badge: "NEU", image: `${TMDB}/jvFvRuJMrC4QAqKT3b2xyWMNIqj.jpg`,                    genre: "Musical"     },
+  { id: "b26", title: "Black Panther 3",               year: "2026", rating: "8.1", badge: "NEU", image: `${TMDB}/ps2VZBb5CeAdmNEmvDcxIBLiQZe.jpg`,                    genre: "Action"      },
+  { id: "b27", title: "Gladiator II",                  year: "2024", rating: "7.5", badge: "4K",  image: `${TMDB}/2cxhvwyE0RmanbALZrGxynDFdxO.jpg`,                    genre: "Action"      },
+  { id: "b28", title: "Wicked",                        year: "2024", rating: "7.8", badge: "4K",  image: `${TMDB}/xYHHJ6ly5wvRcNJ4cvXe8iJKFkP.jpg`,                    genre: "Musical"     },
 ];
 
-// ── Row 2: Top International Series (TMDB CDN — verified paths) ───────────────
+// ── Row 2: Top International Series ──────────────────────────────────────────
 const INTL_SERIES: MovieItem[] = [
   { id: "s1",  title: "House of the Dragon",    year: "2024", rating: "8.4", badge: "4K",  image: `${TMDB}/7V0Ebks0GgpKvQ7QbLAIdX5dos4.jpg`,  genre: "Fantasy"  },
   { id: "s2",  title: "The Last of Us",         year: "2023", rating: "8.8", badge: "4K",  image: `${TMDB}/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg`,  genre: "Drama"    },
@@ -56,6 +67,32 @@ const INTL_SERIES: MovieItem[] = [
   { id: "s14", title: "Ted Lasso",              year: "2023", rating: "8.8", badge: "HD",  image: `${TMDB}/5fhZdwP1DVJ0FyVH6vrFdHwpXIn.jpg`,  genre: "Komödie"  },
   { id: "s15", title: "Severance",              year: "2022", rating: "8.7", badge: "HD",  image: `${TMDB}/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg`,  genre: "Thriller" },
   { id: "s16", title: "Andor",                  year: "2022", rating: "8.4", badge: "4K",  image: `${TMDB}/khZqmwHQicTYoS7Flreb9EddFZC.jpg`,  genre: "Sci-Fi"   },
+  { id: "s17", title: "Daredevil: Born Again",  year: "2025", rating: "8.5", badge: "NEU", image: `${TMDB}/AkE7OR1Khpk5OH0d7ZJfcP5Do9b.jpg`,  genre: "Action"   },
+  { id: "s18", title: "The Last of Us S2",      year: "2025", rating: "9.0", badge: "NEU", image: `${TMDB}/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg`,  genre: "Drama"    },
+  { id: "s19", title: "Alien: Earth",           year: "2025", rating: "7.9", badge: "NEU", image: `${TMDB}/9yBVqNruk6Ykrwc32qskP3eRjV.jpg`,   genre: "Sci-Fi"   },
+  { id: "s20", title: "Stranger Things S5",     year: "2025", rating: "9.1", badge: "NEU", image: `${TMDB}/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg`,  genre: "Sci-Fi"   },
+  { id: "s21", title: "Squid Game S3",          year: "2025", rating: "8.3", badge: "NEU", image: `${TMDB}/1QdXdRYfktUSONkl1oD5gc6Be0s.jpg`,  genre: "Thriller" },
+  { id: "s22", title: "House of Dragon S3",     year: "2026", rating: "8.7", badge: "NEU", image: `${TMDB}/7V0Ebks0GgpKvQ7QbLAIdX5dos4.jpg`,  genre: "Fantasy"  },
+  { id: "s23", title: "White Lotus S3",         year: "2025", rating: "8.5", badge: "NEU", image: `${TMDB}/qNBAXBIQlnOThrVvA6mA2B5ggkL.jpg`,  genre: "Drama"    },
+  { id: "s24", title: "The Penguin",            year: "2024", rating: "8.4", badge: "NEU", image: `${TMDB}/jbNKMPRz2CKFkFHn8RX2AMijl7e.jpg`,  genre: "Crime"    },
+  { id: "s25", title: "Andor S2",               year: "2025", rating: "8.8", badge: "NEU", image: `${TMDB}/khZqmwHQicTYoS7Flreb9EddFZC.jpg`,  genre: "Sci-Fi"   },
+  { id: "s26", title: "Agatha All Along",       year: "2024", rating: "7.6", badge: "NEU", image: `${TMDB}/2LDfmx1FQcYPLsPOmxUkAJaP7Ew.jpg`,  genre: "Fantasy"  },
+];
+
+// ── Row 4: 2026 Most Anticipated ─────────────────────────────────────────────
+const HIGHLIGHTS_2026: MovieItem[] = [
+  { id: "h1",  title: "Avengers: Doomsday",        year: "2026", rating: "9.1", badge: "NEU", image: `${TMDB}/aBJFsQqjhQhUKX6q8WYoUyCVOYX.jpg`, genre: "Action"    },
+  { id: "h2",  title: "Spider-Man: Brand New Day",  year: "2026", rating: "8.7", badge: "NEU", image: `${TMDB}/feSiISwgEpVzR1v3zv2n2NSB0kS.jpg`, genre: "Action"    },
+  { id: "h3",  title: "The Batman Part II",         year: "2026", rating: "8.5", badge: "NEU", image: `${TMDB}/74xTEgt7R36Fpooo50r9T25onhq.jpg`, genre: "Crime"     },
+  { id: "h4",  title: "Mandalorian & Grogu",        year: "2026", rating: "8.6", badge: "NEU", image: `${TMDB}/iPg0J9UzAlPj1fgrJ4pCkHmXLls.jpg`, genre: "Sci-Fi"    },
+  { id: "h5",  title: "Toy Story 5",                year: "2026", rating: "8.3", badge: "NEU", image: `${TMDB}/bvYjhsbxOBwpm8xLE5BhdA3a65Y.jpg`, genre: "Animation" },
+  { id: "h6",  title: "Wicked: Part Two",           year: "2026", rating: "8.4", badge: "NEU", image: `${TMDB}/jvFvRuJMrC4QAqKT3b2xyWMNIqj.jpg`, genre: "Musical"   },
+  { id: "h7",  title: "Fast X: Part 2",             year: "2026", rating: "7.5", badge: "NEU", image: `${TMDB}/fiVW06jE7z9YnO4trhaMEdclSiC.jpg`, genre: "Action"    },
+  { id: "h8",  title: "Black Panther 3",            year: "2026", rating: "8.1", badge: "NEU", image: `${TMDB}/ps2VZBb5CeAdmNEmvDcxIBLiQZe.jpg`, genre: "Action"    },
+  { id: "h9",  title: "House of Dragon S3",         year: "2026", rating: "8.7", badge: "NEU", image: `${TMDB}/7V0Ebks0GgpKvQ7QbLAIdX5dos4.jpg`, genre: "Fantasy"   },
+  { id: "h10", title: "Stranger Things S5",         year: "2025", rating: "9.1", badge: "NEU", image: `${TMDB}/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg`, genre: "Sci-Fi"    },
+  { id: "h11", title: "Daredevil: Born Again S2",   year: "2026", rating: "8.6", badge: "NEU", image: `${TMDB}/AkE7OR1Khpk5OH0d7ZJfcP5Do9b.jpg`, genre: "Action"    },
+  { id: "h12", title: "Squid Game S3",              year: "2025", rating: "8.3", badge: "NEU", image: `${TMDB}/1QdXdRYfktUSONkl1oD5gc6Be0s.jpg`, genre: "Thriller"  },
 ];
 
 // ── Row 3: Deutsche & Europäische Inhalte (TMDB CDN — verified paths) ─────────
@@ -80,6 +117,8 @@ const DE_CONTENT: MovieItem[] = [
 
 // ── Poster Card ───────────────────────────────────────────────────────────────
 function PosterCard({ m, onClick }: { m: MovieItem; onClick: () => void }) {
+  const [imgFailed, setImgFailed] = useState(false);
+
   return (
     <button
       onClick={onClick}
@@ -91,12 +130,19 @@ function PosterCard({ m, onClick }: { m: MovieItem; onClick: () => void }) {
           src={m.image}
           alt={m.title}
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          onError={e => {
-            (e.currentTarget as HTMLImageElement).src =
-              `https://via.placeholder.com/110x165/014E45/ffffff?text=${encodeURIComponent(m.title.slice(0, 8))}`;
-          }}
+          className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${imgFailed ? "hidden" : ""}`}
+          onError={() => setImgFailed(true)}
         />
+        {imgFailed && (
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-3"
+            style={{ background: "linear-gradient(145deg, #013d37 0%, #014E45 60%, #016657 100%)" }}
+          >
+            <span style={{ fontSize: "28px", opacity: 0.25 }}>🎬</span>
+            <span className="text-white text-[9px] font-bold text-center leading-tight line-clamp-3">{m.title}</span>
+            <span className="text-white/40 text-[7px] font-mono">{m.year}</span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
         {/* Hover play */}
@@ -141,7 +187,7 @@ function ScrollRow({ items, label, reverse, onClick }: {
   const tripled = [...items, ...items, ...items];
   return (
     <div className="mb-5">
-      <p className="text-[9px] font-black font-mono uppercase tracking-[0.22em] text-white/35 mb-2.5 px-1">{label}</p>
+      <p className="serif-display italic font-light text-xl text-white/40 mb-2.5 px-1">{label}</p>
       <div className="overflow-hidden -mx-4 md:-mx-6 select-none pointer-events-none">
         <div className={`${reverse ? "animate-scroll-reverse" : "animate-scroll"} flex gap-2.5 px-4`}>
           {tripled.map((m, i) => (
@@ -171,7 +217,7 @@ export default function MovieGrid({ onPricingClick }: MovieGridProps) {
           {/* Header */}
           <div className="flex items-center justify-between mb-6 px-4 md:px-6">
             <div>
-              <span className="text-[9px] font-black font-mono uppercase tracking-[0.28em] text-white/40 block mb-1">200K+ VOD</span>
+              <span className="serif-display italic font-light text-2xl text-white/45 block mb-1">200K+ VOD</span>
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
                 Filme & Serien.{" "}
                 <span className="serif-display italic font-light text-white/60">4K-Qualität.</span>
@@ -184,13 +230,16 @@ export default function MovieGrid({ onPricingClick }: MovieGridProps) {
           </div>
 
           {/* Row 1 — Blockbusters */}
-          <ScrollRow items={BLOCKBUSTERS}  label="🎬 Hollywood Blockbusters" onClick={onPricingClick} />
+          <ScrollRow items={BLOCKBUSTERS}    label="🎬 Hollywood Blockbusters" onClick={onPricingClick} />
 
           {/* Row 2 — International Series */}
-          <ScrollRow items={INTL_SERIES}   label="📺 Top International Serien" reverse onClick={onPricingClick} />
+          <ScrollRow items={INTL_SERIES}     label="📺 Top International Serien" reverse onClick={onPricingClick} />
 
           {/* Row 3 — German & European */}
-          <ScrollRow items={DE_CONTENT}    label="🇩🇪 Deutsche & Europäische Inhalte" onClick={onPricingClick} />
+          <ScrollRow items={DE_CONTENT}      label="🇩🇪 Deutsche & Europäische Inhalte" onClick={onPricingClick} />
+
+          {/* Row 4 — 2026 Most Anticipated */}
+          <ScrollRow items={HIGHLIGHTS_2026} label="🔥 2026 — Meisterwartete Filme & Serien" reverse onClick={onPricingClick} />
 
           {/* Footer CTA */}
           <div className="mt-2 pt-4 border-t border-white/10 flex items-center justify-between px-4 md:px-6">

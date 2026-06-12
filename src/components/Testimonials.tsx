@@ -19,7 +19,7 @@ export default function Testimonials() {
 
         {/* Headline */}
         <div className="max-w-xl mx-auto mb-14 text-center">
-          <span className="text-white/50 text-xs font-bold font-mono uppercase tracking-[0.2em] mb-3 block">
+          <span className="serif-display italic font-light text-2xl text-white/55 mb-3 block">
             Kundenmeinungen
           </span>
           <h2 className="text-[1.85rem] sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-3">
@@ -27,7 +27,7 @@ export default function Testimonials() {
             <br />
             <span className="serif-display italic font-light text-white/70 pr-1.5">an IPTV Professional.</span>
           </h2>
-          <p className="text-neutral-400 text-sm md:text-base mt-4">
+          <p className="serif-display italic font-light text-base md:text-xl text-neutral-400 mt-4">
             Erfahren Sie, wie über 45.000 aktive Abonnenten ihren alten Kabelanschluss durch unsere High-Fidelity- und High-Speed-Streaming-Infrastruktur ersetzt haben.
           </p>
         </div>
@@ -45,8 +45,8 @@ export default function Testimonials() {
                     <Star key={i} className="w-4 h-4 fill-[#014E45] text-[#014E45]" />
                   ))}
                 </div>
-                <p className="text-sm font-bold text-neutral-900 leading-snug mb-3">"{review.highlight}"</p>
-                <p className="text-xs md:text-sm text-neutral-600/95 leading-relaxed">{review.text}</p>
+                <p className="text-base font-bold text-neutral-900 leading-snug mb-3">"{review.highlight}"</p>
+                <p className="serif-display italic font-light text-base md:text-lg text-neutral-600/95 leading-relaxed">{review.text}</p>
               </div>
 
               <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-900/5">
@@ -57,8 +57,8 @@ export default function Testimonials() {
                   className="w-10 h-10 rounded-full object-cover border border-neutral-950/10"
                 />
                 <div>
-                  <p className="text-xs font-bold text-neutral-900 leading-none">{review.name}</p>
-                  <p className="text-[10px] text-neutral-400 font-medium mt-1 leading-none">{review.role}</p>
+                  <p className="text-sm font-bold text-neutral-900 leading-none">{review.name}</p>
+                  <p className="serif-display italic font-light text-sm text-neutral-400 mt-1 leading-none">{review.role}</p>
                 </div>
               </div>
             </div>
@@ -66,9 +66,9 @@ export default function Testimonials() {
         </div>
 
         {/* Bottom badge */}
-        <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-2 bg-neutral-900 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl sm:rounded-full border border-neutral-800 text-xs sm:text-sm font-bold text-[#FCFBF4] max-w-[280px] sm:max-w-none">
-          <ShieldCheck className="w-4 h-4 text-white shrink-0" />
-          <span>Durchschnittliche Abo-Verlängerungsquote von 94.2%</span>
+        <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-2 bg-neutral-900 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl sm:rounded-full border border-neutral-800 max-w-[280px] sm:max-w-none">
+          <ShieldCheck className="w-5 h-5 text-white shrink-0" />
+          <span className="serif-display italic font-light text-base sm:text-xl text-[#FCFBF4]">Durchschnittliche Abo-Verlängerungsquote von 94.2%</span>
         </div>
 
       </div>

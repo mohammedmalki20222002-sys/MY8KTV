@@ -83,7 +83,7 @@ export default function PaymentsAndFaq() {
 
       {/* Payments */}
       <div className="lg:col-span-5 bg-[#FDFDF7] rounded-[2rem] p-5 sm:p-8 border border-neutral-900/10 text-left">
-        <span className="text-[#014E45] text-xs font-bold font-mono uppercase tracking-[0.2em] mb-3 block">
+        <span className="serif-display italic font-light text-2xl text-[#014E45]/70 mb-3 block">
           Verifizierte Zahlungsmethoden
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 leading-snug">
@@ -91,7 +91,7 @@ export default function PaymentsAndFaq() {
           <br />
           <span className="serif-display italic font-light text-[#014E45] pr-1.5">Zahlungsverfahren.</span>
         </h2>
-        <p className="text-neutral-500 text-xs md:text-sm mt-3 leading-relaxed">
+        <p className="serif-display italic font-light text-base md:text-lg text-neutral-500 mt-3 leading-relaxed">
           Wir verwenden modernste Verschlüsselungsverfahren auf Bankenniveau (SSL & AES-256), um alle Zahlungen abzuwickeln. Deine Bankdaten sind zu jeder Zeit optimal geschützt.
         </p>
 
@@ -103,27 +103,27 @@ export default function PaymentsAndFaq() {
                   {method.logo}
                 </span>
                 <div>
-                  <p className="text-xs font-bold text-neutral-900">{method.name}</p>
-                  <p className="text-[10px] text-neutral-500 font-medium">{method.desc}</p>
+                  <p className="text-sm font-bold text-neutral-900">{method.name}</p>
+                  <p className="serif-display italic font-light text-sm text-neutral-500">{method.desc}</p>
                 </div>
               </div>
-              <span className="text-[9px] font-bold uppercase tracking-wider font-mono text-[#014E45] bg-[#014E45]/10 px-2.5 py-1 rounded-full shrink-0">
+              <span className="serif-display italic font-light text-sm text-[#014E45] bg-[#014E45]/10 px-2.5 py-1 rounded-full shrink-0">
                 {method.delay}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 pt-6 border-t border-neutral-900/5 flex items-center gap-3 text-[11px] font-mono text-neutral-500">
+        <div className="mt-8 pt-6 border-t border-neutral-900/5 flex items-center gap-3 text-neutral-500">
           <Lock className="w-4 h-4 text-neutral-400 shrink-0" />
-          <span>Jeder Bezahlvorgang ist durch PCI-DSS-Sicherheitszertifikate geschützt.</span>
+          <span className="serif-display italic font-light text-base">Jeder Bezahlvorgang ist durch PCI-DSS-Sicherheitszertifikate geschützt.</span>
         </div>
       </div>
 
       {/* FAQ */}
       <div className="lg:col-span-7 text-left">
         <div className="mb-8">
-          <span className="text-[#014E45] text-xs font-bold font-mono uppercase tracking-[0.2em] mb-3 block">
+          <span className="serif-display italic font-light text-2xl text-[#014E45]/70 mb-3 block">
             Häufige Fragen
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 leading-snug">
@@ -147,7 +147,7 @@ export default function PaymentsAndFaq() {
               >
                 <button
                   onClick={() => toggleFaq(faq.id)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left font-bold text-sm md:text-base text-neutral-800 transition-colors"
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left font-bold text-base md:text-xl text-neutral-800 transition-colors"
                 >
                   <span className="pr-4">{faq.question}</span>
                   <span className={`p-1.5 rounded-full ${isOpen ? "bg-[#014E45]/10" : "bg-neutral-900/5"} transition-colors shrink-0`}>
@@ -156,7 +156,7 @@ export default function PaymentsAndFaq() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 md:px-6 pb-6 text-xs md:text-sm text-neutral-600/90 leading-relaxed border-t border-neutral-900/5 pt-4 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="serif-display italic font-light px-5 md:px-6 pb-6 text-base md:text-lg text-neutral-600/90 leading-relaxed border-t border-neutral-900/5 pt-4 animate-in fade-in slide-in-from-top-1 duration-200">
                     {faq.answer}
                   </div>
                 )}
@@ -167,14 +167,14 @@ export default function PaymentsAndFaq() {
 
         <div className="mt-8 p-6 bg-[#014E45]/5 rounded-2xl border border-neutral-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
-            <p className="text-xs font-bold text-neutral-900">Sie nutzen eine spezielle Hardware-Einrichtung?</p>
-            <p className="text-[11px] text-neutral-500 mt-1">Unsere Support-Techniker helfen Ihnen gerne bei der Konfiguration Ihrer MAG-Box, Ihres Smart-TVs oder Ihrer Playlist.</p>
+            <p className="text-base md:text-lg font-bold text-neutral-900">Sie nutzen eine spezielle Hardware-Einrichtung?</p>
+            <p className="serif-display italic font-light text-base text-neutral-500 mt-1">Unsere Support-Techniker helfen Ihnen gerne bei der Konfiguration Ihrer MAG-Box, Ihres Smart-TVs oder Ihrer Playlist.</p>
           </div>
           <a
             href="https://wa.me/447449708976?text=Hallo%2C%20ich%20brauche%20Hilfe%20bei%20der%20Einrichtung%20meines%20IPTV%20Professional%20Abonnements."
             target="_blank"
             rel="noopener noreferrer"
-            className="whitespace-nowrap px-4 py-2 bg-neutral-900 hover:bg-neutral-800 text-[#FCFBF4] hover:text-white rounded-full text-xs font-bold transition-colors no-underline"
+            className="whitespace-nowrap px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-[#FCFBF4] hover:text-white rounded-full text-sm font-bold transition-colors no-underline"
           >
             Support kontaktieren
           </a>

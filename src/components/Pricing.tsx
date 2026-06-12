@@ -65,14 +65,14 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                 <span className="hidden md:block absolute -right-12 top-1/2 -translate-y-1/2 text-white/10 text-4xl font-thin">|</span>
               )}
               <span className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white">{value}</span>
-              <span className="text-[9px] font-bold font-mono uppercase tracking-[0.28em] text-white/30 mt-1.5">{label}</span>
+              <span className="serif-display italic font-light text-xl text-white/35 mt-1.5">{label}</span>
             </div>
           ))}
         </div>
 
         {/* ── Heading ───────────────────────────────────────────────────── */}
         <div className="max-w-xl mx-auto mb-10 text-center">
-          <span className="text-[10px] font-bold font-mono uppercase tracking-[0.28em] text-white/30 mb-3 block">
+          <span className="serif-display italic font-light text-2xl text-white/40 mb-3 block">
             Premium Abonnements
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05] text-white">
@@ -90,7 +90,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
               Premium-Plan.
             </span>
           </h2>
-          <p className="text-white/40 text-sm mt-4 leading-relaxed">
+          <p className="serif-display italic font-light text-base md:text-xl text-white/40 mt-4 leading-relaxed">
             Keine automatische Verlängerung. Deine Laufzeit, deine Regeln — sicher, schnell und weltweit verfügbar.
           </p>
         </div>
@@ -208,8 +208,8 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                         {plan.originalPrice.toFixed(2).replace(".", ",")} €
                       </span>
                     </div>
-                    <p className="text-[11px] font-mono mt-1.5"
-                      style={{ color: plan.popular ? "rgba(255,255,255,0.65)" : GREEN }}>
+                    <p className="serif-display italic font-light text-2xl mt-1.5"
+                      style={{ color: plan.popular ? "rgba(255,255,255,0.75)" : GREEN }}>
                       ≈ {(plan.price / plan.durationMonths).toFixed(2).replace(".", ",")} € / Monat
                     </p>
                   </div>
@@ -280,8 +280,8 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
               <>
                 {icon}
                 <div>
-                  <p className="text-xs font-bold text-white/80">{title}</p>
-                  <p className="text-[11px] text-white/30 mt-0.5 leading-relaxed">{desc}</p>
+                  <p className="text-base font-bold text-white/80">{title}</p>
+                  <p className="serif-display italic font-light text-base text-white/40 mt-0.5 leading-relaxed">{desc}</p>
                 </div>
               </>
             );

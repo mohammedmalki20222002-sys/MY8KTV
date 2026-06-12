@@ -73,7 +73,7 @@ export default function Hero({ onPricingClick }: HeroProps) {
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 pl-3 pr-4 py-1.5 rounded-full">
               <span className="text-base leading-none">⚽</span>
-              <span className="font-black text-[10px] uppercase tracking-[0.2em] text-white">WM 2026 — Live</span>
+              <span className="serif-display italic font-light text-xl text-white">WM 2026 — Live</span>
             </div>
             <div className="flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1.5">
               <Sparkles className="w-3 h-3 text-white/70" />
@@ -84,7 +84,7 @@ export default function Hero({ onPricingClick }: HeroProps) {
           {/* Middle: headline + description */}
           <div className="flex flex-col gap-3">
             {/* Announcement subtitle */}
-            <p className="text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-[0.25em] text-white/40">
+            <p className="serif-display italic font-light text-xl sm:text-2xl text-white/45">
               Das beste IPTV in Deutschland
             </p>
 
@@ -121,7 +121,7 @@ export default function Hero({ onPricingClick }: HeroProps) {
                   {i > 0 && <div className="w-px h-6 bg-white/15" />}
                   <div>
                     <p className="text-xl sm:text-2xl font-black leading-none text-white">{v}</p>
-                    <p className="text-[9px] font-mono uppercase tracking-widest text-white/40 mt-0.5">{l}</p>
+                    <p className="serif-display italic font-light text-xl text-white/40 mt-0.5">{l}</p>
                   </div>
                 </div>
               ))}
@@ -151,7 +151,7 @@ export default function Hero({ onPricingClick }: HeroProps) {
               </button>
             </div>
             {/* Displaced tagline */}
-            <p className="text-white/50 text-xs sm:text-sm font-semibold tracking-wide">
+            <p className="serif-display italic font-light text-xl sm:text-2xl text-white/50">
               auf all deinen Geräten.
             </p>
 
