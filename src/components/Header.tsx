@@ -20,7 +20,7 @@ export default function Header({
 
   return (
     <header className="sticky top-4 z-50 px-4 md:px-8 max-w-7xl mx-auto w-full transition-all">
-      <div id="navigation-bar" className="bg-[#014E45] backdrop-blur-md rounded-full border border-white/15 shadow-[0_4px_30px_rgba(1,78,69,0.35)] px-4 py-2 flex items-center justify-between">
+      <div id="navigation-bar" className="backdrop-blur-md rounded-full border border-white/15 shadow-[0_4px_30px_rgba(1,78,69,0.45)] px-4 py-2 flex items-center justify-between" style={{ background: "linear-gradient(135deg, #012e28 0%, #014E45 45%, #013d37 100%)" }}>
         {/* Logo */}
         <div className="flex items-center gap-2 pl-3">
           <div className="flex items-end gap-0.5 h-6">
@@ -80,7 +80,7 @@ export default function Header({
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-4 right-4 bg-[#014E45] border border-white/15 rounded-2xl p-5 shadow-xl flex flex-col gap-4 animate-in fade-in slide-in-from-top-3 duration-200">
+        <div className="md:hidden absolute top-16 left-4 right-4 border border-white/15 rounded-2xl p-5 shadow-xl flex flex-col gap-4 animate-in fade-in slide-in-from-top-3 duration-200" style={{ background: "linear-gradient(160deg, #012e28 0%, #014E45 50%, #013d37 100%)" }}>
           <button
             onClick={() => { onSportsClick(); setMobileMenuOpen(false); }}
             className="text-left py-2 border-b border-white/10 text-sm font-semibold text-white flex items-center gap-2"
