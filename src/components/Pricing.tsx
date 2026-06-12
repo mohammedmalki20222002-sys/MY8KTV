@@ -18,7 +18,7 @@ const WA_NUMBER = "447449708976";
 function buildWhatsAppUrl(plan: PricingPlan): string {
   const geraete = plan.devices === 1 ? "1 Gerat" : "2 Gerate";
   const preis   = plan.price.toFixed(2).replace(".", ",");
-  const msg = `TV Professional - ${plan.durationMonths} Monate / ${geraete} / ${preis} EUR`;
+  const msg = `Hallo, ich mochte das TV Professional Paket bestellen: ${plan.durationMonths} Monate / ${geraete} / ${preis} EUR`;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
