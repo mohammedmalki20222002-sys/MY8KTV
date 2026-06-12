@@ -5,31 +5,28 @@ interface HeroProps {
 }
 
 const WM_CHANNELS = [
-  // German Free TV
-  { id: "ard",   name: "ARD",        sub: "Das Erste",    logo: "/logos/ard.png",   bg: "#003CA6", type: "Free", flag: "🇩🇪" },
-  { id: "zdf",   name: "ZDF",        sub: "ZDF HD",       logo: "/logos/zdf.png",   bg: "#161616", type: "Free", flag: "🇩🇪" },
-  { id: "rtl",   name: "RTL",        sub: "RTL HD",       logo: "/logos/rtl.png",   bg: "#E8001A", type: "Free", flag: "🇩🇪" },
-  { id: "sat1",  name: "SAT.1",      sub: "SAT.1 HD",     logo: "/logos/sat1.png",  bg: "#1A3A8F", type: "Free", flag: "🇩🇪" },
-  { id: "pro7",  name: "ProSieben",  sub: "Pro7 HD",      logo: "/logos/pro7.png",  bg: "#CC0000", type: "Free", flag: "🇩🇪" },
-  // German Premium
-  { id: "sky",   name: "Sky Sport",  sub: "Sky WM",       logo: "/logos/sky.png",   bg: "#101010", type: "PPV", flag: "🇩🇪" },
-  { id: "euro1", name: "Eurosport",  sub: "Eurosport 1",  logo: "/logos/euro1.png", bg: "#FF6600", type: "PPV", flag: "🇩🇪" },
-  { id: "dazn",  name: "DAZN",       sub: "DAZN WM",      logo: "/logos/dazn.png",  bg: "#111111", type: "PPV", flag: "🌍"  },
-  // International
-  { id: "bein",  name: "beIN Sports",sub: "beIN 1",       logo: "/logos/bein.png",  bg: "#6B0FA8", type: "PPV", flag: "🌍"  },
-  { id: "bbc",   name: "BBC One",    sub: "BBC WM",       logo: "/logos/bbc.png",   bg: "#CC0000", type: "Free", flag: "🇬🇧" },
-  { id: "itv",   name: "ITV",        sub: "ITV1 HD",      logo: "/logos/itv.png",   bg: "#0057A8", type: "Free", flag: "🇬🇧" },
-  { id: "tf1",   name: "TF1",        sub: "TF1 France",   logo: "/logos/tf1.png",   bg: "#0066CC", type: "Free", flag: "🇫🇷" },
-  { id: "canal", name: "Canal+",     sub: "Canal+ Sport", logo: "/logos/canal.png", bg: "#1A1A1A", type: "PPV", flag: "🇫🇷" },
-  { id: "espn",  name: "ESPN",       sub: "ESPN WM",      logo: "/logos/espn.png",  bg: "#AA0000", type: "PPV", flag: "🇺🇸" },
-  { id: "fox",   name: "Fox Sports", sub: "FS1 WM",       logo: "/logos/fox.png",   bg: "#003DA5", type: "PPV", flag: "🇺🇸" },
+  { id: "ard",      name: "ARD",        sub: "Das Erste HD",   logo: "/logos/ard.png",      bg: "#003CA6" },
+  { id: "zdf",      name: "ZDF",        sub: "ZDF HD",         logo: "/logos/zdf.png",      bg: "#161616" },
+  { id: "rtl",      name: "RTL",        sub: "RTL HD",         logo: "/logos/rtl.png",      bg: "#E8001A" },
+  { id: "sat1",     name: "SAT.1",      sub: "SAT.1 HD",       logo: "/logos/sat1.png",     bg: "#1A3A8F" },
+  { id: "pro7",     name: "ProSieben",  sub: "Pro7 HD",        logo: "/logos/pro7.png",     bg: "#CC0000" },
+  { id: "vox",      name: "VOX",        sub: "VOX HD",         logo: "/logos/vox.png",      bg: "#CC0033" },
+  { id: "kabel1",   name: "Kabel Eins", sub: "Kabel1 HD",      logo: "/logos/kabel1.png",   bg: "#E50043" },
+  { id: "rtl2",     name: "RTL Zwei",   sub: "RTL2 HD",        logo: "/logos/rtl2.png",     bg: "#C00018" },
+  { id: "rtlplus",  name: "RTL+",       sub: "RTL+ Stream",    logo: "/logos/rtlplus.png",  bg: "#E8001A" },
+  { id: "ndr",      name: "NDR",        sub: "NDR HD",         logo: "/logos/ndr.png",      bg: "#003DA5" },
+  { id: "wdr",      name: "WDR",        sub: "WDR HD",         logo: "/logos/wdr.png",      bg: "#0057A8" },
+  { id: "br",       name: "BR",         sub: "BR HD",          logo: "/logos/br.png",       bg: "#009BD4" },
+  { id: "arte",     name: "Arte",       sub: "Arte HD",        logo: "/logos/arte.png",     bg: "#1A1A1A" },
+  { id: "ntv",      name: "n-tv",       sub: "n-tv News",      logo: "/logos/ntv.png",      bg: "#CC0000" },
+  { id: "zdfinfo",  name: "ZDFinfo",    sub: "ZDFinfo HD",     logo: "/logos/zdfinfo.png",  bg: "#161616" },
+  { id: "sport1",   name: "Sport1",     sub: "Sport1 HD",      logo: "/logos/sport1.png",   bg: "#E8001A" },
+  { id: "sky",      name: "Sky Sport",  sub: "Sky DE",         logo: "/logos/skyde.png",    bg: "#101010" },
+  { id: "euro1",    name: "Eurosport",  sub: "Eurosport 1",    logo: "/logos/euro1.png",    bg: "#FF6600" },
+  { id: "dazn",     name: "DAZN",       sub: "DAZN DE",        logo: "/logos/daznde.png",   bg: "#111111" },
+  { id: "joyn",     name: "Joyn",       sub: "Joyn Free",      logo: "/logos/joyn.png",     bg: "#FF0066" },
 ];
 
-const TYPE_STYLE: Record<string, string> = {
-  Free: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-  PPV:  "bg-amber-500/20  text-amber-300  border-amber-500/30",
-  VIP:  "bg-purple-500/20 text-purple-300 border-purple-500/30",
-};
 
 export default function Hero({ onPricingClick }: HeroProps) {
   const doubled = [...WM_CHANNELS, ...WM_CHANNELS, ...WM_CHANNELS];
