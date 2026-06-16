@@ -175,7 +175,7 @@ export default function PaymentsAndFaq() {
             href="https://wa.me/447449708976?text=Hei%2C%20tarvitsen%20apua%20IPTV%20Professional%20-tilauksen%20asennuksessa."
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18235035269/rSDACJDGwb4cEIWdkvdD' })}
+            onClick={() => (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18242640156/_pqZCNyRt8AcEJyy4vpD' })}
             className="whitespace-nowrap px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-[#FCFBF4] hover:text-white rounded-full text-sm font-bold transition-colors no-underline"
           >
             {t.faq.supportCta}

@@ -18,7 +18,7 @@ const WA_NUMBER = "447449708976";
 
 function trackWaConversion() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18235035269/rSDACJDGwb4cEIWdkvdD' });
+  (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18242640156/_pqZCNyRt8AcEJyy4vpD' });
 }
 
 function buildWhatsAppUrl(plan: PricingPlan, waMsg: (m: number, d: number, p: string) => string): string {
