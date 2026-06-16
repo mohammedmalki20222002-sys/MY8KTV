@@ -23,9 +23,11 @@ export interface ChannelItem {
 export interface PricingPlan {
   id: string;
   durationMonths: number;
+  freeMonths?: number;
   name: string;
   price: number;
   originalPrice: number;
+  discountPct?: number;
   popular: boolean;
   features: string[];
   savings: string;
@@ -454,185 +456,124 @@ export const ALL_CHANNELS: ChannelItem[] = [
 ];
 
 const COMMON_FEATURES = [
-  "59.000+ Live-Sender",
-  "200.000+ Filme & Serien",
-  "Netflix · HBO · Disney+ & mehr",
-  "HD | FHD | 4K Qualität",
-  "Anti-Freeze-Technologie",
-  "Schnelle und stabile Server",
-  "Premium-Filme, Serien & Live-TV",
-  "PPV / EPG verfügbar",
-  "Erweiterte Kindersicherung",
-  "Priorisierter Kundensupport",
-  "Weltweiter Zugang (keine IP-Sperre)",
-  "Regelmäßige Updates"
+  "59 000+ live-kanavaa",
+  "200 000+ elokuvaa & sarjaa",
+  "Netflix · HBO · Disney+ & lisää",
+  "HD | FHD | 4K laatu",
+  "Ei jäätymistä -teknologia",
+  "Nopeat ja vakaat palvelimet",
+  "Premium-elokuvat, sarjat & live-TV",
+  "PPV / EPG saatavilla",
+  "Edistynyt lapsilukko",
+  "Etusijalle asetettu asiakastuki",
+  "Maailmanlaajuinen pääsy (ei IP-lukitusta)",
+  "Säännölliset päivitykset",
+  "Catchup TV — katso ohjelmat jälkikäteen",
+  "99,9 % palvelimen käyttöaika",
+  "VPN sisältyy — ei aluerajoituksia",
+  "30 päivän rahat takaisin -takuu",
+  "Adaptiivinen 4K-valmis toisto kaikilla laitteilla",
+  "Time-Shift — kelaa lähetyksiä taaksepäin"
 ];
 
 export const SUBSCRIPTION_PLANS: PricingPlan[] = [
-  // 1 Device plans
+  // ── 1 Device ──────────────────────────────────────────────────────────────
   {
     id: "p1",
     durationMonths: 3,
     name: "Starter",
-    price: 34.99,
-    originalPrice: 49.99,
+    price: 49.99,
+    originalPrice: 69.99,
     popular: false,
-    savings: "30 % sparen",
+    savings: "Testipaketti",
     devices: 1,
-    features: COMMON_FEATURES
+    features: ["Paras paketti palvelun testaamiseen!", ...COMMON_FEATURES]
   },
   {
     id: "p2",
     durationMonths: 6,
     name: "Standard",
-    price: 49.99,
-    originalPrice: 74.99,
+    price: 69.99,
+    originalPrice: 89.99,
     popular: false,
-    savings: "33 % sparen",
+    savings: "Hyvä arvo",
     devices: 1,
     features: COMMON_FEATURES
   },
   {
     id: "p3",
     durationMonths: 12,
+    freeMonths: 3,
     name: "Premium",
-    price: 69.99,
-    originalPrice: 119.99,
+    price: 119.99,
+    originalPrice: 149.99,
+    discountPct: 54,
     popular: true,
-    savings: "42 % sparen",
+    savings: "VIIKON TARJOUS",
     devices: 1,
-    features: COMMON_FEATURES
+    features: ["Myydyin paketti — suomalaisten suosikki!", "+ 3 KK ILMAINEN = 15 KK yhteensä — viikon rajoitettu tarjous!", ...COMMON_FEATURES]
   },
   {
     id: "p4",
     durationMonths: 24,
+    freeMonths: 6,
     name: "Ultra",
-    price: 124.99,
-    originalPrice: 219.99,
+    price: 199.99,
+    originalPrice: 279.99,
+    discountPct: 54,
     popular: false,
-    savings: "43 % sparen",
+    savings: "VIIKON TARJOUS",
     devices: 1,
-    features: COMMON_FEATURES
+    features: ["+ 6 KK ILMAINEN = 30 KK yhteensä — viikon rajoitettu tarjous!", ...COMMON_FEATURES]
   },
-  // 2 Device plans
+  // ── 2 Devices ─────────────────────────────────────────────────────────────
   {
     id: "p5",
     durationMonths: 3,
     name: "Duo Starter",
-    price: 59.99,
-    originalPrice: 89.99,
+    price: 89.99,
+    originalPrice: 129.99,
     popular: false,
-    savings: "33 % sparen",
+    savings: "Testipaketti",
     devices: 2,
-    features: ["2 Simultane Verbindungen", ...COMMON_FEATURES]
+    features: ["Paras paketti palvelun testaamiseen!", "2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
   },
   {
     id: "p6",
     durationMonths: 6,
     name: "Duo Standard",
-    price: 89.99,
-    originalPrice: 134.99,
+    price: 119.99,
+    originalPrice: 169.99,
     popular: false,
-    savings: "33 % sparen",
+    savings: "Hyvä arvo",
     devices: 2,
-    features: ["2 Simultane Verbindungen", ...COMMON_FEATURES]
+    features: ["2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
   },
   {
     id: "p7",
     durationMonths: 12,
+    freeMonths: 3,
     name: "Duo Premium",
-    price: 129.99,
-    originalPrice: 219.99,
+    price: 199.99,
+    originalPrice: 279.99,
+    discountPct: 54,
     popular: true,
-    savings: "41 % sparen",
+    savings: "VIIKON TARJOUS",
     devices: 2,
-    features: ["2 Simultane Verbindungen", ...COMMON_FEATURES]
+    features: ["Myydyin paketti — suomalaisten suosikki!", "+ 3 KK ILMAINEN = 15 KK yhteensä — viikon rajoitettu tarjous!", "2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
   },
   {
     id: "p8",
     durationMonths: 24,
+    freeMonths: 6,
     name: "Duo Ultra",
-    price: 239.99,
-    originalPrice: 409.99,
+    price: 349.99,
+    originalPrice: 499.99,
+    discountPct: 54,
     popular: false,
-    savings: "41 % sparen",
+    savings: "VIIKON TARJOUS",
     devices: 2,
-    features: ["2 Simultane Verbindungen", ...COMMON_FEATURES]
+    features: ["+ 6 KK ILMAINEN = 30 KK yhteensä — viikon rajoitettu tarjous!", "2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
   }
 ];
 
-export const REVIEWS: TestimonialItem[] = [
-  {
-    id: "r1",
-    name: "Tara T.",
-    role: "Sport-Enthusiastin, Frankfurt",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80",
-    text: "Die Sportsender sind absolut spitze! Ich habe das gesamte Champions-League-Spiel in unkomprimiertem 4K ganz ohne Pufferung gesehen. Ein absoluter Game-Changer.",
-    highlight: "Absolut kein Puffer-Ruckeln bei Live-Spielen in 4K",
-    ratingValue: 5,
-  },
-  {
-    id: "r2",
-    name: "Roland V.",
-    role: "Filmliebhaber, München",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80",
-    text: "Die Filmauswahl ist gigantisch! Ich habe brandneue Kinostarts sowie europäische Independent-Filme in echtem 4K UHD gefunden. Untertitel sind perfekt auf Deutsch konfigurierbar.",
-    highlight: "Die riesige Kinobibliothek rettet meine Wochenenden!",
-    ratingValue: 5,
-  },
-  {
-    id: "r3",
-    name: "Sabine S.",
-    role: "Familienmutter, Berlin",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80",
-    text: "Unsere Kinder schauen am liebsten Kindersendungen auf Deutsch und ich liebe englische Shows. Wir nutzen das Abonnement auf zwei Geräten gleichzeitig im Haus. Großartiger Support und sofortige Freischaltung.",
-    highlight: "Die Einrichtung dauerte nur 2 Minuten, absolut empfehlenswert!",
-    ratingValue: 5,
-  },
-  {
-    id: "r4",
-    name: "Sandro W.",
-    role: "IT-Systemadministrator, Stuttgart",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80",
-    text: "Als Softwareentwickler habe ich die Bitrate und Server-Anbindung getestet. Extrem niedriger Ping, hervorragende Kompressionsraten bei fast verlustfreier Bildqualität. Perfekt auf Fire TV und Smart TV.",
-    highlight: "Optimale Streams, ausgiebig auf Smart TV und Firestick getestet",
-    ratingValue: 5,
-  },
-  {
-    id: "r5",
-    name: "Markus D.",
-    role: "Heimkino-Fan, Köln",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=120&q=80",
-    text: "Als deutscher Fußballfan im Ausland oder zu Hause will man alles reibungslos haben. IPTV Professional liefert alle Streams in erstklassiger Bildqualität und ganz ohne VPN-Gesperre.",
-    highlight: "Alle meine Heimatsender ganz ohne Ländersperren!",
-    ratingValue: 5,
-  }
-];
-
-export const FAQS: FAQItem[] = [
-  {
-    id: "f1",
-    question: "Bieten Sie eine sofortige Einrichtung nach dem Kauf an?",
-    answer: "Ja, absolut! Sobald Sie Ihre Zahlung abgeschlossen haben, generiert unser automatisiertes Onboarding-System Ihre aktiven Zugangsdaten und sendet Ihnen innerhalb von 2 bis 5 Minuten eine detaillierte E-Mail mit der Installationsanleitung."
-  },
-  {
-    id: "f2",
-    question: "Welche Hardware- und Software-Apps werden unterstützt?",
-    answer: "Unser System läuft auf fast jedem Gerät. Die Unterstützung ist direkt integriert für Smart-TVs (Samsung, LG, Sony, Philips), Android Boxen, Amazon Fire TV Stick, Apple TV, iPads, iPhones, MAG-Boxen, Formuler und Anwendungen wie IPTV Smarters, Tivimate, GSE sowie Standard-M3U-Wiedergabelisten."
-  },
-  {
-    id: "f3",
-    question: "Wie schnell muss meine Internetverbindung sein?",
-    answer: "Für Standard-Auflösung (SD) benötigen Sie mindestens 8 Mbit/s. Für Full HD (1080p) ist eine stabile Geschwindigkeit von 15 Mbit/s erforderlich und für erstklassige 4K UHD-Streams empfehlen wir 25 Mbit/s oder mehr, idealerweise über eine kabelgebundene LAN-Verbindung."
-  },
-  {
-    id: "f4",
-    question: "Kann ich das Abonnement auf mehreren Geräten gleichzeitig nutzen?",
-    answer: "Standardmäßig unterstützen die Classic- und Standard-Tarife 1 gleichzeitige Verbindung. Wenn Sie sich für unser 12-Monats-Paket (Super-Sparjahr) entscheiden, sind 2 gleichzeitige Verbindungen (+1 GRATIS) enthalten, sodass Sie problemlos auf verschiedenen Bildschirmen streamen können."
-  },
-  {
-    id: "f5",
-    question: "Gibt es Verträge oder versteckte Einrichtungsgebühren?",
-    answer: "Nein, es gibt keine laufenden Verträge, keine Einrichtungsgebühren und kein automatisches Abonnement mit Abbuchung. Sie zahlen nur einmalig für den gewählten Zeitraum (3, 6 oder 12 Monate) und verlängern manuell, wenn Sie fortfahren möchten."
-  }
-];

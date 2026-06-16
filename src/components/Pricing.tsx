@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { PricingPlan, SUBSCRIPTION_PLANS } from "../types";
 import { Check, ShieldCheck, Zap, Tv2, Users, Crown, MessageCircle, Monitor } from "lucide-react";
+import { useLanguage } from "../LanguageContext";
 
 interface PricingProps {
   onSelectPlan: (plan: PricingPlan) => void;
@@ -10,34 +11,40 @@ const GOLD   = "#D4A820";
 const GOLD_L = "#FFE370";
 const GOLD_D = "#8B6510";
 const GOLD_T = "#FFF0A0";
-const GREEN  = "#014E45";
-const GREEN_D = "#013d37";
+const GREEN  = "#003580";
+const GREEN_D = "#002468";
 
 const WA_NUMBER = "447449708976";
 
-function buildWhatsAppUrl(plan: PricingPlan): string {
-  const geraete = plan.devices === 1 ? "1 Gerat" : "2 Gerate";
-  const preis   = plan.price.toFixed(2).replace(".", ",");
-  const msg = `Hallo, ich mochte das TV Professional Paket bestellen: ${plan.durationMonths} Monate / ${geraete} / ${preis} EUR`;
+function trackWaConversion() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18235035269/rSDACJDGwb4cEIWdkvdD' });
+}
+
+function buildWhatsAppUrl(plan: PricingPlan, waMsg: (m: number, d: number, p: string) => string): string {
+  const preis = plan.price.toFixed(2).replace(".", ",");
+  const msg = waMsg(plan.durationMonths, plan.devices, preis);
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
 export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
+  const { t } = useLanguage();
   const [activeDevices, setActiveDevices] = useState<1 | 2>(1);
 
+  const MONTH_ORDER = [12, 24, 6, 3];
   const plans = SUBSCRIPTION_PLANS
     .filter(p => p.devices === activeDevices)
     .sort((a, b) => {
-      if (a.durationMonths === 12) return -1;
-      if (b.durationMonths === 12) return 1;
-      return a.durationMonths - b.durationMonths;
+      const ai = MONTH_ORDER.indexOf(a.durationMonths);
+      const bi = MONTH_ORDER.indexOf(b.durationMonths);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
     });
 
   return (
     <section
       id="pricing-section"
       className="relative py-10 md:py-20 px-4 md:px-8 w-full text-center overflow-hidden"
-      style={{ background: `linear-gradient(160deg, #080908 0%, #0d1a18 45%, #080908 100%)` }}
+      style={{ background: `linear-gradient(160deg, #080c14 0%, #0d1628 45%, #080c14 100%)` }}
     >
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -52,9 +59,9 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
         {/* ── Stats bar ─────────────────────────────────────────────────── */}
         <div className="flex flex-wrap justify-center gap-8 md:gap-24 mb-10 md:mb-16">
           {[
-            { value: "59K",  label: "CHANNELS"        },
-            { value: "200K", label: "SERIES & FILMS"  },
-            { value: "∞",    label: "PERMANENT UPDATE" },
+            { value: "59K",  label: t.pricing.statChannels  },
+            { value: "200K", label: t.pricing.statVod        },
+            { value: "∞",    label: t.pricing.statUpdate     },
           ].map(({ value, label }, i) => (
             <div key={label} className="flex flex-col items-center relative">
               {i < 2 && (
@@ -69,10 +76,10 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
         {/* ── Heading ───────────────────────────────────────────────────── */}
         <div className="max-w-xl mx-auto mb-10 text-center">
           <span className="serif-display italic font-light text-2xl text-white/80 mb-3 block">
-            Premium Abonnements
+            {t.pricing.subtitle}
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05] text-white">
-            Wähle deinen
+            {t.pricing.heading}
             <br />
             <span className="serif-display italic font-light pr-1.5"
               style={{
@@ -83,11 +90,11 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                 color: "transparent",
                 display: "inline-block"
               }}>
-              Premium-Plan.
+              {t.pricing.highlight}
             </span>
           </h2>
           <p className="serif-display italic font-light text-base md:text-xl text-white/75 mt-4 leading-relaxed">
-            Keine automatische Verlängerung. Deine Laufzeit, deine Regeln — sicher, schnell und weltweit verfügbar.
+            {t.pricing.desc}
           </p>
         </div>
 
@@ -98,11 +105,11 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
             <button key={n} onClick={() => setActiveDevices(n)}
               className={`flex items-center gap-2 px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 ${
                 activeDevices === n
-                  ? "bg-white text-[#014E45] shadow-md"
+                  ? "bg-white text-[#003580] shadow-md"
                   : "text-white/40 hover:text-white/70"
               }`}>
               {n === 1 ? <Tv2 className="w-3.5 h-3.5" /> : <Users className="w-3.5 h-3.5" />}
-              {n} {n === 1 ? "Gerät" : "Geräte"}
+              {n} {n === 1 ? t.pricing.device1 : t.pricing.device2}
             </button>
           ))}
         </div>
@@ -114,16 +121,40 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
 
 
               {/* Card */}
-              <div className="flex-1 flex flex-col rounded-2xl overflow-hidden"
+              <div className="relative flex-1 flex flex-col rounded-2xl overflow-hidden"
                 style={plan.popular ? {
                   background: `linear-gradient(160deg, #020806 0%, #010e0c 30%, #011a16 55%, #010e0c 80%, #020806 100%)`,
                   border: `1.5px solid ${GOLD}88`,
-                  boxShadow: `0 0 80px rgba(1,78,69,0.5), 0 0 40px rgba(200,164,0,0.18), 0 16px 50px rgba(0,0,0,0.5)`,
+                  boxShadow: `0 0 80px rgba(0,53,128,0.5), 0 0 40px rgba(200,164,0,0.18), 0 16px 50px rgba(0,0,0,0.5)`,
                 } : {
                   background: "#ffffff",
-                  border: `1.5px solid rgba(1,78,69,0.20)`,
+                  border: `1.5px solid rgba(0,53,128,0.20)`,
                   boxShadow: "0 8px 30px rgba(0,0,0,0.18)",
                 }}>
+
+                {/* BEST SELLER ribbon — 12-month popular card */}
+                {plan.popular && (
+                  <div className="absolute z-10 pointer-events-none"
+                    style={{ top: "18px", right: "-32px", width: "130px", textAlign: "center", transform: "rotate(45deg)",
+                      background: `linear-gradient(90deg, ${GOLD_D}, ${GOLD}, ${GOLD_L})`,
+                      color: "#1a1200", fontSize: "8px", fontWeight: "900", padding: "6px 0",
+                      letterSpacing: "0.14em", textTransform: "uppercase",
+                      boxShadow: `0 2px 8px ${GOLD}88` }}>
+                    ★ BEST SELLER
+                  </div>
+                )}
+
+                {/* TEST PACK ribbon — 3-month card */}
+                {plan.durationMonths === 3 && (
+                  <div className="absolute z-10 pointer-events-none"
+                    style={{ top: "16px", right: "-34px", width: "130px", textAlign: "center", transform: "rotate(45deg)",
+                      background: `linear-gradient(90deg, ${GREEN_D}, ${GREEN})`,
+                      color: "white", fontSize: "7px", fontWeight: "900", padding: "5px 0",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      boxShadow: "0 2px 8px rgba(0,40,104,0.5)", lineHeight: "1.5" }}>
+                    BEST PACK<br/>TO TEST ★
+                  </div>
+                )}
 
                 {/* Top stripe */}
                 <div className="h-1.5 w-full"
@@ -141,7 +172,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                       <Crown className="w-4 h-4" style={{ color: GOLD }} />
                       <span className="text-sm font-black uppercase tracking-[0.15em]"
                         style={{ color: GOLD_T }}>
-                        Beliebtester
+                        {t.pricing.popular}
                       </span>
                     </div>
                   )}
@@ -156,10 +187,32 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                         {plan.durationMonths}
                       </span>
                       <span className="text-base font-black mb-3 uppercase tracking-widest"
-                        style={{ color: plan.popular ? GOLD_T : "rgba(1,78,69,0.65)" }}>
-                        {plan.durationMonths === 1 ? "Monat" : "Monate"}
+                        style={{ color: plan.popular ? GOLD_T : "rgba(0,53,128,0.65)" }}>
+                        {plan.durationMonths === 1 ? t.pricing.month1 : t.pricing.monthMany}
                       </span>
                     </div>
+
+                    {/* Free months offer strip */}
+                    {plan.freeMonths && (
+                      <div className="flex items-center gap-2 mt-2 mb-1">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full"
+                          style={plan.popular ? {
+                            background: `linear-gradient(90deg, ${GOLD_D}, ${GOLD})`,
+                            boxShadow: `0 2px 10px ${GOLD}55`,
+                          } : {
+                            background: `linear-gradient(90deg, ${GREEN_D}, ${GREEN})`,
+                          }}>
+                          <span className="text-[13px] font-black tracking-tight"
+                            style={{ color: plan.popular ? "#1a1200" : "white" }}>
+                            +{plan.freeMonths} KK
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-widest"
+                            style={{ color: plan.popular ? "#1a1200" : "rgba(255,255,255,0.85)" }}>
+                            ILMAINEN
+                          </span>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Devices badge */}
                     <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
@@ -167,35 +220,49 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                         background: `${GOLD}22`,
                         border: `1px solid ${GOLD}55`,
                       } : {
-                        background: `rgba(1,78,69,0.08)`,
-                        border: `1px solid rgba(1,78,69,0.25)`,
+                        background: `rgba(0,53,128,0.08)`,
+                        border: `1px solid rgba(0,53,128,0.25)`,
                       }}>
                       <Monitor className="w-3.5 h-3.5"
                         style={{ color: plan.popular ? GOLD : GREEN }} />
                       <span className="text-xs font-black uppercase tracking-wider"
                         style={{ color: plan.popular ? GOLD_T : GREEN }}>
-                        {plan.devices} {plan.devices === 1 ? "Gerät" : "Geräte"}
+                        {plan.devices} {plan.devices === 1 ? t.pricing.dev1 : t.pricing.dev2}
                       </span>
                     </div>
                   </div>
 
                   {/* Savings badge */}
-                  <span className="self-start text-[9px] font-black py-0.5 px-2.5 rounded-full uppercase tracking-wide mb-5"
-                    style={plan.popular ? {
-                      background: `${GOLD}33`,
-                      color: GOLD_L,
-                      border: `1px solid ${GOLD}66`,
-                    } : {
-                      background: "rgba(1,78,69,0.10)",
-                      color: GREEN,
-                      border: `1px solid rgba(1,78,69,0.25)`,
-                    }}>
-                    <span style={{ color: plan.popular ? GOLD_T : "inherit" }}>{plan.savings}</span>
-                  </span>
+                  <div className="self-start flex items-center gap-2 mb-5">
+                    <span className="text-[11px] font-black py-1 px-3 rounded-full uppercase tracking-wide"
+                      style={plan.popular ? {
+                        background: `${GOLD}33`,
+                        color: GOLD_L,
+                        border: `1px solid ${GOLD}66`,
+                      } : {
+                        background: "rgba(0,53,128,0.10)",
+                        color: GREEN,
+                        border: `1px solid rgba(0,53,128,0.25)`,
+                      }}>
+                      {plan.savings}
+                    </span>
+                    <span className="text-4xl font-black leading-none tracking-tighter"
+                      style={plan.popular ? {
+                        background: `linear-gradient(135deg, ${GOLD_D}, ${GOLD}, ${GOLD_L})`,
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        color: "transparent",
+                      } : {
+                        color: GREEN,
+                      }}>
+                      −{plan.discountPct ?? Math.round((plan.originalPrice - plan.price) / plan.originalPrice * 100)}%
+                    </span>
+                  </div>
 
                   {/* Price */}
                   <div className="pb-5 mb-5 border-b"
-                    style={{ borderColor: plan.popular ? `${GOLD}33` : "rgba(1,78,69,0.15)" }}>
+                    style={{ borderColor: plan.popular ? `${GOLD}33` : "rgba(0,53,128,0.15)" }}>
                     <div className="flex items-end gap-2">
                       <span className="text-3xl font-black tracking-tight leading-none"
                         style={{ color: plan.popular ? GOLD_T : "#111211" }}>
@@ -208,21 +275,21 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                     </div>
                     <p className="serif-display italic font-light text-2xl mt-1.5"
                       style={{ color: plan.popular ? GOLD_T : GREEN }}>
-                      ≈ {(plan.price / plan.durationMonths).toFixed(2).replace(".", ",")} € / Monat
+                      ≈ {(plan.price / (plan.durationMonths + (plan.freeMonths ?? 0))).toFixed(2).replace(".", ",")} € / {t.pricing.month1.toLowerCase()}
                     </p>
                   </div>
 
                   {/* Features */}
                   <ul className="space-y-3 flex-1 mb-6">
-                    {plan.features.slice(0, 6).map((feature, i) => (
+                    {plan.features.slice(0, 12).map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <span className="w-6 h-6 shrink-0 rounded-full flex items-center justify-center"
                           style={plan.popular ? {
                             background: `${GOLD}22`,
                             border: `1px solid ${GOLD}55`,
                           } : {
-                            background: `rgba(1,78,69,0.10)`,
-                            border: `1px solid rgba(1,78,69,0.30)`,
+                            background: `rgba(0,53,128,0.10)`,
+                            border: `1px solid rgba(0,53,128,0.30)`,
                           }}>
                           <Check className="w-3.5 h-3.5 stroke-[3]"
                             style={{ color: plan.popular ? GOLD : GREEN }} />
@@ -237,9 +304,10 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
 
                   {/* CTA */}
                   <a
-                    href={buildWhatsAppUrl(plan)}
+                    href={buildWhatsAppUrl(plan, t.pricing.waMsg)}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={trackWaConversion}
                     className="w-full py-3.5 px-4 rounded-xl text-xs font-black uppercase tracking-wider
                                flex items-center justify-center gap-2 transition-all duration-200 no-underline
                                hover:opacity-90 hover:scale-[1.02] active:scale-100"
@@ -250,11 +318,11 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                     } : {
                       background: GREEN,
                       color: "#fff",
-                      boxShadow: `0 4px 20px rgba(1,78,69,0.35)`,
+                      boxShadow: `0 4px 20px rgba(0,53,128,0.35)`,
                     }}
                   >
                     <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>Jetzt kaufen</span>
+                    <span>{t.pricing.cta}</span>
                   </a>
 
                 </div>
@@ -270,9 +338,9 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
         {/* ── Trust bar ─────────────────────────────────────────────────── */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
-            { icon: <ShieldCheck className="w-5 h-5 shrink-0 text-white" />, title: "100 % Rückerstattung", desc: "Volle Rückerstattung innerhalb von 24 Std.", href: null },
-            { icon: <Zap         className="w-5 h-5 shrink-0 text-white" />, title: "Sofortige Freischaltung", desc: "Zugangsdaten in wenigen Minuten via WhatsApp.", href: null },
-            { icon: <MessageCircle className="w-5 h-5 shrink-0 text-white" />, title: "WhatsApp-Support", desc: "Direkter Support rund um die Uhr über WhatsApp.", href: `https://wa.me/${WA_NUMBER}?text=Hallo%2C%20ich%20brauche%20Support%20mit%20IPTV%20Professional.` },
+            { icon: <ShieldCheck className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[0], desc: t.pricing.trust[1], href: null },
+            { icon: <Zap         className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[2], desc: t.pricing.trust[3], href: null },
+            { icon: <MessageCircle className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[4], desc: t.pricing.trust[5], href: `https://wa.me/${WA_NUMBER}?text=Hei%2C%20tarvitsen%20tukea%20IPTV%20Suomi%20-palvelun%20kanssa.` },
           ].map(({ icon, title, desc, href }) => {
             const inner = (
               <>
@@ -285,6 +353,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
             );
             return href ? (
               <a key={title} href={href} target="_blank" rel="noopener noreferrer"
+                onClick={trackWaConversion}
                 className="flex items-start gap-3 p-4 rounded-xl text-left no-underline hover:opacity-80 transition-opacity"
                 style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                 {inner}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PricingPlan } from "./types";
+import { LanguageProvider, useLanguage } from "./LanguageContext";
 import Header from "./components/Header";
 import LiveSports from "./components/LiveSports";
 import MovieGrid from "./components/MovieGrid";
@@ -11,27 +12,21 @@ import PaymentsAndFaq from "./components/PaymentsAndFaq";
 import Hero from "./components/Hero";
 import VideoShowcase from "./components/VideoShowcase";
 import CheckoutModal from "./components/CheckoutModal";
-import { Tv, ShieldCheck, Heart, Sparkles, CheckCircle, Smartphone, Flame } from "lucide-react";
 
-export default function App() {
+function AppInner() {
+  const { t, dir } = useLanguage();
   const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState<PricingPlan | null>(null);
 
-  // Smooth scrolling scroll functions
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handleSelectPlan = (plan: PricingPlan) => {
-    setSelectedPlanForCheckout(plan);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFDF7] text-neutral-900 flex flex-col font-sans selection:bg-[#014E45] selection:text-white overflow-x-hidden w-full">
-      
-      {/* Top sticky styled Header */}
+    <div
+      dir={dir}
+      className="min-h-screen bg-[#FDFDF7] text-neutral-900 flex flex-col font-sans selection:bg-[#003580] selection:text-white overflow-x-hidden w-full"
+    >
       <Header
         onSportsClick={() => scrollToSection("live-sports-section")}
         onMoviesClick={() => scrollToSection("movies-section")}
@@ -41,141 +36,105 @@ export default function App() {
       />
 
       <main className="flex-grow">
-        
-        {/* SECTION 1: HERO section (Typography displays + devices selector simulators) */}
         <div className="pt-6 md:pt-10" />
         <Hero onPricingClick={() => scrollToSection("pricing-section")} />
-
-        {/* VIDEO SHOWCASE: Autoplay service preview video */}
         <VideoShowcase />
-
-        {/* SECTION 2.5: LIVE SPORTS SECTION */}
         <LiveSports onPricingClick={() => scrollToSection("pricing-section")} />
-
-        {/* SECTION 3: VOD MOVIE GRID (cinematic filters, blockbusters collection) */}
         <MovieGrid onPricingClick={() => scrollToSection("pricing-section")} />
+        <Pricing onSelectPlan={setSelectedPlanForCheckout} />
 
-        {/* SECTION 4: INFORMATIVE SUBSCRIPTION PACKAGES (3, 6, 12 Months selection layout) */}
-        <Pricing onSelectPlan={handleSelectPlan} />
+        {/* Payment methods banner */}
+        <div className="px-4 md:px-8 max-w-4xl mx-auto w-full py-4">
+          <img
+            src="/PAY1-1-1.svg"
+            alt="Accepted payment methods"
+            className="w-full h-auto"
+          />
+        </div>
 
-        {/* SECTION 4.5: DIGITAL CHANNELS STRIPE — placed after pricing */}
         <ChannelStripe />
-
-        {/* SECTION 5: CUSTOMER LOVE LETTERS REVIEWS (Black rounded section with user avatars and star reviews) */}
         <Testimonials />
         <DeviceCompatibility onPricingClick={() => scrollToSection("pricing-section")} />
-
-        {/* SECTION 6: PAYMENT METHODS GRID & FAQ GUIDES ACCORDION */}
         <PaymentsAndFaq />
-
       </main>
 
-      {/* FOOTER: Matches Wispr minimalist dark styled footer */}
       <footer className="mt-16 bg-[#111211] text-[#FDFDF7] py-16 px-6 md:px-12 border-t border-neutral-850">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-10">
-          
-          {/* Logo & copyright column */}
+
+          {/* Logo & tagline */}
           <div className="md:col-span-4 space-y-4 text-left">
-            <div className="flex items-center gap-2">
-              <div className="flex items-end gap-0.5 h-6">
-                <span className="w-1.5 h-2.5 bg-white rounded-full"></span>
-                <span className="w-1.5 h-4 bg-white rounded-full"></span>
-                <span className="w-1.5 h-5 bg-white rounded-full"></span>
-                <span className="w-1.5 h-4 bg-white rounded-full"></span>
-              </div>
+            <div className="flex items-center gap-2.5">
+              <svg width="40" height="24" viewBox="0 0 18 11" xmlns="http://www.w3.org/2000/svg" className="rounded-[3px] shadow-sm ring-1 ring-white/15 shrink-0">
+                <rect width="18" height="11" fill="white"/>
+                <rect x="0" y="4" width="18" height="3" fill="#003580"/>
+                <rect x="5" y="0" width="3" height="11" fill="#003580"/>
+              </svg>
               <span className="text-2xl font-bold tracking-tight text-white font-sans">
-                IPTV<span className="serif-display italic font-normal text-neutral-400 pl-0.5"> Professional</span>
+                IPTV<span className="serif-display italic font-normal text-neutral-400 pl-0.5"> Suomi</span>
               </span>
             </div>
-
             <p className="serif-display italic font-light text-lg text-neutral-200 leading-relaxed max-w-sm">
-              Der High-Fidelity-Store für digitales Live-Fernsehen. Keine Verträge, absolut minmierte Latenz und erstklassige Server-Verbindungen.
+              {t.footer.tagline}
             </p>
-
             <p className="serif-display italic font-light text-base text-neutral-500 pt-3">
-              Copyright © 2026 IPTV Professional. Alle Rechte vorbehalten.
+              {t.footer.copyright}
             </p>
           </div>
 
-          {/* Quick links columns */}
+          {/* Subscriptions links */}
           <div className="md:col-span-3 text-left">
-            <h5 className="serif-display italic font-light text-2xl text-neutral-100 mb-4">
-              Abonnements
-            </h5>
+            <h5 className="serif-display italic font-light text-2xl text-neutral-100 mb-4">{t.footer.sub1}</h5>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <button onClick={() => scrollToSection("pricing-section")} className="text-neutral-300 hover:text-white transition-colors">
-                  Quartals-Classic (3 Monate)
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollToSection("pricing-section")} className="text-neutral-300 hover:text-white transition-colors">
-                  Standard-Wert (6 Monate)
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollToSection("pricing-section")} className="text-white hover:underline font-semibold transition-colors">
-                  Super-Sparjahr (12 Monate – 57 % sparen)
-                </button>
-              </li>
+              <li><button onClick={() => scrollToSection("pricing-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link1}</button></li>
+              <li><button onClick={() => scrollToSection("pricing-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link2}</button></li>
+              <li><button onClick={() => scrollToSection("pricing-section")} className="text-white hover:underline font-semibold transition-colors">{t.footer.link3}</button></li>
             </ul>
           </div>
 
+          {/* Content & Support links */}
           <div className="md:col-span-3 text-left">
-            <h5 className="serif-display italic font-light text-2xl text-neutral-100 mb-4">
-              Inhalte & Support
-            </h5>
+            <h5 className="serif-display italic font-light text-2xl text-neutral-100 mb-4">{t.footer.sub2}</h5>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <button onClick={() => scrollToSection("movies-section")} className="text-neutral-300 hover:text-white transition-colors">
-                  Filme & Serien VOD-Bibliothek
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollToSection("channels-section")} className="text-neutral-300 hover:text-white transition-colors">
-                  Live-TV-Senderübersicht
-                </button>
-              </li>
-              <li>
-                <button onClick={() => scrollToSection("faq-section")} className="text-neutral-300 hover:text-white transition-colors">
-                  Geräte-Einrichtung & Hilfe-FAQ
-                </button>
-              </li>
+              <li><button onClick={() => scrollToSection("movies-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link4}</button></li>
+              <li><button onClick={() => scrollToSection("channels-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link5}</button></li>
+              <li><button onClick={() => scrollToSection("faq-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link6}</button></li>
             </ul>
           </div>
 
-          {/* Setup notice badge column */}
+          {/* Server status */}
           <div className="md:col-span-2 text-left">
-            <h5 className="serif-display italic font-light text-2xl text-neutral-100 mb-4">
-              Server-Status
-            </h5>
-            <div className="inline-flex items-center gap-1.5 bg-[#014E45]/40 border border-[#014E45] px-3.5 py-1.5 rounded-full text-[10px] font-mono text-[#FDFDF7] font-bold uppercase tracking-wider animate-pulse">
+            <h5 className="serif-display italic font-light text-2xl text-neutral-100 mb-4">{t.footer.sub3}</h5>
+            <div className="inline-flex items-center gap-1.5 bg-[#003580]/40 border border-[#003580] px-3.5 py-1.5 rounded-full text-[10px] font-mono text-[#FDFDF7] font-bold uppercase tracking-wider animate-pulse">
               <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-              <span>Alle Relays Live</span>
+              <span>{t.footer.allRelays}</span>
             </div>
           </div>
 
         </div>
 
         <div className="max-w-7xl mx-auto w-full mt-10 pt-8 border-t border-neutral-800/[65] flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono text-neutral-500">
-          <p>
-            IPTV Professional wird vollkommen unabhängig betrieben. Alle genannten Herstellermarken, Produktnamen und Sender-Logos sind Eigentum der jeweiligen Inhaber. Vollständig SSL-verschlüsselte Bezahlvorgänge.
-          </p>
+          <p>{t.footer.legal}</p>
           <div className="flex gap-4">
-            <span className="hover:text-neutral-300 cursor-pointer">Sicherheitszertifikat</span>
-            <span className="hover:text-neutral-300 cursor-pointer">SLA-Vereinbarung</span>
+            <span className="hover:text-neutral-300 cursor-pointer">{t.footer.cert}</span>
+            <span className="hover:text-neutral-300 cursor-pointer">{t.footer.sla}</span>
           </div>
         </div>
       </footer>
 
-      {/* Interactive Checkout Modal backdrop wizard slider */}
       {selectedPlanForCheckout && (
         <CheckoutModal
           plan={selectedPlanForCheckout}
           onClose={() => setSelectedPlanForCheckout(null)}
         />
       )}
-
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppInner />
+    </LanguageProvider>
   );
 }

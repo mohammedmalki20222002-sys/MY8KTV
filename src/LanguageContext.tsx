@@ -1,0 +1,30 @@
+import { createContext, useContext, useState, ReactNode } from "react";
+import { LangCode, LANGUAGES, translations, T } from "./i18n";
+
+interface LanguageContextValue {
+  lang: LangCode;
+  setLang: (l: LangCode) => void;
+  t: T;
+  dir: 'ltr' | 'rtl';
+}
+
+const LanguageContext = createContext<LanguageContextValue>({
+  lang: 'fi',
+  setLang: () => {},
+  t: translations.fi,
+  dir: 'ltr',
+});
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [lang, setLang] = useState<LangCode>('fi');
+  const dir = LANGUAGES.find(l => l.code === lang)?.dir ?? 'ltr';
+  return (
+    <LanguageContext.Provider value={{ lang, setLang, t: translations[lang], dir }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  return useContext(LanguageContext);
+}

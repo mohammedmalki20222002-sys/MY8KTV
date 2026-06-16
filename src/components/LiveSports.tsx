@@ -1,35 +1,12 @@
+import React from "react";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "../LanguageContext";
 
 interface LiveSportsProps {
   onPricingClick: () => void;
 }
 
 // ── Inline SVG fallbacks ──────────────────────────────────────────────────────
-function JoynLogo() {
-  return (
-    <svg viewBox="0 0 60 30" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      <rect width="60" height="30" rx="4" fill="#00DCA5" />
-      <text x="30" y="22" textAnchor="middle" fontSize="16" fontWeight="900" fill="#111" fontFamily="Arial Black,Arial">joyn</text>
-    </svg>
-  );
-}
-function MagentaLogo() {
-  return (
-    <svg viewBox="0 0 80 30" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      <rect width="80" height="30" rx="4" fill="#E20074" />
-      <text x="40" y="14" textAnchor="middle" fontSize="9" fontWeight="700" fill="white" fontFamily="Arial">MagentaTV</text>
-      <text x="40" y="24" textAnchor="middle" fontSize="7" fontWeight="400" fill="white" fontFamily="Arial">Telekom</text>
-    </svg>
-  );
-}
-function WOWLogo() {
-  return (
-    <svg viewBox="0 0 60 30" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      <rect width="60" height="30" rx="4" fill="#DA1E4B" />
-      <text x="30" y="22" textAnchor="middle" fontSize="18" fontWeight="900" fill="white" fontFamily="Arial Black,Arial">WOW</text>
-    </svg>
-  );
-}
 function PeacockLogo() {
   return (
     <svg viewBox="0 0 60 30" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -49,6 +26,9 @@ interface League {
 }
 
 const LEAGUES: League[] = [
+  { id: "iihf",   name: "IIHF World Championship",logo: "/sports/IIHF.svg",                   country: "Ice Hockey"  },
+  { id: "nhl",    name: "NHL",                     logo: "/sports/NHL.svg",                    country: "Ice Hockey"  },
+  { id: "smliiga",name: "SM-liiga",                logo: "/sports/SM_liiga.svg",               country: "Finland"     },
   { id: "ucl",    name: "UEFA Champions League",  logo: "/sports/UEFA_Champions_League.png",  country: "Europa"      },
   { id: "uel",    name: "UEFA Europa League",      logo: "/sports/UEFA_Europa_League.png",     country: "Europa"      },
   { id: "uecl",   name: "UEFA Conference League",  logo: "/sports/UEFA_Conference_League.png", country: "Europa"      },
@@ -81,11 +61,11 @@ interface Platform {
   bg: string;
   logoKind: LogoKind;
   logo?: string;
-  InlineLogo?: () => JSX.Element;
+  InlineLogo?: () => React.JSX.Element;
 }
 
 const INTL_PLATFORMS: Platform[] = [
-  { id: "netflix",   name: "Netflix",      sub: "Filme & Serien",   bg: "#E50914", logoKind: "svg-file", logo: "/logos/netflix.svg"   },
+  { id: "netflix",   name: "Netflix",      sub: "Elokuvat & Sarjat", bg: "#E50914", logoKind: "svg-file", logo: "/logos/netflix.svg"   },
   { id: "prime",     name: "Prime Video",  sub: "Amazon Original",  bg: "#00A8E0", logoKind: "svg-file", logo: "/logos/prime.svg"     },
   { id: "disneyp",   name: "Disney+",      sub: "Disney Originals", bg: "#113CCF", logoKind: "img",      logo: "/logos/disneyplus.png"},
   { id: "max",       name: "HBO / Max",    sub: "HBO Originals",    bg: "#002BE7", logoKind: "svg-file", logo: "/logos/hbomax.svg"    },
@@ -98,22 +78,22 @@ const INTL_PLATFORMS: Platform[] = [
   { id: "viaplay",   name: "Viaplay",      sub: "Nordic Streaming", bg: "#3700B3", logoKind: "svg-file", logo: "/logos/viaplay.svg"   },
 ];
 
-const DE_PLATFORMS: Platform[] = [
-  { id: "rtlplus",   name: "RTL+",         sub: "RTL Deutschland",  bg: "#FF0050", logoKind: "img",      logo: "/logos/rtlplus.png"   },
-  { id: "skyde",     name: "Sky",          sub: "Sky Deutschland",  bg: "#101010", logoKind: "svg-file", logo: "/logos/skyde.svg"     },
-  { id: "daznde",    name: "DAZN",         sub: "Sport Streaming",  bg: "#141414", logoKind: "img",      logo: "/logos/daznde.png"    },
-  { id: "wow",       name: "WOW",          sub: "Sky Streaming",    bg: "#DA1E4B", logoKind: "inline",   InlineLogo: WOWLogo          },
-  { id: "joyn",      name: "Joyn",         sub: "Gratis Streaming", bg: "#00DCA5", logoKind: "inline",   InlineLogo: JoynLogo         },
-  { id: "magentatv", name: "MagentaTV",    sub: "Telekom",          bg: "#E20074", logoKind: "inline",   InlineLogo: MagentaLogo      },
-  { id: "ardmed",    name: "ARD Mediathek",sub: "Öffentl.-rechtl.", bg: "#003CA6", logoKind: "img",      logo: "/logos/ard.png"       },
-  { id: "zdfmed",    name: "ZDF Mediathek",sub: "Öffentl.-rechtl.", bg: "#161616", logoKind: "img",      logo: "/logos/zdf.png"       },
-  { id: "disneyDE",  name: "Disney+",      sub: "Disney DE",        bg: "#113CCF", logoKind: "img",      logo: "/logos/disneyplus.png"},
-  { id: "videoland", name: "Videoland",    sub: "RTL Nederland",    bg: "#FF0066", logoKind: "img",      logo: "/logos/videoland.png" },
-  { id: "viaplayde", name: "Viaplay",      sub: "Nordic Streaming", bg: "#3700B3", logoKind: "svg-file", logo: "/logos/viaplay.svg"   },
+const FI_PLATFORMS: Platform[] = [
+  { id: "areena",  name: "Yle Areena",   sub: "Ilmainen suoratoisto", bg: "#003580", logoKind: "svg-file", logo: "/logos/areena.svg"      },
+  { id: "ruutufi", name: "Ruutu+",       sub: "Elokuvat & Sarjat",    bg: "#E4001B", logoKind: "svg-file", logo: "/logos/ruutu.svg"       },
+  { id: "cmorefi", name: "C More",       sub: "Urheilu & Viihde",     bg: "#001A50", logoKind: "svg-file", logo: "/logos/cmore.svg"       },
+  { id: "elisafi", name: "Elisa Viihde", sub: "Suoratoisto",          bg: "#0070C0", logoKind: "svg-file", logo: "/logos/elisa.svg"       },
+  { id: "viaplayfi",name: "Viaplay",     sub: "Pohjoismaat",          bg: "#3700B3", logoKind: "svg-file", logo: "/logos/viaplay.svg"     },
+  { id: "daznfi",  name: "DAZN",         sub: "Urheilu",              bg: "#111111", logoKind: "svg-file", logo: "/logos/dazn.svg"        },
+  { id: "eurofi",  name: "Eurosport",    sub: "Urheilu",              bg: "#FF6600", logoKind: "svg-file", logo: "/logos/eurosport.svg"   },
+  { id: "discofi", name: "Discovery+",   sub: "Dokumentit",           bg: "#0070C0", logoKind: "svg-file", logo: "/logos/disco.svg"       },
+  { id: "disneyfi",name: "Disney+",      sub: "Disney & Marvel",      bg: "#113CCF", logoKind: "img",      logo: "/logos/disneyplus.png"  },
+  { id: "hbofi",   name: "HBO Max",      sub: "HBO Originaalit",      bg: "#002BE7", logoKind: "svg-file", logo: "/logos/hbomax.svg"      },
+  { id: "paramfi", name: "Paramount+",   sub: "Paramount & CBS",      bg: "#0064FF", logoKind: "img",      logo: "/logos/paramount.png"   },
 ];
 
 // ── League Card ───────────────────────────────────────────────────────────────
-function LeagueCard({ l }: { l: League }) {
+const LeagueCard: React.FC<{ l: League }> = ({ l }) => {
   return (
     <div className="shrink-0 flex items-center justify-center w-20 h-20 bg-white hover:bg-neutral-50 border border-black/8 rounded-2xl p-3 transition-colors shadow-sm" title={l.name}>
       <img
@@ -127,7 +107,7 @@ function LeagueCard({ l }: { l: League }) {
 }
 
 // ── Platform Card ─────────────────────────────────────────────────────────────
-function PlatformCard({ p }: { p: Platform }) {
+const PlatformCard: React.FC<{ p: Platform }> = ({ p }) => {
   return (
     <div
       className="shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden p-2.5 shadow-sm"
@@ -157,9 +137,10 @@ function PlatformCard({ p }: { p: Platform }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function LiveSports({ onPricingClick }: LiveSportsProps) {
+  const { t } = useLanguage();
   const leaguesTripled = [...LEAGUES, ...LEAGUES, ...LEAGUES];
   const tripled1       = [...INTL_PLATFORMS, ...INTL_PLATFORMS, ...INTL_PLATFORMS];
-  const tripled2       = [...DE_PLATFORMS,   ...DE_PLATFORMS,   ...DE_PLATFORMS];
+  const tripled2       = [...FI_PLATFORMS,   ...FI_PLATFORMS,   ...FI_PLATFORMS];
 
   return (
     <>
@@ -184,19 +165,19 @@ export default function LiveSports({ onPricingClick }: LiveSportsProps) {
 
       {/* ── SECTION 2 — Streaming Platforms ─────────────────────────────────── */}
       <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-4">
-        <div className="bg-[#080908] text-white rounded-2xl py-8 px-4 md:px-6 relative overflow-hidden ring-1 ring-white/[8]">
+        <div className="bg-[#080c14] text-white rounded-2xl py-8 px-4 md:px-6 relative overflow-hidden ring-1 ring-white/[8]">
 
-          <div className="absolute top-0 right-0 w-72 h-72 bg-[#014E45]/[0.06] rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-10 left-0 w-56 h-56 bg-[#014E45]/[0.04] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-72 h-72 bg-[#003580]/[0.06] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-10 left-0 w-56 h-56 bg-[#003580]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
           {/* Header */}
           <div className="relative z-10 mb-5 px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
-              Alle Plattformen.{" "}
-              <span className="serif-display italic font-light text-white/85">Ein Abo.</span>
+              {t.platforms.heading}{" "}
+              <span className="serif-display italic font-light text-white/85">{t.platforms.headingItalic}</span>
             </h2>
             <p className="serif-display italic font-light text-xl text-white/75 mt-1">
-              Netflix · Prime · Disney+ · HBO · Sky · RTL+ · Viaplay · Videoland — alles über uns.
+              {t.platforms.subheading}
             </p>
           </div>
 
@@ -218,10 +199,10 @@ export default function LiveSports({ onPricingClick }: LiveSportsProps) {
           <div className="relative z-10 flex justify-end pt-6 border-t border-white/[8]">
             <button
               onClick={onPricingClick}
-              className="flex items-center gap-2 bg-white text-[#014E45] font-extrabold text-sm px-6 py-2.5 rounded-full
+              className="flex items-center gap-2 bg-white text-[#003580] font-extrabold text-sm px-6 py-2.5 rounded-full
                          shadow-[0_4px_0_rgba(0,0,0,0.25)] active:translate-y-0.5 active:shadow-none hover:bg-white/90 transition-all shrink-0"
             >
-              <span>Jetzt Tarif wählen</span>
+              <span>{t.platforms.cta}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

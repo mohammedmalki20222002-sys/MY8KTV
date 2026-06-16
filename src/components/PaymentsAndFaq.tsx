@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FAQS } from "../types";
 import { Plus, Minus, Lock } from "lucide-react";
+import { useLanguage } from "../LanguageContext";
 
 const PaypalLogo = () => (
   <svg viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg" width="64" height="20">
@@ -63,19 +63,20 @@ const KlarnaLogo = () => (
 );
 
 export default function PaymentsAndFaq() {
-  const [activeFaqId, setActiveFaqId] = useState<string | null>("f1");
+  const { t } = useLanguage();
+  const [activeFaqId, setActiveFaqId] = useState<number | null>(0);
 
-  const toggleFaq = (id: string) => {
-    setActiveFaqId(activeFaqId === id ? null : id);
+  const toggleFaq = (i: number) => {
+    setActiveFaqId(activeFaqId === i ? null : i);
   };
 
   const paymentMethods = [
-    { name: "PayPal",          logo: <PaypalLogo />,     desc: "Autorisierter Käuferschutz",        delay: "Direkt"   },
-    { name: "Visa",            logo: <VisaLogo />,       desc: "SSL & 3D-Secure gesichert",          delay: "Direkt"   },
-    { name: "Mastercard",      logo: <MastercardLogo />, desc: "SSL & 3D-Secure gesichert",          delay: "Direkt"   },
-    { name: "SEPA-Lastschrift",logo: <SepaLogo />,       desc: "Lastschrifteinzug mit IBAN",         delay: "1-2 Tage" },
-    { name: "Sofort",          logo: <SofortLogo />,     desc: "Zahlung direkt über deine Hausbank", delay: "Direkt"   },
-    { name: "Klarna",          logo: <KlarnaLogo />,     desc: "Kauf auf Rechnung & Ratenzahlung",   delay: "Direkt"   },
+    { name: "PayPal",     logo: <PaypalLogo />,     desc: t.payments.methodDescs[0], delay: t.payments.direct },
+    { name: "Visa",       logo: <VisaLogo />,       desc: t.payments.methodDescs[1], delay: t.payments.direct },
+    { name: "Mastercard", logo: <MastercardLogo />, desc: t.payments.methodDescs[2], delay: t.payments.direct },
+    { name: "SEPA",       logo: <SepaLogo />,       desc: t.payments.methodDescs[3], delay: t.payments.days12 },
+    { name: "Sofort",     logo: <SofortLogo />,     desc: t.payments.methodDescs[4], delay: t.payments.direct },
+    { name: "Klarna",     logo: <KlarnaLogo />,     desc: t.payments.methodDescs[5], delay: t.payments.direct },
   ];
 
   return (
@@ -83,16 +84,16 @@ export default function PaymentsAndFaq() {
 
       {/* Payments */}
       <div className="lg:col-span-5 bg-[#FDFDF7] rounded-[2rem] p-5 sm:p-8 border border-neutral-900/10 text-left">
-        <span className="serif-display italic font-light text-2xl text-[#014E45]/70 mb-3 block">
-          Verifizierte Zahlungsmethoden
+        <span className="serif-display italic font-light text-2xl text-[#003580]/70 mb-3 block">
+          {t.payments.subtitle}
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 leading-snug">
-          Sichere verfügbare
+          {t.payments.heading}
           <br />
-          <span className="serif-display italic font-light text-[#014E45] pr-1.5">Zahlungsverfahren.</span>
+          <span className="serif-display italic font-light text-[#003580] pr-1.5">{t.payments.italic}</span>
         </h2>
         <p className="serif-display italic font-light text-base md:text-lg text-neutral-500 mt-3 leading-relaxed">
-          Wir verwenden modernste Verschlüsselungsverfahren auf Bankenniveau (SSL & AES-256), um alle Zahlungen abzuwickeln. Deine Bankdaten sind zu jeder Zeit optimal geschützt.
+          {t.payments.desc}
         </p>
 
         <div className="grid grid-cols-1 gap-3 mt-8">
@@ -107,7 +108,7 @@ export default function PaymentsAndFaq() {
                   <p className="serif-display italic font-light text-sm text-neutral-500">{method.desc}</p>
                 </div>
               </div>
-              <span className="serif-display italic font-light text-sm text-[#014E45] bg-[#014E45]/10 px-2.5 py-1 rounded-full shrink-0">
+              <span className="serif-display italic font-light text-sm text-[#003580] bg-[#003580]/10 px-2.5 py-1 rounded-full shrink-0">
                 {method.delay}
               </span>
             </div>
@@ -116,29 +117,29 @@ export default function PaymentsAndFaq() {
 
         <div className="mt-8 pt-6 border-t border-neutral-900/5 flex items-center gap-3 text-neutral-500">
           <Lock className="w-4 h-4 text-neutral-400 shrink-0" />
-          <span className="serif-display italic font-light text-base">Jeder Bezahlvorgang ist durch PCI-DSS-Sicherheitszertifikate geschützt.</span>
+          <span className="serif-display italic font-light text-base">{t.payments.pci}</span>
         </div>
       </div>
 
       {/* FAQ */}
       <div className="lg:col-span-7 text-left">
         <div className="mb-8">
-          <span className="serif-display italic font-light text-2xl text-[#014E45]/70 mb-3 block">
-            Häufige Fragen
+          <span className="serif-display italic font-light text-2xl text-[#003580]/70 mb-3 block">
+            {t.faq.subtitle}
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 leading-snug">
-            Fragen & Antworten
+            {t.faq.heading}
             <br />
-            <span className="serif-display italic font-light text-[#014E45] pr-1.5">sofort gelöst.</span>
+            <span className="serif-display italic font-light text-[#003580] pr-1.5">{t.faq.italic}</span>
           </h2>
         </div>
 
         <div className="space-y-3.5">
-          {FAQS.map((faq) => {
-            const isOpen = activeFaqId === faq.id;
+          {t.faq.items.map((faq, i) => {
+            const isOpen = activeFaqId === i;
             return (
               <div
-                key={faq.id}
+                key={i}
                 className={`rounded-[1.2rem] border transition-all duration-300 ${
                   isOpen
                     ? "bg-[#FCFBF4] border-neutral-900/40 shadow-sm"
@@ -146,18 +147,18 @@ export default function PaymentsAndFaq() {
                 }`}
               >
                 <button
-                  onClick={() => toggleFaq(faq.id)}
+                  onClick={() => toggleFaq(i)}
                   className="w-full flex items-center justify-between p-5 md:p-6 text-left font-bold text-base md:text-xl text-neutral-800 transition-colors"
                 >
-                  <span className="pr-4">{faq.question}</span>
-                  <span className={`p-1.5 rounded-full ${isOpen ? "bg-[#014E45]/10" : "bg-neutral-900/5"} transition-colors shrink-0`}>
-                    {isOpen ? <Minus className="w-3.5 h-3.5 text-[#014E45]" /> : <Plus className="w-3.5 h-3.5 text-neutral-600" />}
+                  <span className="pr-4">{faq.q}</span>
+                  <span className={`p-1.5 rounded-full ${isOpen ? "bg-[#003580]/10" : "bg-neutral-900/5"} transition-colors shrink-0`}>
+                    {isOpen ? <Minus className="w-3.5 h-3.5 text-[#003580]" /> : <Plus className="w-3.5 h-3.5 text-neutral-600" />}
                   </span>
                 </button>
 
                 {isOpen && (
                   <div className="serif-display italic font-light px-5 md:px-6 pb-6 text-base md:text-lg text-neutral-600/90 leading-relaxed border-t border-neutral-900/5 pt-4 animate-in fade-in slide-in-from-top-1 duration-200">
-                    {faq.answer}
+                    {faq.a}
                   </div>
                 )}
               </div>
@@ -165,18 +166,19 @@ export default function PaymentsAndFaq() {
           })}
         </div>
 
-        <div className="mt-8 p-6 bg-[#014E45]/5 rounded-2xl border border-neutral-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 p-6 bg-[#003580]/5 rounded-2xl border border-neutral-900/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
-            <p className="text-base md:text-lg font-bold text-neutral-900">Sie nutzen eine spezielle Hardware-Einrichtung?</p>
-            <p className="serif-display italic font-light text-base text-neutral-500 mt-1">Unsere Support-Techniker helfen Ihnen gerne bei der Konfiguration Ihrer MAG-Box, Ihres Smart-TVs oder Ihrer Playlist.</p>
+            <p className="text-base md:text-lg font-bold text-neutral-900">{t.faq.supportNote}</p>
+            <p className="serif-display italic font-light text-base text-neutral-500 mt-1">{t.faq.supportDesc}</p>
           </div>
           <a
-            href="https://wa.me/447449708976?text=Hallo%2C%20ich%20brauche%20Hilfe%20bei%20der%20Einrichtung%20meines%20IPTV%20Professional%20Abonnements."
+            href="https://wa.me/447449708976?text=Hei%2C%20tarvitsen%20apua%20IPTV%20Professional%20-tilauksen%20asennuksessa."
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => (window as any).gtag?.('event', 'conversion', { send_to: 'AW-18235035269/rSDACJDGwb4cEIWdkvdD' })}
             className="whitespace-nowrap px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-[#FCFBF4] hover:text-white rounded-full text-sm font-bold transition-colors no-underline"
           >
-            Support kontaktieren
+            {t.faq.supportCta}
           </a>
         </div>
       </div>

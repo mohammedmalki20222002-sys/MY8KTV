@@ -1,1 +1,4 @@
-Couldn't find the requested file /icons/paramount.svg in simple-icons.
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <text x="100" y="35" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="22" fill="white" text-anchor="middle">PARAMOUNT</text>
+  <text x="100" y="62" font-family="Arial,sans-serif" font-weight="700" font-size="22" fill="#5bc4f0" text-anchor="middle" letter-spacing="5">+</text>
+</svg>
