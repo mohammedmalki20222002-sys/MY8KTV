@@ -1,120 +1,120 @@
 import { Star, ShieldCheck, BadgeCheck } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 
-const FI_REVIEWS = [
+const EU_REVIEWS = [
   {
     id: "r1",
-    name: "Pekka Hämäläinen",
-    role: "Jääkiekkofani",
-    location: "Helsinki",
+    name: "Thomas M.",
+    role: "Football Fan",
+    location: "Madrid, Spain",
     avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80",
-    highlight: "SM-liiga ja NHL kristallinkirkkaana — ei yhtään puskuria!",
-    text: "Katsoin koko SM-liigan finaalisarjan sekä NHL:n playoff-ottelut ilman ainoatakaan puskuria. 4K-kuvanlaatu on aivan huippuluokkaa. En koskaan palaa vanhaan kaapelioperaattoriin.",
+    highlight: "La Liga, Champions League, F1 — all crystal clear, zero buffering!",
+    text: "I watch every La Liga match and Champions League game in flawless 8K. No buffering, no freezing. MY 8KTV delivers every stream in top quality without any geo-restrictions or VPN. I'll never go back to cable.",
     ratingValue: 5,
-    date: "Toukokuu 2025",
+    date: "May 2025",
     verified: true,
   },
   {
     id: "r2",
-    name: "Tuulikki Mäkinen",
-    role: "Elokuvaharrastaja",
-    location: "Tampere",
+    name: "Sophie L.",
+    role: "Series Enthusiast",
+    location: "Lyon, France",
     avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80",
-    highlight: "Valtava elokuvakirjasto — löydän aina jotain uutta!",
-    text: "Elokuvavalikoima on käsittämätön. Löysin tuoreimmat ensi-illat, eurooppalaisia indie-elokuvia ja klassikkoja aidossa 4K UHD -laadussa. Suomenkieliset tekstitykset toimivat täydellisesti.",
+    highlight: "Massive VOD library — I always find something new to watch!",
+    text: "The movie and series catalogue is incredible. I found the latest releases, European indie films and classic cinema all in genuine 8K UHD. Netflix, HBO, Canal+ — everything is included in one subscription.",
     ratingValue: 5,
-    date: "Huhtikuu 2025",
+    date: "April 2025",
     verified: true,
   },
   {
     id: "r3",
-    name: "Sari Korhonen",
-    role: "Perheenäiti",
-    location: "Turku",
+    name: "Marco B.",
+    role: "Family User",
+    location: "Milan, Italy",
     avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=120&q=80",
-    highlight: "Koko perhe tyytyväinen — aktivointi kesti 2 minuuttia!",
-    text: "Lapset katsovat lastenohjelmia suomeksi ja minä rakastan englantilaisia sarjoja. Käytämme kahta laitetta samanaikaisesti ilman ongelmia. Asiakastuki vastasi WhatsAppissa alle 5 minuutissa.",
+    highlight: "The whole family is happy — setup took only 2 minutes!",
+    text: "My kids watch cartoons in Italian and I love the English series. We run two devices simultaneously without any issues. Support answered on WhatsApp in under 5 minutes. Absolutely excellent service.",
     ratingValue: 5,
-    date: "Maaliskuu 2025",
+    date: "March 2025",
     verified: true,
   },
   {
     id: "r4",
-    name: "Juhani Virtanen",
-    role: "IT-asiantuntija",
-    location: "Espoo",
+    name: "James W.",
+    role: "IT Engineer",
+    location: "London, UK",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=120&q=80",
-    highlight: "Teknisesti ylivoimainen — testasin itse bitraten ja viiveen",
-    text: "Ohjelmistokehittäjänä mittasin bitraten ja palvelinviiveen. Erittäin alhainen ping, erinomaiset pakkausasteet ja lähes häviötön kuva. Toimii saumattomasti Fire TV:llä, Smart TV:llä ja tabletilla.",
+    highlight: "Technically superior — I tested the bitrate and latency myself",
+    text: "As a software developer I measured the bitrate and server latency. Extremely low ping, excellent compression rates and near-lossless picture. Works seamlessly on Fire TV, Smart TV and tablet simultaneously.",
     ratingValue: 5,
-    date: "Helmikuu 2025",
+    date: "February 2025",
     verified: true,
   },
   {
     id: "r5",
-    name: "Matti Peltonen",
-    role: "Urheilufani",
-    location: "Oulu",
+    name: "Ana G.",
+    role: "Sports Fan",
+    location: "Porto, Portugal",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80",
-    highlight: "MM-jääkiekko, F1 ja jalkapallo — kaikki yhdestä paikasta!",
-    text: "Suomalaisena urheilufanina haluan katsoa kaiken: MM-jääkiekon, Formula 1:n ja Mestarien liigan. IPTV Suomi toimittaa kaikki streamit ensiluokkaisessa laadussa ilman aluerajoituksia tai VPN:ää.",
+    highlight: "UEFA, Premier League, F1 and MMA — all from one place!",
+    text: "As a European sports fan I want to watch everything: Champions League, Premier League, Formula 1 and UFC. MY 8KTV delivers all streams in first-class quality without geo-restrictions or VPN. Unbeatable.",
     ratingValue: 5,
-    date: "Tammikuu 2025",
+    date: "January 2025",
     verified: true,
   },
   {
     id: "r6",
-    name: "Antti Leinonen",
-    role: "Opiskelija",
-    location: "Jyväskylä",
+    name: "Kevin D.",
+    role: "Student",
+    location: "Brussels, Belgium",
     avatar: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=120&q=80",
-    highlight: "Paras hinta-laatu-suhde — säästän joka kuukausi satoja euroja",
-    text: "Aiemmin maksoin useista suoratoistopalveluista yhteensä yli 60 € kuussa. Nyt saan kaiken yhdellä tilauksella murto-osalla hinnasta. Yle Areena, Netflix, HBO — kaikki toimii.",
+    highlight: "Best value for money — saving over €60 every month",
+    text: "I used to pay for Netflix, Disney+, Canal+ and beIN Sports separately — over €60 a month. Now I get everything with one MY 8KTV subscription at a fraction of the price. Best decision I've made.",
     ratingValue: 5,
-    date: "Joulukuu 2024",
+    date: "December 2024",
     verified: true,
   },
   {
     id: "r7",
-    name: "Tiina Räsänen",
-    role: "Sairaanhoitaja",
-    location: "Vantaa",
+    name: "Maria K.",
+    role: "Nurse",
+    location: "Berlin, Germany",
     avatar: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=120&q=80",
-    highlight: "Toimii myös ulkomailla — katsoin Yle TV1:tä Espanjasta!",
-    text: "Olin lomalla Espanjassa ja halusin katsoa suomalaisia uutisia. Avasin sovelluksen ja Yle TV1 toimi välittömästi — ei IP-rajoituksia, ei VPN:ää. Aivan loistava palvelu myös matkoilla.",
+    highlight: "Works abroad too — watched German channels from Greece!",
+    text: "I was on holiday in Greece and wanted to watch the German news. Opened the app and ARD streamed instantly — no IP restrictions, no VPN needed. A fantastic service that follows you across all of Europe.",
     ratingValue: 5,
-    date: "Marraskuu 2024",
+    date: "November 2024",
     verified: true,
   },
   {
     id: "r8",
-    name: "Mikko Salonen",
-    role: "Yrittäjä",
-    location: "Lahti",
+    name: "David P.",
+    role: "Entrepreneur",
+    location: "Amsterdam, Netherlands",
     avatar: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=120&q=80",
-    highlight: "12 kuukauden paketti oli selvästi paras valinta",
-    text: "Otin ensin 3 kuukauden testipaketin ja olin niin tyytyväinen, että tilasin heti 12 kuukauden paketin. Hinta on järkevä ja palvelu luotettava. Suosittelen kaikille tutulleni.",
+    highlight: "The 12-month plan was clearly the smartest choice",
+    text: "I started with the 3-month trial and was so impressed I immediately upgraded to the 12-month plan. The price is fair, the service is reliable and the 3 bonus months made it even better value. Highly recommended.",
     ratingValue: 5,
-    date: "Lokakuu 2024",
+    date: "October 2024",
     verified: true,
   },
   {
     id: "r9",
-    name: "Kaisa Nieminen",
-    role: "Opettaja",
-    location: "Rovaniemi",
+    name: "Isabelle R.",
+    role: "Teacher",
+    location: "Paris, France",
     avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&q=80",
-    highlight: "Lapsilukkotoiminto on juuri mitä tarvitsin!",
-    text: "Lapseni voivat katsoa turvallisesti omia ohjelmiaan ja minä tiedän ettei pääsy sopimattomaan sisältöön onnistu. Lastenohjelmavalikoima on valtava. Erittäin tyytyväinen asiakas.",
+    highlight: "The parental lock feature is exactly what I needed!",
+    text: "My children can safely watch their own programmes and I know they cannot access inappropriate content. The kids' channel selection is enormous. The activation was instant and support is always friendly. Very satisfied.",
     ratingValue: 4,
-    date: "Syyskuu 2024",
+    date: "September 2024",
     verified: false,
   },
 ];
 
 export default function Testimonials() {
   const { t } = useLanguage();
-  const avgRating = (FI_REVIEWS.reduce((s, r) => s + r.ratingValue, 0) / FI_REVIEWS.length).toFixed(1);
+  const avgRating = (EU_REVIEWS.reduce((s, r) => s + r.ratingValue, 0) / EU_REVIEWS.length).toFixed(1);
 
   return (
     <section id="reviews-section" className="px-4 md:px-8 max-w-7xl mx-auto w-full py-10">
@@ -156,13 +156,13 @@ export default function Testimonials() {
                 <Star key={i} className="w-4 h-4 fill-[#003580] text-[#003580]" />
               ))}
             </div>
-            <span className="text-xs text-white/40 mt-1 font-mono">{FI_REVIEWS.length} arvostelua</span>
+            <span className="text-xs text-white/40 mt-1 font-mono">{EU_REVIEWS.length} reviews</span>
           </div>
           <div className="h-14 w-px bg-white/10" />
           <div className="flex flex-col gap-1.5">
             {[5, 4, 3].map(star => {
-              const count = FI_REVIEWS.filter(r => r.ratingValue === star).length;
-              const pct = Math.round((count / FI_REVIEWS.length) * 100);
+              const count = EU_REVIEWS.filter(r => r.ratingValue === star).length;
+              const pct = Math.round((count / EU_REVIEWS.length) * 100);
               return (
                 <div key={star} className="flex items-center gap-2">
                   <span className="text-[11px] font-mono text-white/40 w-4">{star}</span>
@@ -179,7 +179,7 @@ export default function Testimonials() {
 
         {/* Review cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
-          {FI_REVIEWS.map((review) => (
+          {EU_REVIEWS.map((review) => (
             <div
               key={review.id}
               className="bg-[#FCFBF4] text-neutral-900 rounded-2xl p-5 flex flex-col justify-between border border-neutral-900/10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
@@ -222,7 +222,7 @@ export default function Testimonials() {
                 {review.verified && (
                   <div className="flex items-center gap-1 bg-[#003580]/8 px-2 py-1 rounded-full shrink-0">
                     <BadgeCheck className="w-3.5 h-3.5 text-[#003580]" />
-                    <span className="text-[10px] font-black text-[#003580] uppercase tracking-wide">Vahvistettu</span>
+                    <span className="text-[10px] font-black text-[#003580] uppercase tracking-wide">Verified</span>
                   </div>
                 )}
               </div>

@@ -8,7 +8,7 @@ export interface MovieItem {
   duration: string;
   image: string;
   badge?: string;
-  quality: "4K UHD" | "1080p Full HD";
+  quality: "8K UHD" | "1080p Full HD";
 }
 
 export interface ChannelItem {
@@ -60,7 +60,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Sci-Fi / Abenteuer",
     duration: "2 Std. 46 Min.",
     image: "/movies/dune_part_two_ver2_xxlg.jpg",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m9",
@@ -72,7 +72,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "3 Std.",
     image: "/movies/oppenheimer_xlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m17",
@@ -83,8 +83,8 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Action / Thriller",
     duration: "2 Std. 49 Min.",
     image: "/movies/john_wick_chapter_four_xxlg.jpg",
-    badge: "4K",
-    quality: "4K UHD",
+    badge: "8K",
+    quality: "8K UHD",
   },
   {
     id: "m18",
@@ -95,7 +95,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Krimi / Drama / Geschichte",
     duration: "3 Std. 26 Min.",
     image: "/movies/killers_of_the_flower_moon_xxlg.jpg",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m19",
@@ -106,7 +106,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Historisches Epos / Drama",
     duration: "2 Std. 38 Min.",
     image: "/movies/napoleon.jpg",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m20",
@@ -117,7 +117,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Action / Spionage",
     duration: "2 Std. 43 Min.",
     image: "/movies/mission_impossible__dead_reckoning_part_one_ver5_xxlg.jpg",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m21",
@@ -129,7 +129,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 49 Min.",
     image: "/movies/mission_impossible__the_final_reckoning_xlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m22",
@@ -140,7 +140,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Action / DC / Superheld",
     duration: "2 Std. 4 Min.",
     image: "/movies/aquaman_and_the_lost_kingdom.jpg",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m23",
@@ -151,7 +151,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     genre: "Action / Marvel / Superheld",
     duration: "1 Std. 45 Min.",
     image: "/movies/marvels_xxlg.jpg",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m24",
@@ -163,7 +163,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "1 Std. 58 Min.",
     image: "/movies/captain_america_brave_new_world_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m25",
@@ -175,7 +175,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 7 Min.",
     image: "/movies/thunderbolts_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m26",
@@ -187,7 +187,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 9 Min.",
     image: "/movies/superman_ver27_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m27",
@@ -199,7 +199,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "Demnächst",
     image: "/movies/supergirl_xxlg.jpg",
     badge: "Bald",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m28",
@@ -211,7 +211,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 5 Min.",
     image: "/movies/fantastic_four_ver4.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m29",
@@ -223,7 +223,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 18 Min.",
     image: "/movies/sinners_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m30",
@@ -235,7 +235,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "1 Std. 55 Min.",
     image: "/movies/how_to_train_your_dragon_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m31",
@@ -259,7 +259,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 9 Min.",
     image: "/movies/jurassic_world_rebirth_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m33",
@@ -282,7 +282,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 40 Min.",
     image: "/movies/hunger_games_sunrise_on_the_reaping_xxlg.jpg",
     badge: "2026",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m35",
@@ -294,7 +294,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 30 Min.",
     image: "/movies/project_hail_mary_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m36",
@@ -306,7 +306,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "Demnächst",
     image: "/movies/masters_of_the_universe_xxlg.jpg",
     badge: "Bald",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m37",
@@ -318,7 +318,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "2 Std. 20 Min.",
     image: "/movies/running_man_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m38",
@@ -330,7 +330,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "1 Std. 55 Min.",
     image: "/movies/twenty_eight_years_later_ver6_xxlg.jpg",
     badge: "NEU",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
   {
     id: "m39",
@@ -342,7 +342,7 @@ export const INITIAL_MOVIES: MovieItem[] = [
     duration: "Demnächst",
     image: "/movies/odyssey_xxlg.jpg",
     badge: "Bald",
-    quality: "4K UHD",
+    quality: "8K UHD",
   },
 ];
 
@@ -456,124 +456,142 @@ export const ALL_CHANNELS: ChannelItem[] = [
 ];
 
 const COMMON_FEATURES = [
-  "59 000+ live-kanavaa",
-  "200 000+ elokuvaa & sarjaa",
-  "Netflix · HBO · Disney+ & lisää",
-  "HD | FHD | 4K laatu",
-  "Ei jäätymistä -teknologia",
-  "Nopeat ja vakaat palvelimet",
-  "Premium-elokuvat, sarjat & live-TV",
-  "PPV / EPG saatavilla",
-  "Edistynyt lapsilukko",
-  "Etusijalle asetettu asiakastuki",
-  "Maailmanlaajuinen pääsy (ei IP-lukitusta)",
-  "Säännölliset päivitykset",
-  "Catchup TV — katso ohjelmat jälkikäteen",
-  "99,9 % palvelimen käyttöaika",
-  "VPN sisältyy — ei aluerajoituksia",
-  "30 päivän rahat takaisin -takuu",
-  "Adaptiivinen 4K-valmis toisto kaikilla laitteilla",
-  "Time-Shift — kelaa lähetyksiä taaksepäin"
+  "89,000+ live channels",
+  "200,000+ movies & series",
+  "Netflix · HBO · Disney+ & more",
+  "8K | 4K | UHD quality",
+  "Anti-freeze technology",
+  "Fast & stable servers",
+  "Premium movies, series & live TV",
+  "PPV / EPG available",
+  "Advanced parental lock",
+  "Priority customer support",
+  "Global access (no IP lock)",
+  "Regular updates",
+  "Catch-up TV — watch missed programmes",
+  "99.9% server uptime",
+  "VPN included — no geo-restrictions",
+  "30-day money-back guarantee",
+  "Adaptive 8K-ready playback on all devices",
+  "Time-Shift — rewind live broadcasts"
 ];
 
 export const SUBSCRIPTION_PLANS: PricingPlan[] = [
   // ── 1 Device ──────────────────────────────────────────────────────────────
   {
-    id: "p1",
-    durationMonths: 3,
-    name: "Starter",
-    price: 49.99,
-    originalPrice: 69.99,
+    id: "p1a",
+    durationMonths: 1,
+    name: "Trial",
+    price: 19.99,
+    originalPrice: 29.99,
     popular: false,
-    savings: "Testipaketti",
+    savings: "Best to Test",
     devices: 1,
-    features: ["Paras paketti palvelun testaamiseen!", ...COMMON_FEATURES]
+    features: ["Best choice to test our service!", ...COMMON_FEATURES]
   },
   {
-    id: "p2",
-    durationMonths: 6,
-    name: "Standard",
-    price: 69.99,
-    originalPrice: 89.99,
+    id: "p1b",
+    durationMonths: 3,
+    name: "Starter",
+    price: 44.99,
+    originalPrice: 64.99,
     popular: false,
-    savings: "Hyvä arvo",
+    savings: "Trial Pack",
     devices: 1,
     features: COMMON_FEATURES
   },
   {
-    id: "p3",
+    id: "p1c",
+    durationMonths: 6,
+    name: "Standard",
+    price: 64.99,
+    originalPrice: 84.99,
+    popular: false,
+    savings: "Great Value",
+    devices: 1,
+    features: COMMON_FEATURES
+  },
+  {
+    id: "p1d",
     durationMonths: 12,
     freeMonths: 3,
     name: "Premium",
-    price: 119.99,
+    price: 99.99,
     originalPrice: 149.99,
-    discountPct: 54,
     popular: true,
-    savings: "VIIKON TARJOUS",
+    savings: "WEEK DEAL",
     devices: 1,
-    features: ["Myydyin paketti — suomalaisten suosikki!", "+ 3 KK ILMAINEN = 15 KK yhteensä — viikon rajoitettu tarjous!", ...COMMON_FEATURES]
+    features: ["Best Seller — Europe's favourite plan!", "+ 3 MONTHS FREE = 15 months total — limited weekly offer!", ...COMMON_FEATURES]
   },
   {
-    id: "p4",
+    id: "p1e",
     durationMonths: 24,
     freeMonths: 6,
     name: "Ultra",
-    price: 199.99,
-    originalPrice: 279.99,
-    discountPct: 54,
+    price: 189.99,
+    originalPrice: 269.99,
     popular: false,
-    savings: "VIIKON TARJOUS",
+    savings: "WEEK DEAL",
     devices: 1,
-    features: ["+ 6 KK ILMAINEN = 30 KK yhteensä — viikon rajoitettu tarjous!", ...COMMON_FEATURES]
+    features: ["+ 6 MONTHS FREE = 30 months total — limited weekly offer!", ...COMMON_FEATURES]
   },
   // ── 2 Devices ─────────────────────────────────────────────────────────────
   {
-    id: "p5",
+    id: "p2a",
+    durationMonths: 1,
+    name: "Duo Trial",
+    price: 35.99,
+    originalPrice: 49.99,
+    popular: false,
+    savings: "Best to Test",
+    devices: 2,
+    features: ["Best choice to test our service!", "2 Simultaneous connections", ...COMMON_FEATURES]
+  },
+  {
+    id: "p2b",
     durationMonths: 3,
     name: "Duo Starter",
-    price: 89.99,
-    originalPrice: 129.99,
+    price: 44.99,
+    originalPrice: 84.99,
     popular: false,
-    savings: "Testipaketti",
+    savings: "Trial Pack",
     devices: 2,
-    features: ["Paras paketti palvelun testaamiseen!", "2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
+    features: ["2 Simultaneous connections", ...COMMON_FEATURES]
   },
   {
-    id: "p6",
+    id: "p2c",
     durationMonths: 6,
     name: "Duo Standard",
-    price: 119.99,
-    originalPrice: 169.99,
+    price: 65.99,
+    originalPrice: 109.99,
     popular: false,
-    savings: "Hyvä arvo",
+    savings: "Great Value",
     devices: 2,
-    features: ["2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
+    features: ["2 Simultaneous connections", ...COMMON_FEATURES]
   },
   {
-    id: "p7",
+    id: "p2d",
     durationMonths: 12,
     freeMonths: 3,
     name: "Duo Premium",
-    price: 199.99,
-    originalPrice: 279.99,
-    discountPct: 54,
+    price: 189.99,
+    originalPrice: 249.99,
     popular: true,
-    savings: "VIIKON TARJOUS",
+    savings: "WEEK DEAL",
     devices: 2,
-    features: ["Myydyin paketti — suomalaisten suosikki!", "+ 3 KK ILMAINEN = 15 KK yhteensä — viikon rajoitettu tarjous!", "2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
+    features: ["Best Seller — Europe's favourite plan!", "+ 3 MONTHS FREE = 15 months total — limited weekly offer!", "2 Simultaneous connections", ...COMMON_FEATURES]
   },
   {
-    id: "p8",
+    id: "p2e",
     durationMonths: 24,
     freeMonths: 6,
     name: "Duo Ultra",
     price: 349.99,
     originalPrice: 499.99,
-    discountPct: 54,
     popular: false,
-    savings: "VIIKON TARJOUS",
+    savings: "WEEK DEAL",
     devices: 2,
-    features: ["+ 6 KK ILMAINEN = 30 KK yhteensä — viikon rajoitettu tarjous!", "2 Samanaikaista yhteyttä", ...COMMON_FEATURES]
+    features: ["+ 6 MONTHS FREE = 30 months total — limited weekly offer!", "2 Simultaneous connections", ...COMMON_FEATURES]
   }
 ];
 

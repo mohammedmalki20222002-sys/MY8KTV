@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PricingPlan, SUBSCRIPTION_PLANS } from "../types";
-import { Check, ShieldCheck, Zap, Tv2, Users, Crown, MessageCircle, Monitor } from "lucide-react";
+import { Check, ShieldCheck, Zap, Crown, MessageCircle, Monitor } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 
 interface PricingProps {
@@ -31,7 +31,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
   const { t } = useLanguage();
   const [activeDevices, setActiveDevices] = useState<1 | 2>(1);
 
-  const MONTH_ORDER = [12, 24, 6, 3];
+  const MONTH_ORDER = [12, 1, 3, 6, 24];
   const plans = SUBSCRIPTION_PLANS
     .filter(p => p.devices === activeDevices)
     .sort((a, b) => {
@@ -54,18 +54,19 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
           style={{ background: `linear-gradient(to right, transparent, ${GREEN}, transparent)` }} />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* ── Stats bar ─────────────────────────────────────────────────── */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-24 mb-10 md:mb-16">
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-10 md:mb-16">
           {[
-            { value: "59K",  label: t.pricing.statChannels  },
+            { value: "89K",  label: t.pricing.statChannels  },
             { value: "200K", label: t.pricing.statVod        },
+            { value: "8K",   label: "Max Quality"            },
             { value: "∞",    label: t.pricing.statUpdate     },
           ].map(({ value, label }, i) => (
             <div key={label} className="flex flex-col items-center relative">
-              {i < 2 && (
-                <span className="hidden md:block absolute -right-12 top-1/2 -translate-y-1/2 text-white/10 text-4xl font-thin">|</span>
+              {i < 3 && (
+                <span className="hidden md:block absolute -right-8 top-1/2 -translate-y-1/2 text-white/10 text-4xl font-thin">|</span>
               )}
               <span className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white">{value}</span>
               <span className="serif-display italic font-light text-xl text-white/75 mt-1.5">{label}</span>
@@ -103,19 +104,18 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
           style={{ background: "rgba(255,255,255,0.06)" }}>
           {([1, 2] as const).map(n => (
             <button key={n} onClick={() => setActiveDevices(n)}
-              className={`flex items-center gap-2 px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 ${
+              className={`px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 ${
                 activeDevices === n
                   ? "bg-white text-[#003580] shadow-md"
                   : "text-white/40 hover:text-white/70"
               }`}>
-              {n === 1 ? <Tv2 className="w-3.5 h-3.5" /> : <Users className="w-3.5 h-3.5" />}
               {n} {n === 1 ? t.pricing.device1 : t.pricing.device2}
             </button>
           ))}
         </div>
 
         {/* ── Plan grid ─────────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 max-w-6xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-7xl mx-auto items-stretch">
           {plans.map(plan => (
             <div key={plan.id} className="relative flex flex-col">
 
@@ -144,8 +144,8 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                   </div>
                 )}
 
-                {/* TEST PACK ribbon — 3-month card */}
-                {plan.durationMonths === 3 && (
+                {/* TEST PACK ribbon — 1-month card */}
+                {plan.durationMonths === 1 && (
                   <div className="absolute z-10 pointer-events-none"
                     style={{ top: "16px", right: "-34px", width: "130px", textAlign: "center", transform: "rotate(45deg)",
                       background: `linear-gradient(90deg, ${GREEN_D}, ${GREEN})`,
@@ -204,11 +204,11 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                           }}>
                           <span className="text-[13px] font-black tracking-tight"
                             style={{ color: plan.popular ? "#1a1200" : "white" }}>
-                            +{plan.freeMonths} KK
+                            +{plan.freeMonths} MO
                           </span>
                           <span className="text-[10px] font-black uppercase tracking-widest"
                             style={{ color: plan.popular ? "#1a1200" : "rgba(255,255,255,0.85)" }}>
-                            ILMAINEN
+                            FREE
                           </span>
                         </div>
                       </div>
@@ -309,7 +309,7 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                     rel="noopener noreferrer"
                     onClick={trackWaConversion}
                     className="w-full py-3.5 px-4 rounded-xl text-xs font-black uppercase tracking-wider
-                               flex items-center justify-center gap-2 transition-all duration-200 no-underline
+                               flex items-center justify-center transition-all duration-200 no-underline
                                hover:opacity-90 hover:scale-[1.02] active:scale-100"
                     style={plan.popular ? {
                       background: `linear-gradient(135deg, ${GOLD_D} 0%, ${GOLD} 45%, ${GOLD_L} 100%)`,
@@ -321,7 +321,6 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
                       boxShadow: `0 4px 20px rgba(0,53,128,0.35)`,
                     }}
                   >
-                    <MessageCircle className="w-3.5 h-3.5 shrink-0" />
                     <span>{t.pricing.cta}</span>
                   </a>
 
@@ -332,15 +331,15 @@ export default function Pricing({ onSelectPlan: _unused }: PricingProps) {
         </div>
 
         {/* ── Separator ─────────────────────────────────────────────────── */}
-        <div className="max-w-6xl mx-auto mt-14 mb-10 h-px"
+        <div className="max-w-7xl mx-auto mt-14 mb-10 h-px"
           style={{ background: `linear-gradient(to right, transparent, ${GREEN}88, transparent)` }} />
 
         {/* ── Trust bar ─────────────────────────────────────────────────── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { icon: <ShieldCheck className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[0], desc: t.pricing.trust[1], href: null },
             { icon: <Zap         className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[2], desc: t.pricing.trust[3], href: null },
-            { icon: <MessageCircle className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[4], desc: t.pricing.trust[5], href: `https://wa.me/${WA_NUMBER}?text=Hei%2C%20tarvitsen%20tukea%20IPTV%20Suomi%20-palvelun%20kanssa.` },
+            { icon: <MessageCircle className="w-5 h-5 shrink-0 text-white" />, title: t.pricing.trust[4], desc: t.pricing.trust[5], href: `https://wa.me/${WA_NUMBER}?text=Hello%2C%20I%20need%20support%20with%20my%20MY%208KTV%20subscription.` },
           ].map(({ icon, title, desc, href }) => {
             const inner = (
               <>

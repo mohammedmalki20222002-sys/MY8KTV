@@ -26,7 +26,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
   const handleCheckoutSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!email || !name) {
-      alert("Täytä kaikki pakolliset kentät yhteyden muodostamiseksi.");
+      alert("Please fill in all required fields to continue.");
       return;
     }
 
@@ -55,7 +55,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-2 rounded-full hover:bg-neutral-900/5 transition-colors border border-neutral-900/10"
-          aria-label="Sulje"
+          aria-label="Close"
         >
           <X className="w-4 h-4 text-neutral-800" />
         </button>
@@ -64,22 +64,22 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
         {step === "fill" && (
           <form onSubmit={handleCheckoutSubmit} className="p-6 md:p-8">
             <span className="text-[#003580] text-[10px] font-bold font-mono uppercase tracking-widest bg-[#003580]/5 px-3 py-1 rounded-full">
-              Suojattu maksuportaali v3.1
+              Secure Checkout v3.1
             </span>
             <h3 className="text-2xl font-black text-neutral-900 mt-4">
-              Viimeistele tilauksesi
+              Complete your order
             </h3>
             <p className="text-xs text-neutral-500 mt-1">
-              Valitse vastaanottimesi ja aloita automaattinen IPTV-linjamääritys.
+              Select your device and start your IPTV Premium subscription instantly.
             </p>
 
             <div className="mt-5 bg-neutral-900/5 p-4 rounded-2xl border border-neutral-900/5 flex justify-between items-center">
               <div>
-                <span className="text-[10px] uppercase font-mono font-bold text-neutral-400">Valittu paketti</span>
-                <p className="text-sm font-extrabold text-neutral-900">{plan.name} • {plan.durationMonths} kk</p>
+                <span className="text-[10px] uppercase font-mono font-bold text-neutral-400">Selected Plan</span>
+                <p className="text-sm font-extrabold text-neutral-900">{plan.name} • {plan.durationMonths} mo</p>
               </div>
               <div className="text-right">
-                <span className="text-[10px] uppercase font-mono font-bold text-neutral-400">Kokonaishinta</span>
+                <span className="text-[10px] uppercase font-mono font-bold text-neutral-400">Total Price</span>
                 <p className="text-lg font-black text-[#003580]">{plan.price} €</p>
               </div>
             </div>
@@ -89,12 +89,12 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
               <div>
                 <label className="block text-xs font-bold text-neutral-700 mb-1.5 flex items-center gap-1">
                   <User className="w-3.5 h-3.5 text-[#003580]" />
-                  <span>Koko nimesi</span>
+                  <span>Full name</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="esim. Pekka Mäkinen"
+                  placeholder="e.g. John Smith"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full bg-white border border-neutral-300 rounded-xl py-2.5 px-3.5 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-900"
@@ -104,12 +104,12 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
               <div>
                 <label className="block text-xs font-bold text-neutral-700 mb-1.5 flex items-center gap-1">
                   <Mail className="w-3.5 h-3.5 text-[#003580]" />
-                  <span>Sähköpostiosoite (välitöntä toimitusta varten)</span>
+                  <span>Email address (for instant delivery)</span>
                 </label>
                 <input
                   type="email"
                   required
-                  placeholder="esim. pekka@suomi.fi"
+                  placeholder="e.g. john@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-white border border-neutral-300 rounded-xl py-2.5 px-3.5 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-900"
@@ -118,10 +118,10 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
 
               <div>
                 <label className="block text-xs font-bold text-neutral-700 mb-1.5">
-                  Vastaanotin (laite)
+                  Device / Receiver
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {["Firestick", "Smart TV", "Apple TV", "Android Box", "M3U / Soittolista"].map((dev) => (
+                  {["Firestick", "Smart TV", "Apple TV", "Android Box", "M3U / Playlist"].map((dev) => (
                     <button
                       key={dev}
                       type="button"
@@ -140,12 +140,12 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
 
               <div>
                 <label className="block text-xs font-bold text-neutral-700 mb-1.5 flex items-center justify-between">
-                  <span>Maksutapa</span>
-                  <span className="text-[10px] text-[#003580] font-mono font-bold tracking-tight">🪙 Krypto säästää 5 %</span>
+                  <span>Payment method</span>
+                  <span className="text-[10px] text-[#003580] font-mono font-bold tracking-tight">🪙 Crypto saves 5%</span>
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {["Pankki- / Luottokortti", "PayPal Express", "Kryptovaluutta", "Apple/Google Pay"].map((pm) => {
-                    const mappedMethod = pm === "Kryptovaluutta" ? "Crypto" : pm;
+                  {["Credit / Debit Card", "PayPal Express", "Cryptocurrency", "Apple/Google Pay"].map((pm) => {
+                    const mappedMethod = pm === "Cryptocurrency" ? "Crypto" : pm;
                     return (
                       <button
                         key={pm}
@@ -174,13 +174,13 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
                 type="submit"
                 className="w-full bg-[#003580] border-[1.5px] border-[#003580] text-white py-3.5 rounded-xl text-xs font-black uppercase tracking-wider hover:bg-[#002468] transition-all shadow-[0_3px_0_#001040] active:translate-y-0.5 active:shadow-none flex items-center justify-center gap-2"
               >
-                <span>Valtuuta suojattu maksu {finalPrice} €</span>
+                <span>Authorise secure payment {finalPrice} €</span>
                 <Rocket className="w-3.5 h-3.5" />
               </button>
 
               <p className="text-[10px] text-neutral-400 text-center mt-3 flex items-center justify-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#003580]" />
-                <span>SSL-salattu maksuprosessi. 24 tunnin tyytyväisyystakuu.</span>
+                <span>SSL-encrypted checkout. 24-hour satisfaction guarantee.</span>
               </p>
             </div>
 
@@ -196,10 +196,10 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
             </div>
 
             <h4 className="text-lg font-black text-neutral-900">
-              Suojatut yhteysavaimet luodaan...
+              Generating your secure credentials...
             </h4>
             <p className="text-xs text-neutral-500 mt-2 max-w-sm">
-              Vahvistamme maksusi 3D-Securen avulla ja rekisteröimme laitteesi „{device}" uuden IPTV Premium -suoratoistosi käyttöön.
+              We are verifying your payment via 3D-Secure and activating your "{device}" device for your new IPTV Premium stream.
             </p>
 
             <div className="mt-6 text-[10px] font-mono text-neutral-400 bg-neutral-900/5 px-4 py-2 rounded-lg">
@@ -216,38 +216,38 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
                 <CheckCircle2 className="w-6 h-6 stroke-[2.5]" />
               </div>
               <h4 className="text-xl font-extrabold text-neutral-900">
-                Asennus valmis!
+                Setup complete!
               </h4>
               <p className="text-xs text-neutral-500 mt-1">
-                Yksityiskohtainen asennusopas on lähetetty osoitteeseen <span className="font-semibold text-neutral-900">{email}</span>.
+                A detailed setup guide has been sent to <span className="font-semibold text-neutral-900">{email}</span>.
               </p>
             </div>
 
             <div className="bg-[#111211] text-white p-5 rounded-2xl border border-neutral-800 space-y-3 font-mono text-2s">
               <div className="border-b border-neutral-800 pb-2 flex justify-between items-center">
-                <span className="text-neutral-400 uppercase tracking-widest text-[9px] font-bold">Kirjautumistiedot</span>
-                <span className="text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#003580]/40 border border-[#003580]/30">🟢 Aktiivinen yhteys</span>
+                <span className="text-neutral-400 uppercase tracking-widest text-[9px] font-bold">Login Credentials</span>
+                <span className="text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#003580]/40 border border-[#003580]/30">🟢 Active Connection</span>
               </div>
 
               <div className="flex items-center justify-between text-xs">
-                <span className="text-neutral-400">Käyttäjänimi:</span>
+                <span className="text-neutral-400">Username:</span>
                 <span className="text-white font-bold">{credentials.username}</span>
               </div>
 
               <div className="flex items-center justify-between text-xs">
-                <span className="text-neutral-400">Salasana:</span>
+                <span className="text-neutral-400">Password:</span>
                 <span className="text-white font-bold">{credentials.password}</span>
               </div>
 
               <div className="pt-2 border-t border-neutral-800 space-y-1">
-                <span className="text-neutral-400 block text-[10px]">M3U Live Soittolista-URL:</span>
+                <span className="text-neutral-400 block text-[10px]">M3U Live Playlist URL:</span>
                 <div className="bg-black p-2 rounded text-[10px] text-neutral-300 break-all leading-tight select-all cursor-pointer hover:bg-neutral-950 transition-colors">
                   {credentials.m3uUrl}
                 </div>
               </div>
 
               <div className="pt-1.5 space-y-1">
-                <span className="text-neutral-400 block text-[10px]">Xtream Codes -portaaliosoite:</span>
+                <span className="text-neutral-400 block text-[10px]">Xtream Codes Portal URL:</span>
                 <div className="bg-black p-2 rounded text-[10px] text-neutral-300 break-all select-all cursor-pointer">
                   {credentials.portalUrl}
                 </div>
@@ -255,11 +255,11 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
             </div>
 
             <div className="mt-5 p-4 rounded-xl bg-[#003580]/5 border border-[#003580]/10 text-xs">
-              <p className="font-bold text-[#003580]">Näin katsot kanavia laitteellasi ({device}):</p>
+              <p className="font-bold text-[#003580]">How to watch on your {device}:</p>
               <ol className="list-decimal pl-4.5 mt-1 text-neutral-600 space-y-1">
-                <li>Lataa <span className="font-bold">IPTV Smarters Pro</span> tai <span className="font-bold">Tivimate</span> laitteesi sovelluskaupasta.</li>
-                <li>Syötä yllä luodut kirjautumistietosi.</li>
-                <li>Paina Yhdistä ja nauti täysin katkeamattomasta TV-katselusta!</li>
+                <li>Download <span className="font-bold">IPTV Smarters Pro</span> or <span className="font-bold">Tivimate</span> from your app store.</li>
+                <li>Enter the login credentials shown above.</li>
+                <li>Press Connect and enjoy uninterrupted premium TV!</li>
               </ol>
             </div>
 
@@ -267,7 +267,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
               onClick={onClose}
               className="mt-6 w-full py-3 bg-neutral-900 hover:bg-neutral-800 text-[#FCFBF4] rounded-xl text-xs font-bold transition-all uppercase tracking-wider text-center"
             >
-              Sulje ikkuna & aloita suoratoisto
+              Close & Start Streaming
             </button>
           </div>
         )}

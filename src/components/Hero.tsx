@@ -1,27 +1,27 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 
-const FI_CHANNELS = [
-  { id: "yle1",     name: "Yle TV1",    sub: "Yle TV1 HD",      logo: "/logos/yle1.svg",      bg: "#003580" },
-  { id: "yle2",     name: "Yle TV2",    sub: "Yle TV2 HD",      logo: "/logos/yle2.svg",      bg: "#005B9C" },
-  { id: "mtv3",     name: "MTV3",       sub: "MTV3 HD",         logo: "/logos/mtv3.svg",      bg: "#E4001B" },
-  { id: "nelonen",  name: "Nelonen",    sub: "Nelonen HD",      logo: "/logos/nelonen.svg",   bg: "#FF6600" },
-  { id: "tv5",      name: "TV5",        sub: "TV5 HD",          logo: "/logos/tv5.svg",       bg: "#005B96" },
-  { id: "sub",      name: "Sub",        sub: "Sub HD",          logo: "/logos/sub.svg",       bg: "#CC0000" },
-  { id: "cmore",    name: "C More",     sub: "C More Sport",    logo: "/logos/cmore.svg",     bg: "#001A50" },
-  { id: "viaplay",  name: "Viaplay",    sub: "Viaplay FI",      logo: "/logos/viaplay.svg",   bg: "#3700B3" },
-  { id: "elisa",    name: "Elisa",      sub: "Elisa Viihde",    logo: "/logos/elisa.svg",     bg: "#0070C0" },
-  { id: "ruutu",    name: "Ruutu+",     sub: "Ruutu Plus",      logo: "/logos/ruutu.svg",     bg: "#E4001B" },
-  { id: "disco",    name: "Discovery+", sub: "Discovery+",      logo: "/logos/disco.svg",     bg: "#0070C0" },
-  { id: "mtvsport", name: "MTV Sport",  sub: "SM-liiga Live",   logo: "/logos/mtvsport.svg",  bg: "#E4001B" },
-  { id: "euro1",    name: "Eurosport",  sub: "Eurosport 1",     logo: "/logos/eurosport.svg", bg: "#FF6600" },
-  { id: "dazn",     name: "DAZN",       sub: "DAZN FI",         logo: "/logos/dazn.svg",      bg: "#111111" },
-  { id: "ylefen",   name: "Yle Fem",    sub: "Yle Fem HD",      logo: "/logos/ylefen.svg",    bg: "#003580" },
-  { id: "jim",      name: "Jim",        sub: "Jim HD",          logo: "/logos/jim.svg",       bg: "#1A3A8F" },
-  { id: "nhl",      name: "NHL",        sub: "NHL Live",        logo: "/logos/nhl.svg",       bg: "#000000" },
-  { id: "ava",      name: "AVA",        sub: "AVA HD",          logo: "/logos/ava.svg",       bg: "#CC0000" },
-  { id: "kutv",     name: "Kutonen",    sub: "Kutonen HD",      logo: "/logos/kutv.svg",      bg: "#E4001B" },
-  { id: "areena",   name: "Yle Areena", sub: "Yle Areena",      logo: "/logos/areena.svg",    bg: "#003580" },
+const EU_CHANNELS = [
+  { id: "bbc1",     name: "BBC One",       sub: "BBC One HD",        logo: "/logos/bbc.svg",       bg: "#BB1919" },
+  { id: "itv",      name: "ITV",           sub: "ITV HD",            logo: "/logos/itv.svg",       bg: "#006540" },
+  { id: "tf1",      name: "TF1",           sub: "TF1 HD",            logo: "/logos/tf1.svg",       bg: "#003F87" },
+  { id: "skynews",  name: "Sky News",      sub: "Sky News HD",       logo: "/logos/skynews.svg",   bg: "#DA0000" },
+  { id: "skysport", name: "Sky Sports",    sub: "Sky Sports HD",     logo: "/logos/sky.svg",       bg: "#0072C6" },
+  { id: "dazn",     name: "DAZN",          sub: "DAZN EU",           logo: "/logos/dazn-real.svg", bg: "#111111" },
+  { id: "beIN",     name: "beIN Sports",   sub: "beIN Sports 1",     logo: "/logos/bein.svg",      bg: "#8B0000" },
+  { id: "viaplay",  name: "Viaplay",       sub: "Viaplay EU",        logo: "/logos/viaplay-real.svg", bg: "#111111" },
+  { id: "canalp",   name: "Canal+",        sub: "Canal+ HD",         logo: "/logos/canal.svg",     bg: "#001A50" },
+  { id: "euro1",    name: "Eurosport 1",   sub: "Eurosport 1 HD",    logo: "/logos/eurosport.svg", bg: "#FF6600" },
+  { id: "espn",     name: "ESPN",          sub: "ESPN HD",           logo: "/logos/espn.svg",      bg: "#CC0000" },
+  { id: "disco",    name: "Discovery+",    sub: "Discovery+ EU",     logo: "/logos/discovery.svg", bg: "#0070C0" },
+  { id: "hbo",      name: "HBO Max",       sub: "HBO Max EU",        logo: "/logos/hbomax-real.svg",    bg: "#ffffff" },
+  { id: "disney",   name: "Disney+",       sub: "Disney+ EU",        logo: "/logos/disneyplus.png",    bg: "#000B8C" },
+  { id: "prime",    name: "Prime Video",   sub: "Amazon Prime",      logo: "/logos/primevideo.svg", bg: "#ffffff" },
+  { id: "netflix",  name: "Netflix",       sub: "Netflix EU",        logo: "/logos/netflix.svg",   bg: "#141414" },
+  { id: "natgeo",   name: "Nat Geo",       sub: "Nat Geo HD",        logo: "/logos/natgeo.svg",    bg: "#000000" },
+  { id: "cnn",      name: "CNN Int'l",     sub: "CNN HD",            logo: "/logos/cnn-real.svg",  bg: "#ffffff" },
+  { id: "paramount",name: "Paramount+",    sub: "Paramount+ EU",     logo: "/logos/paramount.svg", bg: "#0064FF" },
+  { id: "france24", name: "France 24",     sub: "France 24 HD",      logo: "/logos/france24.png",  bg: "#F50000" },
 ];
 
 interface HeroProps {
@@ -30,7 +30,7 @@ interface HeroProps {
 
 export default function Hero({ onPricingClick }: HeroProps) {
   const { t } = useLanguage();
-  const doubled = [...FI_CHANNELS, ...FI_CHANNELS, ...FI_CHANNELS];
+  const doubled = [...EU_CHANNELS, ...EU_CHANNELS, ...EU_CHANNELS];
 
   return (
     <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-4">
@@ -39,20 +39,20 @@ export default function Hero({ onPricingClick }: HeroProps) {
         {/* Background: suo.jpg */}
         <div className="absolute inset-0">
           <img
-            src="/suo.jpg"
-            alt="Finland"
+            src="/hero-bg.jpg"
+            alt="MY 8KTV Premium"
             className="absolute right-0 top-0 h-full w-full sm:w-[62%] md:w-[58%] lg:w-[55%] object-cover object-center"
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(0,26,80,0.97) 0%, rgba(0,26,80,0.92) 30%, rgba(0,26,80,0.72) 44%, rgba(0,26,80,0.32) 60%, rgba(0,26,80,0.08) 74%, transparent 100%)",
+                "linear-gradient(to right, rgba(8,12,20,0.98) 0%, rgba(8,12,20,0.94) 28%, rgba(8,12,20,0.70) 44%, rgba(8,12,20,0.25) 62%, rgba(8,12,20,0.05) 78%, transparent 100%)",
             }}
           />
           <div
             className="absolute inset-0 sm:hidden"
-            style={{ background: "linear-gradient(to top, rgba(0,26,80,0.94) 35%, rgba(0,26,80,0.30) 65%, transparent 100%)" }}
+            style={{ background: "linear-gradient(to top, rgba(8,12,20,0.96) 35%, rgba(8,12,20,0.30) 65%, transparent 100%)" }}
           />
         </div>
 
@@ -129,6 +129,34 @@ export default function Hero({ onPricingClick }: HeroProps) {
               </button>
             </div>
 
+            {/* Limited offer scroll */}
+            {(() => {
+              const OFFERS = [
+                { label: "12 MONTHS", bonus: "+ 3 MONTHS FREE", price: "99,99 €" },
+                { label: "24 MONTHS", bonus: "+ 6 MONTHS FREE", price: "189,99 €" },
+              ];
+              const offersFilled = [...OFFERS, ...OFFERS, ...OFFERS, ...OFFERS, ...OFFERS, ...OFFERS];
+              return (
+                <div className="overflow-hidden -mx-6 sm:-mx-8 md:-mx-10 lg:-mx-12">
+                  <div className="animate-scroll-reverse flex gap-2 px-2 py-0.5">
+                    {offersFilled.map((o, i) => (
+                      <div
+                        key={i}
+                        className="shrink-0 flex items-center gap-2 px-3.5 py-1 rounded-full"
+                        style={{ background: "linear-gradient(135deg, #C8970A 0%, #F5C842 45%, #FFE370 100%)", boxShadow: "0 1px 6px rgba(200,151,10,0.4)" }}
+                      >
+                        <span className="text-[10px] font-black text-black/80 uppercase tracking-wider whitespace-nowrap">★ {o.label}</span>
+                        <span className="w-px h-3 bg-black/20 shrink-0" />
+                        <span className="text-[10px] font-black text-black whitespace-nowrap">{o.bonus}</span>
+                        <span className="w-px h-3 bg-black/20 shrink-0" />
+                        <span className="text-[10px] font-black text-black/70 whitespace-nowrap">{o.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Finnish channel auto-scroll strip */}
             <div className="overflow-hidden -mx-6 sm:-mx-8 md:-mx-10 lg:-mx-12">
               <div className="animate-scroll flex gap-2.5 px-2">
@@ -145,12 +173,12 @@ export default function Hero({ onPricingClick }: HeroProps) {
                         src={ch.logo}
                         alt={ch.name}
                         className="w-full h-full object-contain"
-                        style={{ filter: "brightness(0) invert(1)" }}
                         onError={e => {
                           const el = e.currentTarget;
                           el.style.display = "none";
                           const parent = el.parentElement;
                           if (parent) {
+                            parent.style.backgroundColor = ch.bg;
                             parent.innerHTML = `<span style="color:white;font-size:8px;font-weight:900;text-align:center;line-height:1.1;word-break:break-all">${ch.name}</span>`;
                           }
                         }}

@@ -9,14 +9,14 @@ interface LanguageContextValue {
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
-  lang: 'fi',
+  lang: 'en',
   setLang: () => {},
-  t: translations.fi,
+  t: translations.en,
   dir: 'ltr',
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<LangCode>('fi');
+  const [lang, setLang] = useState<LangCode>('en');
   const dir = LANGUAGES.find(l => l.code === lang)?.dir ?? 'ltr';
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: translations[lang], dir }}>

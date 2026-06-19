@@ -123,7 +123,7 @@ export default function DeviceCompatibility({ onPricingClick }: DeviceCompatibil
         <div className="relative z-10 mt-10 mx-6 md:mx-10 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-10 md:gap-16 text-center">
           {[
             { v: "20+", l: t.devices.heading },
-            { v: "4K", l: "Ultra HD" },
+            { v: "8K", l: "Ultra HD" },
             { v: "24/7", l: t.devices.cta },
           ].map(({ v, l }) => (
             <div key={v}>

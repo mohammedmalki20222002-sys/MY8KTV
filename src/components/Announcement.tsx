@@ -11,7 +11,7 @@ export default function Announcement({ onPricingClick }: AnnouncementProps) {
       {/* ── Title ───────────────────────────────────────────────── */}
       <div className="flex items-center gap-3">
         <div className="h-px flex-1 bg-neutral-200" />
-        <span className="serif-display italic font-light text-xl text-neutral-400 whitespace-nowrap">Liity nyt</span>
+        <span className="serif-display italic font-light text-xl text-neutral-400 whitespace-nowrap">Join Now</span>
       </div>
 
       {/* ── Card ────────────────────────────────────────────────── */}
@@ -54,15 +54,15 @@ export default function Announcement({ onPricingClick }: AnnouncementProps) {
           <div className="flex flex-col gap-3">
             <div>
               <h3 className="text-white font-black leading-[1.06] tracking-[-0.02em] text-[1.15rem] sm:text-xl md:text-2xl drop-shadow-sm">
-                Seuraa{" "}
+                Watch the{" "}
                 <span className="serif-display italic font-light text-white/90">
-                  MM-jalkapallon
+                  FIFA World Cup
                 </span>{" "}
-                livenä.
+                Live.
               </h3>
               <p className="text-white/60 text-[11px] sm:text-xs mt-1.5 leading-snug font-medium">
-                Koko Suomessa kanssamme —{" "}
-                <span className="serif-display italic text-white/80">ole mukana!</span>
+                All across Europe with us —{" "}
+                <span className="serif-display italic text-white/80">be there!</span>
               </p>
             </div>
 
@@ -72,7 +72,7 @@ export default function Announcement({ onPricingClick }: AnnouncementProps) {
                          shadow-[0_3px_0_rgba(0,0,0,0.18)] active:translate-y-0.5 active:shadow-none
                          hover:bg-white/90 transition-all"
             >
-              <span>Valitse paketti</span>
+              <span>Choose a plan</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

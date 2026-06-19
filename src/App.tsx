@@ -11,6 +11,7 @@ import ChannelStripe from "./components/ChannelStripe";
 import PaymentsAndFaq from "./components/PaymentsAndFaq";
 import Hero from "./components/Hero";
 import VideoShowcase from "./components/VideoShowcase";
+import EuropeCoverage from "./components/EuropeCoverage";
 import CheckoutModal from "./components/CheckoutModal";
 
 function AppInner() {
@@ -39,6 +40,7 @@ function AppInner() {
         <div className="pt-6 md:pt-10" />
         <Hero onPricingClick={() => scrollToSection("pricing-section")} />
         <VideoShowcase />
+        <EuropeCoverage onPricingClick={() => scrollToSection("pricing-section")} />
         <LiveSports onPricingClick={() => scrollToSection("pricing-section")} />
         <MovieGrid onPricingClick={() => scrollToSection("pricing-section")} />
         <Pricing onSelectPlan={setSelectedPlanForCheckout} />
@@ -58,20 +60,14 @@ function AppInner() {
         <PaymentsAndFaq />
       </main>
 
-      <footer className="mt-16 bg-[#111211] text-[#FDFDF7] py-16 px-6 md:px-12 border-t border-neutral-850">
+      <footer className="mt-16 text-[#FDFDF7] py-16 px-6 md:px-12 border-t border-white/5" style={{ background: "linear-gradient(160deg, #0a0f1c 0%, #0e1829 50%, #0a0f1c 100%)" }}>
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-10">
 
           {/* Logo & tagline */}
           <div className="md:col-span-4 space-y-4 text-left">
-            <div className="flex items-center gap-2.5">
-              <svg width="40" height="24" viewBox="0 0 18 11" xmlns="http://www.w3.org/2000/svg" className="rounded-[3px] shadow-sm ring-1 ring-white/15 shrink-0">
-                <rect width="18" height="11" fill="white"/>
-                <rect x="0" y="4" width="18" height="3" fill="#003580"/>
-                <rect x="5" y="0" width="3" height="11" fill="#003580"/>
-              </svg>
-              <span className="text-2xl font-bold tracking-tight text-white font-sans">
-                IPTV<span className="serif-display italic font-normal text-neutral-400 pl-0.5"> Suomi</span>
-              </span>
+            <div className="select-none flex items-baseline">
+              <span style={{ fontFamily: "'Arial Black', Arial, sans-serif", fontWeight: 900, fontSize: 26, color: "rgba(255,255,255,0.5)", letterSpacing: "-0.02em", lineHeight: 1 }}>MY.</span>
+              <span style={{ fontFamily: "'Arial Black', Arial, sans-serif", fontWeight: 900, fontSize: 26, color: "#ffffff", letterSpacing: "-0.04em", lineHeight: 1 }}>8KTV</span>
             </div>
             <p className="serif-display italic font-light text-lg text-neutral-200 leading-relaxed max-w-sm">
               {t.footer.tagline}
