@@ -1,22 +1,22 @@
 ﻿export type LangCode = 'fi' | 'en' | 'fr' | 'da' | 'ar' | 'de' | 'es' | 'it' | 'nl' | 'sv' | 'no' | 'pl' | 'pt' | 'ro' | 'cs' | 'tr';
 
 export const LANGUAGES: { code: LangCode; label: string; flag: string; dir: 'ltr' | 'rtl' }[] = [
-  { code: 'en', label: 'English',    flag: '🇬🇧', dir: 'ltr' },
-  { code: 'fi', label: 'Suomi',      flag: '🇫🇮', dir: 'ltr' },
-  { code: 'de', label: 'Deutsch',    flag: '🇩🇪', dir: 'ltr' },
-  { code: 'fr', label: 'Français',   flag: '🇫🇷', dir: 'ltr' },
-  { code: 'es', label: 'Español',    flag: '🇪🇸', dir: 'ltr' },
-  { code: 'it', label: 'Italiano',   flag: '🇮🇹', dir: 'ltr' },
-  { code: 'nl', label: 'Nederlands', flag: '🇳🇱', dir: 'ltr' },
-  { code: 'sv', label: 'Svenska',    flag: '🇸🇪', dir: 'ltr' },
-  { code: 'no', label: 'Norsk',      flag: '🇳🇴', dir: 'ltr' },
-  { code: 'da', label: 'Dansk',      flag: '🇩🇰', dir: 'ltr' },
-  { code: 'pl', label: 'Polski',     flag: '🇵🇱', dir: 'ltr' },
-  { code: 'pt', label: 'Português',  flag: '🇵🇹', dir: 'ltr' },
-  { code: 'ro', label: 'Română',     flag: '🇷🇴', dir: 'ltr' },
-  { code: 'cs', label: 'Čeština',    flag: '🇨🇿', dir: 'ltr' },
-  { code: 'tr', label: 'Türkçe',     flag: '🇹🇷', dir: 'ltr' },
-  { code: 'ar', label: 'عربي',       flag: '🇸🇦', dir: 'rtl' },
+  { code: 'en', label: 'English',    flag: 'gb', dir: 'ltr' },
+  { code: 'fi', label: 'Suomi',      flag: 'fi', dir: 'ltr' },
+  { code: 'de', label: 'Deutsch',    flag: 'de', dir: 'ltr' },
+  { code: 'fr', label: 'Français',   flag: 'fr', dir: 'ltr' },
+  { code: 'es', label: 'Español',    flag: 'es', dir: 'ltr' },
+  { code: 'it', label: 'Italiano',   flag: 'it', dir: 'ltr' },
+  { code: 'nl', label: 'Nederlands', flag: 'nl', dir: 'ltr' },
+  { code: 'sv', label: 'Svenska',    flag: 'se', dir: 'ltr' },
+  { code: 'no', label: 'Norsk',      flag: 'no', dir: 'ltr' },
+  { code: 'da', label: 'Dansk',      flag: 'dk', dir: 'ltr' },
+  { code: 'pl', label: 'Polski',     flag: 'pl', dir: 'ltr' },
+  { code: 'pt', label: 'Português',  flag: 'pt', dir: 'ltr' },
+  { code: 'ro', label: 'Română',     flag: 'ro', dir: 'ltr' },
+  { code: 'cs', label: 'Čeština',    flag: 'cz', dir: 'ltr' },
+  { code: 'tr', label: 'Türkçe',     flag: 'tr', dir: 'ltr' },
+  { code: 'ar', label: 'عربي',       flag: 'sa', dir: 'rtl' },
 ];
 
 export interface T {
