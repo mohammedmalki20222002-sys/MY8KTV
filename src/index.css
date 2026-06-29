@@ -71,15 +71,11 @@ body {
 .animate-scroll {
   display: flex;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll 80s linear infinite;
 }
 
 .animate-scroll-reverse {
   display: flex;
   width: max-content;
-  animation: scroll 40s linear infinite reverse;
-}
-
-.animate-scroll:hover, .animate-scroll-reverse:hover {
-  animation-play-state: paused;
+  animation: scroll 80s linear infinite reverse;
 }
