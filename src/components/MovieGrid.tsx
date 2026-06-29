@@ -129,6 +129,8 @@ const HIGHLIGHTS_2026: MovieItem[] = [
 function PosterCard({ m, onClick }: { m: MovieItem; onClick: () => void }) {
   const [imgFailed, setImgFailed] = useState(false);
 
+  if (imgFailed) return null;
+
   return (
     <button
       onClick={onClick}
@@ -139,21 +141,9 @@ function PosterCard({ m, onClick }: { m: MovieItem; onClick: () => void }) {
         <img
           src={m.image}
           alt={m.title}
-          referrerPolicy="no-referrer"
-          crossOrigin="anonymous"
-          className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${imgFailed ? "hidden" : ""}`}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           onError={() => setImgFailed(true)}
         />
-        {imgFailed && (
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-3"
-            style={{ background: "linear-gradient(145deg, #002468 0%, #003580 60%, #0048b0 100%)" }}
-          >
-            <span style={{ fontSize: "28px", opacity: 0.25 }}>🎬</span>
-            <span className="text-white text-[9px] font-bold text-center leading-tight line-clamp-3">{m.title}</span>
-            <span className="text-white/40 text-[7px] font-mono">{m.year}</span>
-          </div>
-        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
         {/* Hover play */}
