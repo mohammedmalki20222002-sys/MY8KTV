@@ -53,7 +53,7 @@ interface Platform {
 }
 
 const INTL_PLATFORMS: Platform[] = [
-  { id: "netflix",   name: "Netflix",      sub: "Movies & Series",   bg: "#E50914", logoKind: "img", logo: "/logos/netflix.svg"          },
+  { id: "netflix",   name: "Netflix",      sub: "Movies & Series",   bg: "#141414", logoKind: "img", logo: "/logos/netflix.svg"          },
   { id: "disneyp",   name: "Disney+",      sub: "Disney Originals",  bg: "#000B8C", logoKind: "img", logo: "/logos/disneyplus.png"        },
   { id: "hbo",       name: "HBO Max",       sub: "HBO Originals",     bg: "#ffffff", logoKind: "img", logo: "/logos/hbomax-real.svg"       },
   { id: "prime",     name: "Prime Video",   sub: "Amazon Originals",  bg: "#ffffff", logoKind: "img", logo: "/logos/primevideo.svg"        },

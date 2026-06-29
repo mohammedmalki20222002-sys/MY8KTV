@@ -31,7 +31,7 @@ const EU_BROADCAST: Ch[] = [
 ];
 
 const WORLDWIDE_STREAMING: Ch[] = [
-  { id: "netflix",   name: "Netflix",       logo: "/logos/netflix.svg",     bg: "#E50914" },
+  { id: "netflix",   name: "Netflix",       logo: "/logos/netflix.svg",     bg: "#141414" },
   { id: "disney",    name: "Disney+",       logo: "/logos/disney.svg",      bg: "#000B8C" },
   { id: "hbo",       name: "HBO Max",       logo: "/logos/hbomax.svg",      bg: "#000000" },
   { id: "prime",     name: "Prime Video",   logo: "/logos/primevideo.svg",  bg: "#00A8E1" },
