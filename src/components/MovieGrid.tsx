@@ -1,5 +1,15 @@
 import { useState } from "react";
 import { Play, Star, ArrowRight } from "lucide-react";
+import { useLanguage } from "../LanguageContext";
+
+const movieTexts: Record<string, { heading: string; headingItalic: string; exploreAll: string; films: string; series: string; footer: string; subscribeNow: string }> = {
+  nl: { heading: "Films & Series.", headingItalic: "8K Kwaliteit.", exploreAll: "Alles verkennen", films: "Films", series: "Series", footer: "Dagelijks bijgewerkt · 200.000+ titels beschikbaar", subscribeNow: "Nu abonneren" },
+  de: { heading: "Filme & Serien.", headingItalic: "8K Qualität.", exploreAll: "Alle ansehen", films: "Filme", series: "Serien", footer: "Täglich aktualisiert · 200.000+ Titel verfügbar", subscribeNow: "Jetzt abonnieren" },
+  fr: { heading: "Films & Séries.", headingItalic: "Qualité 8K.", exploreAll: "Tout explorer", films: "Films", series: "Séries", footer: "Mis à jour quotidiennement · 200 000+ titres disponibles", subscribeNow: "S'abonner" },
+  es: { heading: "Películas & Series.", headingItalic: "Calidad 8K.", exploreAll: "Ver todo", films: "Películas", series: "Series", footer: "Actualizado diariamente · 200.000+ títulos disponibles", subscribeNow: "Suscribirse" },
+  it: { heading: "Film & Serie.", headingItalic: "Qualità 8K.", exploreAll: "Esplora tutto", films: "Film", series: "Serie", footer: "Aggiornato ogni giorno · 200.000+ titoli disponibili", subscribeNow: "Abbonati ora" },
+};
+const defaultMovieText = { heading: "Movies & Series.", headingItalic: "8K Quality.", exploreAll: "Explore All", films: "Films", series: "Series", footer: "Updated daily · 200,000+ titles available", subscribeNow: "Subscribe Now" };
 
 interface MovieGridProps {
   onPricingClick: () => void;
@@ -204,6 +214,9 @@ function ScrollRow({ items, label, reverse, onClick }: {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 export default function MovieGrid({ onPricingClick }: MovieGridProps) {
+  const { lang } = useLanguage();
+  const mt = movieTexts[lang] ?? defaultMovieText;
+
   return (
     <section id="movies-section" className="px-4 md:px-8 max-w-7xl mx-auto w-full py-4">
       <div
@@ -220,28 +233,28 @@ export default function MovieGrid({ onPricingClick }: MovieGridProps) {
             <div>
               <span className="serif-display italic font-light text-2xl text-white/80 block mb-1">200K+ VOD</span>
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
-                Movies & Series.{" "}
-                <span className="serif-display italic font-light text-white/85">8K Quality.</span>
+                {mt.heading}{" "}
+                <span className="serif-display italic font-light text-white/85">{mt.headingItalic}</span>
               </h2>
             </div>
             <button onClick={onPricingClick}
               className="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 text-white text-[10px] font-bold px-4 py-2 rounded-full transition-all whitespace-nowrap">
-              Explore All <ArrowRight className="w-3 h-3" />
+              {mt.exploreAll} <ArrowRight className="w-3 h-3" />
             </button>
           </div>
 
           {/* Row 1 — Films */}
-          <ScrollRow items={[...HIGHLIGHTS_2026, ...BLOCKBUSTERS]} label="Films" onClick={onPricingClick} />
+          <ScrollRow items={[...HIGHLIGHTS_2026, ...BLOCKBUSTERS]} label={mt.films} onClick={onPricingClick} />
 
           {/* Row 2 — Series */}
-          <ScrollRow items={[...INTL_SERIES, ...EU_FAVOURITES]} label="Series" reverse onClick={onPricingClick} />
+          <ScrollRow items={[...INTL_SERIES, ...EU_FAVOURITES]} label={mt.series} reverse onClick={onPricingClick} />
 
           {/* Footer CTA */}
           <div className="mt-2 pt-4 border-t border-white/10 flex items-center justify-between px-4 md:px-6">
-            <p className="text-[9px] font-mono text-white/25">Updated daily · 200,000+ titles available</p>
+            <p className="text-[9px] font-mono text-white/25">{mt.footer}</p>
             <button onClick={onPricingClick}
               className="flex items-center gap-1.5 bg-white text-[#003580] text-[10px] font-black px-3.5 py-1.5 rounded-full hover:bg-white/90 transition-all shadow-sm">
-              <span>Subscribe Now</span>
+              <span>{mt.subscribeNow}</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           </div>

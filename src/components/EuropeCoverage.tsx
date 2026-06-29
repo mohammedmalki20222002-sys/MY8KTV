@@ -1,4 +1,52 @@
+import { useLanguage } from "../LanguageContext";
+
 const WA_URL = "https://wa.me/447449708976?text=Hello%2C%20I%27d%20like%20to%20know%20more%20about%20MY.8KTV.";
+
+const coverageTexts: Record<string, { badge: string; title: string; subtitle: string; contact: string; packages: string }> = {
+  nl: {
+    badge: "Pan-Europese dekking",
+    title: "De #1 IPTV-dienst in Europa",
+    subtitle: "Beschikbaar in alle grote Europese landen met heldere streams. Ons supportteam spreekt jouw taal — 24/7 bereikbaar.",
+    contact: "Contact opnemen",
+    packages: "Bekijk pakketten",
+  },
+  de: {
+    badge: "Europaweite Abdeckung",
+    title: "Der #1 IPTV-Dienst in Europa",
+    subtitle: "In allen großen europäischen Ländern mit kristallklaren Streams verfügbar. Unser Support spricht deine Sprache — 24/7 erreichbar.",
+    contact: "Support kontaktieren",
+    packages: "Pakete anzeigen",
+  },
+  fr: {
+    badge: "Couverture pan-européenne",
+    title: "Le service IPTV #1 en Europe",
+    subtitle: "Disponible dans tous les grands pays européens avec des flux ultra-clairs. Notre équipe parle votre langue — disponible 24/7.",
+    contact: "Contacter le support",
+    packages: "Voir les forfaits",
+  },
+  es: {
+    badge: "Cobertura paneuropea",
+    title: "El servicio IPTV #1 de Europa",
+    subtitle: "Disponible en todos los grandes países europeos con streams nítidos. Nuestro equipo habla tu idioma — disponible 24/7.",
+    contact: "Contactar soporte",
+    packages: "Ver paquetes",
+  },
+  it: {
+    badge: "Copertura pan-europea",
+    title: "Il servizio IPTV #1 in Europa",
+    subtitle: "Disponibile in tutti i principali paesi europei con stream cristallini. Il nostro team parla la tua lingua — disponibile 24/7.",
+    contact: "Contatta il supporto",
+    packages: "Vedi i pacchetti",
+  },
+};
+
+const defaultCoverageText = {
+  badge: "Pan-European Coverage",
+  title: "The #1 IPTV Service in Europe",
+  subtitle: "Serving every major European country with crystal-clear streams. Our support team speaks your language — available 24/7.",
+  contact: "Contact Support",
+  packages: "View Packages",
+};
 
 const COUNTRIES = [
   { code: "gb", name: "United Kingdom" },
@@ -30,6 +78,9 @@ interface EuropeCoverageProps {
 }
 
 export default function EuropeCoverage({ onPricingClick }: EuropeCoverageProps) {
+  const { lang } = useLanguage();
+  const ct = coverageTexts[lang] ?? defaultCoverageText;
+
   return (
     <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-3">
       <div
@@ -58,21 +109,13 @@ export default function EuropeCoverage({ onPricingClick }: EuropeCoverageProps) 
         {/* Text */}
         <div className="relative z-10 text-center mb-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400/60 mb-2">
-            Pan-European Coverage
+            {ct.badge}
           </p>
           <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
-            The{" "}
-            <span
-              className="text-transparent bg-clip-text"
-              style={{ backgroundImage: "linear-gradient(90deg, #93c5fd, #3b82f6)" }}
-            >
-              #1 IPTV Service
-            </span>{" "}
-            in Europe
+            {ct.title}
           </h2>
           <p className="text-white/40 text-[13px] mt-2 font-normal max-w-md mx-auto leading-relaxed">
-            Serving every major European country with crystal-clear streams.
-            Our support team speaks your language — available 24/7.
+            {ct.subtitle}
           </p>
         </div>
 
@@ -122,7 +165,7 @@ export default function EuropeCoverage({ onPricingClick }: EuropeCoverageProps) 
               boxShadow: "0 2px 12px rgba(37,211,102,0.35), inset 0 1px 0 rgba(255,255,255,0.15)",
             }}
           >
-            Contact Support
+            {ct.contact}
           </a>
           <button
             onClick={onPricingClick}
@@ -132,7 +175,7 @@ export default function EuropeCoverage({ onPricingClick }: EuropeCoverageProps) 
               boxShadow: "0 2px 12px rgba(30,79,216,0.35), inset 0 1px 0 rgba(255,255,255,0.12)",
             }}
           >
-            View Packages
+            {ct.packages}
           </button>
         </div>
       </div>

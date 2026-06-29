@@ -1,42 +1,82 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useLanguage } from "../LanguageContext";
 
 const videoSections: Record<string, { heading: string; headingItalic: string; subtitle: string }> = {
   fi: {
-    heading: "Kaikki mitÃ¤ tarvitset,",
-    headingItalic: "yhdessÃ¤ paikassa.",
-    subtitle: "Yli 89 000 live-kanavaa ja 200 000+ VOD â€” heti kaikilla laitteilla, ilman sopimusta.",
+    heading: "Kaikki mitä tarvitset,",
+    headingItalic: "yhdessä paikassa.",
+    subtitle: "Yli 89 000 live-kanavaa ja 200 000+ VOD — heti kaikilla laitteilla, ilman sopimusta.",
   },
   en: {
     heading: "Everything you need,",
     headingItalic: "in one place.",
-    subtitle: "Over 89,000 live channels and 200,000+ VOD â€” instantly on any device, no contract.",
+    subtitle: "Over 89,000 live channels and 200,000+ VOD — instantly on any device, no contract.",
   },
   fr: {
     heading: "Tout ce dont vous avez besoin,",
     headingItalic: "en un seul endroit.",
-    subtitle: "Plus de 89 000 chaÃ®nes en direct et 200 000+ VOD â€” instantanÃ©ment sur tous vos appareils, sans contrat.",
+    subtitle: "Plus de 89 000 chaînes en direct et 200 000+ VOD — instantanément sur tous vos appareils, sans contrat.",
   },
   da: {
     heading: "Alt hvad du har brug for,",
-    headingItalic: "pÃ¥ Ã©t sted.",
-    subtitle: "Over 89.000 live-kanaler og 200.000+ VOD â€” Ã¸jeblikkeligt pÃ¥ alle enheder, ingen kontrakt.",
+    headingItalic: "på ét sted.",
+    subtitle: "Over 89.000 live-kanaler og 200.000+ VOD — øjeblikkeligt på alle enheder, ingen kontrakt.",
   },
   ar: {
-    heading: "ÙƒÙ„ Ù…Ø§ ØªØ­ØªØ§Ø¬Ù‡ØŒ",
-    headingItalic: "ÙÙŠ Ù…ÙƒØ§Ù† ÙˆØ§Ø­Ø¯.",
-    subtitle: "Ø£ÙƒØ«Ø± Ù…Ù† 89,000 Ù‚Ù†Ø§Ø© Ù…Ø¨Ø§Ø´Ø±Ø© ÙˆØ£ÙƒØ«Ø± Ù…Ù† 200,000 VOD â€” ÙÙˆØ±Ø§Ù‹ Ø¹Ù„Ù‰ Ø£ÙŠ Ø¬Ù‡Ø§Ø²ØŒ Ø¨Ø¯ÙˆÙ† Ø¹Ù‚Ø¯.",
+    heading: "كل ما تحتاجه,",
+    headingItalic: "في مكان واحد.",
+    subtitle: "أكثر من 89,000 قناة مباشرة وأكثر من 200,000 VOD — فوراً على أي جهاز، بدون عقد.",
+  },
+  nl: {
+    heading: "Alles wat je nodig hebt,",
+    headingItalic: "op één plek.",
+    subtitle: "Meer dan 89.000 live-zenders en 200.000+ VOD — direct op elk apparaat, geen contract.",
+  },
+  de: {
+    heading: "Alles was du brauchst,",
+    headingItalic: "an einem Ort.",
+    subtitle: "Über 89.000 Live-Kanäle und 200.000+ VOD — sofort auf jedem Gerät, kein Vertrag.",
+  },
+  es: {
+    heading: "Todo lo que necesitas,",
+    headingItalic: "en un solo lugar.",
+    subtitle: "Más de 89.000 canales en directo y 200.000+ VOD — al instante en cualquier dispositivo, sin contrato.",
+  },
+  it: {
+    heading: "Tutto ciò che ti serve,",
+    headingItalic: "in un unico posto.",
+    subtitle: "Oltre 89.000 canali live e 200.000+ VOD — immediatamente su qualsiasi dispositivo, senza contratto.",
+  },
+  sv: {
+    heading: "Allt du behöver,",
+    headingItalic: "på ett ställe.",
+    subtitle: "Över 89 000 livekanaler och 200 000+ VOD — direkt på alla enheter, inget kontrakt.",
+  },
+  no: {
+    heading: "Alt du trenger,",
+    headingItalic: "på ett sted.",
+    subtitle: "Over 89 000 live-kanaler og 200 000+ VOD — umiddelbart på alle enheter, ingen kontrakt.",
+  },
+  pl: {
+    heading: "Wszystko czego potrzebujesz,",
+    headingItalic: "w jednym miejscu.",
+    subtitle: "Ponad 89 000 kanałów na żywo i 200 000+ VOD — natychmiast na każdym urządzeniu, bez umowy.",
+  },
+  pt: {
+    heading: "Tudo o que precisas,",
+    headingItalic: "num só lugar.",
+    subtitle: "Mais de 89 000 canais ao vivo e 200 000+ VOD — instantaneamente em qualquer dispositivo, sem contrato.",
   },
 };
 
 export default function VideoShowcase() {
   const { lang } = useLanguage();
   const [videoFailed, setVideoFailed] = useState(false);
-  const tx = videoSections[lang] ?? videoSections.fi;
+  const tx = videoSections[lang] ?? videoSections.en;
 
   return (
     <>
-      {/* Same container as Hero/other sections â€” constrained, padded, rounded */}
+      {/* Same container as Hero/other sections — constrained, padded, rounded */}
       <section className="px-4 md:px-8 max-w-7xl mx-auto w-full py-4">
         <div
           className="relative w-full rounded-2xl overflow-hidden"
@@ -65,7 +105,7 @@ export default function VideoShowcase() {
             }}
           />
 
-          {/* Text overlay â€” top-left */}
+          {/* Text overlay — top-left */}
           <div className="absolute top-0 left-0 px-5 pt-5 sm:px-8 sm:pt-7 md:px-10 md:pt-9">
             <h2 className="text-white font-extrabold tracking-tight leading-[1.05] text-lg sm:text-2xl md:text-4xl lg:text-5xl drop-shadow-lg">
               {tx.heading}

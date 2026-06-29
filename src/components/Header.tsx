@@ -9,9 +9,10 @@ interface HeaderProps {
   onFaqClick: () => void;
   onMoviesClick: () => void;
   onSportsClick: () => void;
+  hideLangSwitcher?: boolean;
 }
 
-export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onMoviesClick, onSportsClick }: HeaderProps) {
+export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onMoviesClick, onSportsClick, hideLangSwitcher }: HeaderProps) {
   const { t, lang, setLang } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropOpen, setLangDropOpen] = useState(false);
@@ -84,7 +85,7 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
           </button>
 
           {/* Language switcher */}
-          <div ref={dropRef} className="relative">
+          {!hideLangSwitcher && <div ref={dropRef} className="relative">
             <button
               onClick={() => setLangDropOpen(!langDropOpen)}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all"
@@ -133,7 +134,7 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
                 </div>
               </div>
             )}
-          </div>
+          </div>}
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -160,6 +161,7 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
           <button onClick={() => { onReviewsClick(); setMobileMenuOpen(false); }} className="text-left py-2 border-b border-white/8 text-sm font-semibold text-white/75">{t.nav.reviews}</button>
           <button onClick={() => { onFaqClick(); setMobileMenuOpen(false); }} className="text-left py-2 text-sm font-semibold text-white/75">{t.nav.faq}</button>
 
+          {!hideLangSwitcher && (
           <div className="pt-2 border-t border-white/8">
             <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2">Select Language</p>
             <div className="grid grid-cols-3 gap-1.5">
@@ -173,6 +175,7 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
               ))}
             </div>
           </div>
+          )}
 
           <button
             onClick={() => { onPricingClick(); setMobileMenuOpen(false); }}

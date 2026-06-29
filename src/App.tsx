@@ -14,7 +14,9 @@ import VideoShowcase from "./components/VideoShowcase";
 import EuropeCoverage from "./components/EuropeCoverage";
 import CheckoutModal from "./components/CheckoutModal";
 
-function AppInner() {
+const isNetherlandsPage = window.location.pathname === '/netherlands' || window.location.pathname.startsWith('/netherlands/');
+
+function AppInner({ hideLangSwitcher }: { hideLangSwitcher?: boolean }) {
   const { t, dir } = useLanguage();
   const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState<PricingPlan | null>(null);
 
@@ -34,6 +36,7 @@ function AppInner() {
         onPricingClick={() => scrollToSection("pricing-section")}
         onReviewsClick={() => scrollToSection("reviews-section")}
         onFaqClick={() => scrollToSection("faq-section")}
+        hideLangSwitcher={hideLangSwitcher}
       />
 
       <main className="flex-grow">
@@ -129,8 +132,8 @@ function AppInner() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <AppInner />
+    <LanguageProvider initialLang={isNetherlandsPage ? 'nl' : 'en'}>
+      <AppInner hideLangSwitcher={isNetherlandsPage} />
     </LanguageProvider>
   );
 }
