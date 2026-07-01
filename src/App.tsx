@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PricingPlan } from "./types";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 import Header from "./components/Header";
@@ -41,6 +41,18 @@ function AppInner({ hideLangSwitcher, view }: { hideLangSwitcher?: boolean; view
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const path = window.location.pathname.replace(/\/+$/, "") || "";
+    const canonicalUrl = `https://www.my-8ktv.com${path}${path ? "" : "/"}`;
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "canonical");
+      document.head.appendChild(link);
+    }
+    link.setAttribute("href", canonicalUrl);
+  }, [view]);
 
   return (
     <div
