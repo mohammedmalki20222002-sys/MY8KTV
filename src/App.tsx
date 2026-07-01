@@ -13,14 +13,31 @@ import Hero from "./components/Hero";
 import VideoShowcase from "./components/VideoShowcase";
 import EuropeCoverage from "./components/EuropeCoverage";
 import CheckoutModal from "./components/CheckoutModal";
+import BlogGrid from "./components/BlogGrid";
+import BlogPost from "./components/BlogPost";
 
 const isNetherlandsPage = window.location.pathname === '/netherlands' || window.location.pathname.startsWith('/netherlands/');
 
-function AppInner({ hideLangSwitcher }: { hideLangSwitcher?: boolean }) {
+type View = { type: "home" } | { type: "blog-grid" } | { type: "blog-post"; slug: string };
+
+function resolveView(): View {
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  if (path === "/blog") return { type: "blog-grid" };
+  const match = path.match(/^\/blog\/([^/]+)$/);
+  if (match) return { type: "blog-post", slug: match[1] };
+  return { type: "home" };
+}
+
+function AppInner({ hideLangSwitcher, view }: { hideLangSwitcher?: boolean; view: View }) {
   const { t, dir } = useLanguage();
   const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState<PricingPlan | null>(null);
+  const isHome = view.type === "home";
 
   const scrollToSection = (id: string) => {
+    if (!isHome) {
+      window.location.href = `/#${id}`;
+      return;
+    }
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
@@ -40,27 +57,45 @@ function AppInner({ hideLangSwitcher }: { hideLangSwitcher?: boolean }) {
       />
 
       <main className="flex-grow">
-        <div className="pt-6 md:pt-10" />
-        <Hero onPricingClick={() => scrollToSection("pricing-section")} />
-        <VideoShowcase />
-        <EuropeCoverage onPricingClick={() => scrollToSection("pricing-section")} />
-        <LiveSports onPricingClick={() => scrollToSection("pricing-section")} />
-        <MovieGrid onPricingClick={() => scrollToSection("pricing-section")} />
-        <Pricing onSelectPlan={setSelectedPlanForCheckout} />
+        {view.type === "home" && (
+          <>
+            <div className="pt-6 md:pt-10" />
+            <Hero onPricingClick={() => scrollToSection("pricing-section")} />
+            <VideoShowcase />
+            <EuropeCoverage onPricingClick={() => scrollToSection("pricing-section")} />
+            <LiveSports onPricingClick={() => scrollToSection("pricing-section")} />
+            <MovieGrid onPricingClick={() => scrollToSection("pricing-section")} />
+            <Pricing onSelectPlan={setSelectedPlanForCheckout} />
 
-        {/* Payment methods banner */}
-        <div className="px-4 md:px-8 max-w-4xl mx-auto w-full py-4">
-          <img
-            src="/PAY1-1-1.svg"
-            alt="Accepted payment methods"
-            className="w-full h-auto"
-          />
-        </div>
+            {/* Payment methods banner */}
+            <div className="px-4 md:px-8 max-w-4xl mx-auto w-full py-4">
+              <img
+                src="/PAY1-1-1.svg"
+                alt="Accepted payment methods"
+                className="w-full h-auto"
+              />
+            </div>
 
-        <ChannelStripe />
-        <Testimonials />
-        <DeviceCompatibility onPricingClick={() => scrollToSection("pricing-section")} />
-        <PaymentsAndFaq />
+            <ChannelStripe />
+            <Testimonials />
+            <DeviceCompatibility onPricingClick={() => scrollToSection("pricing-section")} />
+            <PaymentsAndFaq />
+          </>
+        )}
+
+        {view.type === "blog-grid" && (
+          <>
+            <div className="pt-6 md:pt-10" />
+            <BlogGrid />
+          </>
+        )}
+
+        {view.type === "blog-post" && (
+          <>
+            <div className="pt-6 md:pt-10" />
+            <BlogPost slug={view.slug} onPricingClick={() => scrollToSection("pricing-section")} />
+          </>
+        )}
       </main>
 
       <footer className="mt-16 text-[#FDFDF7] py-16 px-6 md:px-12 border-t border-white/5" style={{ background: "linear-gradient(160deg, #0a0f1c 0%, #0e1829 50%, #0a0f1c 100%)" }}>
@@ -97,6 +132,7 @@ function AppInner({ hideLangSwitcher }: { hideLangSwitcher?: boolean }) {
               <li><button onClick={() => scrollToSection("movies-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link4}</button></li>
               <li><button onClick={() => scrollToSection("channels-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link5}</button></li>
               <li><button onClick={() => scrollToSection("faq-section")} className="text-neutral-300 hover:text-white transition-colors">{t.footer.link6}</button></li>
+              <li><a href="/blog" className="text-neutral-300 hover:text-white transition-colors">{t.nav.blog}</a></li>
             </ul>
           </div>
 
@@ -131,9 +167,10 @@ function AppInner({ hideLangSwitcher }: { hideLangSwitcher?: boolean }) {
 }
 
 export default function App() {
+  const view = resolveView();
   return (
     <LanguageProvider initialLang={isNetherlandsPage ? 'nl' : 'en'}>
-      <AppInner hideLangSwitcher={isNetherlandsPage} />
+      <AppInner hideLangSwitcher={isNetherlandsPage} view={view} />
     </LanguageProvider>
   );
 }

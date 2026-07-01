@@ -29,6 +29,7 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
   }, []);
 
   const currentLang = LANGUAGES.find(l => l.code === lang)!;
+  const isBlogPage = window.location.pathname.startsWith("/blog");
 
   return (
     <header className="sticky top-4 z-50 px-4 md:px-8 max-w-7xl mx-auto w-full transition-all">
@@ -67,6 +68,12 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
           <button onClick={onPricingClick} className="px-4 py-1.5 text-[13px] font-medium text-white/75 hover:text-white transition-colors rounded-full">{t.nav.pricing}</button>
           <button onClick={onReviewsClick} className="px-4 py-1.5 text-[13px] font-medium text-white/75 hover:text-white transition-colors rounded-full">{t.nav.reviews}</button>
           <button onClick={onFaqClick} className="px-4 py-1.5 text-[13px] font-medium text-white/75 hover:text-white transition-colors rounded-full">{t.nav.faq}</button>
+          <a
+            href="/blog"
+            className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition-colors ${isBlogPage ? "text-white bg-white/15" : "text-white/75 hover:text-white"}`}
+          >
+            {t.nav.blog}
+          </a>
         </nav>
 
         {/* Right side */}
@@ -159,7 +166,8 @@ export default function Header({ onPricingClick, onReviewsClick, onFaqClick, onM
           <button onClick={() => { onMoviesClick(); setMobileMenuOpen(false); }} className="text-left py-2 border-b border-white/8 text-sm font-semibold text-white/75">{t.nav.movies}</button>
           <button onClick={() => { onPricingClick(); setMobileMenuOpen(false); }} className="text-left py-2 border-b border-white/8 text-sm font-semibold text-white/75">{t.nav.pricing}</button>
           <button onClick={() => { onReviewsClick(); setMobileMenuOpen(false); }} className="text-left py-2 border-b border-white/8 text-sm font-semibold text-white/75">{t.nav.reviews}</button>
-          <button onClick={() => { onFaqClick(); setMobileMenuOpen(false); }} className="text-left py-2 text-sm font-semibold text-white/75">{t.nav.faq}</button>
+          <button onClick={() => { onFaqClick(); setMobileMenuOpen(false); }} className="text-left py-2 border-b border-white/8 text-sm font-semibold text-white/75">{t.nav.faq}</button>
+          <a href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-left py-2 text-sm font-semibold text-white/75">{t.nav.blog}</a>
 
           {!hideLangSwitcher && (
           <div className="pt-2 border-t border-white/8">

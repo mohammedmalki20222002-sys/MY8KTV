@@ -40,6 +40,7 @@ export interface T {
     faq: string;
     subscribe: string;
     mobileSubscribe: string;
+    blog: string;
   };
   platforms: {
     heading: string;
@@ -139,6 +140,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'UKK',
       subscribe: 'Tilaa nyt',
       mobileSubscribe: 'Tilaa nyt — näytä hinnat',
+      blog: 'Blogi',
     },
     platforms: {
       heading: 'Kaikki alustat.',
@@ -269,6 +271,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Subscribe now',
       mobileSubscribe: 'Subscribe now — view plans',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'All platforms.',
@@ -384,6 +387,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: "S'abonner",
       mobileSubscribe: "S'abonner — voir les tarifs",
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Toutes les plateformes.',
@@ -499,6 +503,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Abonner nu',
       mobileSubscribe: 'Abonner nu — vis priser',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Alle platforme.',
@@ -614,6 +619,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Jetzt abonnieren',
       mobileSubscribe: 'Jetzt abonnieren — Pläne ansehen',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Alle Plattformen.',
@@ -710,6 +716,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Suscribirse ahora',
       mobileSubscribe: 'Suscribirse — ver planes',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Todas las plataformas.',
@@ -806,6 +813,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Abbonati ora',
       mobileSubscribe: 'Abbonati — vedi i piani',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Tutte le piattaforme.',
@@ -902,6 +910,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Abonneer nu',
       mobileSubscribe: 'Abonneer nu — bekijk plannen',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Alle platforms.',
@@ -998,6 +1007,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Prenumerera nu',
       mobileSubscribe: 'Prenumerera nu — visa planer',
+      blog: 'Blogg',
     },
     platforms: {
       heading: 'Alla plattformar.',
@@ -1094,6 +1104,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Abonner nå',
       mobileSubscribe: 'Abonner nå — vis planer',
+      blog: 'Blogg',
     },
     platforms: {
       heading: 'Alle plattformer.',
@@ -1190,6 +1201,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Subskrybuj teraz',
       mobileSubscribe: 'Subskrybuj — zobacz plany',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Wszystkie platformy.',
@@ -1286,6 +1298,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'Subscrever agora',
       mobileSubscribe: 'Subscrever — ver planos',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Todas as plataformas.',
@@ -1382,6 +1395,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'AboneazĒ-te acum',
       mobileSubscribe: 'AboneazĒ-te — vezi planuri',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Toate platformele.',
@@ -1478,6 +1492,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'FAQ',
       subscribe: 'P—"ihlásit k odb—:ru',
       mobileSubscribe: 'P—"ihlásit se — zobrazit plány',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Všechny platformy.',
@@ -1574,6 +1589,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'SSS',
       subscribe: '—~imdi abone ol',
       mobileSubscribe: '—~imdi abone ol — planları gör',
+      blog: 'Blog',
     },
     platforms: {
       heading: 'Tüm platformlar.',
@@ -1670,6 +1686,7 @@ export const translations: Record<LangCode, T> = {
       faq: 'الأسئلة الشائعة',
       subscribe: 'اشترك الآن',
       mobileSubscribe: 'اشترك الآن — عرض الخطط',
+      blog: 'المدونة',
     },
     platforms: {
       heading: 'جميع المنصات.',
