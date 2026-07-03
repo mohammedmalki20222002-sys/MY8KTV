@@ -163,7 +163,9 @@ for (const post of ALL_POSTS) {
     bodyHtml,
   });
 
-  const outPath = resolve(DIST, "blog", `${post.slug}.html`);
+  // Directory-style output so the URL /blog/<slug> is served as a real static
+  // file WITHOUT needing cleanUrls (which breaks the SPA fallback rewrite).
+  const outPath = resolve(DIST, "blog", post.slug, "index.html");
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, html, "utf8");
   count++;
@@ -211,7 +213,40 @@ const blogHtml = buildPage({
   jsonLd: [blogJsonLd],
   bodyHtml: `<h1>Blog ${BRAND}</h1>\n${gridItems}`,
 });
-writeFileSync(resolve(DIST, "blog.html"), blogHtml, "utf8");
+mkdirSync(resolve(DIST, "blog"), { recursive: true });
+writeFileSync(resolve(DIST, "blog", "index.html"), blogHtml, "utf8");
+
+// ---- /netherlands landing page -------------------------------------------
+const nlHtml = buildPage({
+  lang: "nl",
+  title: "MY 8KTV — Premium IPTV Nederland | 8K Live & VOD",
+  description:
+    "MY.8KTV: premium IPTV-abonnement in Nederland. Meer dan 89.000 livekanalen en 200.000 films & series in VOD tot 8K, op Smart TV, Android, Fire TV en meer.",
+  canonical: `${SITE}/netherlands`,
+  ogType: "website",
+  jsonLd: [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "MY 8KTV — Premium IPTV Nederland",
+      url: `${SITE}/netherlands`,
+      inLanguage: "nl",
+      description:
+        "Premium IPTV-abonnement in Nederland met meer dan 89.000 livekanalen en 200.000 titels in VOD tot 8K.",
+      publisher: { "@type": "Organization", name: BRAND, url: SITE },
+    },
+  ],
+  bodyHtml: [
+    `<article>`,
+    `<h1>MY.8KTV — Premium IPTV in Nederland</h1>`,
+    `<p>MY.8KTV biedt een premium IPTV-abonnement voor Nederlandse huishoudens: meer dan 89.000 livekanalen en meer dan 200.000 films en series in VOD, met een beeldkwaliteit tot 8K op compatibele content.</p>`,
+    `<p>Kijk op elke smart TV (Samsung, LG), Android-box, Amazon Fire TV Stick, pc of smartphone. Nederlandse zenders, internationale kanalen, sport en de nieuwste films — alles in één abonnement, met 24/7 ondersteuning via WhatsApp en een geld-terug-garantie.</p>`,
+    `<p>Ontdek de abonnementen en start vandaag nog op <a href="${SITE}" rel="noopener">MY.8KTV</a>.</p>`,
+    `</article>`,
+  ].join("\n"),
+});
+mkdirSync(resolve(DIST, "netherlands"), { recursive: true });
+writeFileSync(resolve(DIST, "netherlands", "index.html"), nlHtml, "utf8");
 
 // ---- homepage: add a real meta description --------------------------------
 let home = readFileSync(resolve(DIST, "index.html"), "utf8");
@@ -223,4 +258,4 @@ if (!home.includes('name="description"')) {
   writeFileSync(resolve(DIST, "index.html"), home, "utf8");
 }
 
-console.log(`Prerendered ${count} post pages + /blog grid + homepage meta.`);
+console.log(`Prerendered ${count} post pages + /blog grid + /netherlands + homepage meta.`);
