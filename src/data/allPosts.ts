@@ -22,6 +22,16 @@ import { FR_BLOG_POSTS_19 } from "./frBlogPosts19";
 import { FR_BLOG_POSTS_20 } from "./frBlogPosts20";
 import { FR_BLOG_POSTS_21 } from "./frBlogPosts21";
 import { FR_BLOG_POSTS_22 } from "./frBlogPosts22";
+import { NL_BLOG_POSTS_01 } from "./nlBlogPosts01";
+import { NL_BLOG_POSTS_02 } from "./nlBlogPosts02";
+import { NL_BLOG_POSTS_03 } from "./nlBlogPosts03";
+import { NL_BLOG_POSTS_04 } from "./nlBlogPosts04";
+import { NL_BLOG_POSTS_05 } from "./nlBlogPosts05";
+import { NL_BLOG_POSTS_06 } from "./nlBlogPosts06";
+import { NL_BLOG_POSTS_07 } from "./nlBlogPosts07";
+import { NL_BLOG_POSTS_08 } from "./nlBlogPosts08";
+import { NL_BLOG_POSTS_09 } from "./nlBlogPosts09";
+import { NL_BLOG_POSTS_10 } from "./nlBlogPosts10";
 
 const FR_BLOG_POSTS: BlogPost[] = [
   ...FR_BLOG_POSTS_01,
@@ -48,7 +58,20 @@ const FR_BLOG_POSTS: BlogPost[] = [
   ...FR_BLOG_POSTS_22,
 ];
 
-export const ALL_POSTS: BlogPost[] = [...SEO_BLOG_POSTS, ...FR_BLOG_POSTS, ...BLOG_POSTS].sort((a, b) =>
+const NL_BLOG_POSTS: BlogPost[] = [
+  ...NL_BLOG_POSTS_01,
+  ...NL_BLOG_POSTS_02,
+  ...NL_BLOG_POSTS_03,
+  ...NL_BLOG_POSTS_04,
+  ...NL_BLOG_POSTS_05,
+  ...NL_BLOG_POSTS_06,
+  ...NL_BLOG_POSTS_07,
+  ...NL_BLOG_POSTS_08,
+  ...NL_BLOG_POSTS_09,
+  ...NL_BLOG_POSTS_10,
+];
+
+export const ALL_POSTS: BlogPost[] = [...SEO_BLOG_POSTS, ...FR_BLOG_POSTS, ...NL_BLOG_POSTS, ...BLOG_POSTS].sort((a, b) =>
   b.dateISO.localeCompare(a.dateISO)
 );
 
