@@ -45,6 +45,9 @@ import { DE_BLOG_POSTS_10 } from "./deBlogPosts10";
 import { ES_BLOG_POSTS_01 } from "./esBlogPosts01";
 import { ES_BLOG_POSTS_02 } from "./esBlogPosts02";
 import { ES_BLOG_POSTS_03 } from "./esBlogPosts03";
+import { NO_BLOG_POSTS_01 } from "./noBlogPosts01";
+import { NO_BLOG_POSTS_02 } from "./noBlogPosts02";
+import { NO_BLOG_POSTS_03 } from "./noBlogPosts03";
 
 const FR_BLOG_POSTS: BlogPost[] = [
   ...FR_BLOG_POSTS_01,
@@ -103,7 +106,13 @@ const ES_BLOG_POSTS: BlogPost[] = [
   ...ES_BLOG_POSTS_03,
 ];
 
-export const ALL_POSTS: BlogPost[] = [...SEO_BLOG_POSTS, ...FR_BLOG_POSTS, ...NL_BLOG_POSTS, ...DE_BLOG_POSTS, ...ES_BLOG_POSTS, ...BLOG_POSTS].sort((a, b) =>
+const NO_BLOG_POSTS: BlogPost[] = [
+  ...NO_BLOG_POSTS_01,
+  ...NO_BLOG_POSTS_02,
+  ...NO_BLOG_POSTS_03,
+];
+
+export const ALL_POSTS: BlogPost[] = [...SEO_BLOG_POSTS, ...FR_BLOG_POSTS, ...NL_BLOG_POSTS, ...DE_BLOG_POSTS, ...ES_BLOG_POSTS, ...NO_BLOG_POSTS, ...BLOG_POSTS].sort((a, b) =>
   b.dateISO.localeCompare(a.dateISO)
 );
 
