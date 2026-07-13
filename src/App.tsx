@@ -44,7 +44,7 @@ function AppInner({ hideLangSwitcher, view }: { hideLangSwitcher?: boolean; view
 
   useEffect(() => {
     const path = window.location.pathname.replace(/\/+$/, "") || "";
-    const canonicalUrl = `https://www.my-8ktv.com${path}${path ? "" : "/"}`;
+    const canonicalUrl = `https://my8ktv.shop${path}${path ? "" : "/"}`;
     let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!link) {
       link = document.createElement("link");

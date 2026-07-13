@@ -19,7 +19,7 @@ import type { LangCode } from "../src/i18n";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
 const DIST = resolve(ROOT, "dist");
-const SITE = "https://www.my-8ktv.com";
+const SITE = "https://my8ktv.shop";
 const BRAND = "MY.8KTV";
 
 const template = readFileSync(resolve(DIST, "index.html"), "utf8");
@@ -90,7 +90,7 @@ function buildPage(o: PageOpts): string {
   return template
     .replace('<html lang="en">', `<html lang="${o.lang}">`)
     .replace(
-      '<link rel="canonical" href="https://www.my-8ktv.com/" />',
+      '<link rel="canonical" href="https://my8ktv.shop/" />',
       `<link rel="canonical" href="${esc(o.canonical)}" />`
     )
     .replace(
