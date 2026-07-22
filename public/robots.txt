@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://my8ktv.shop/sitemap.xml
+Sitemap: https://my-8ktv.com/sitemap.xml
