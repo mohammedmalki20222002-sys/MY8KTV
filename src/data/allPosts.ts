@@ -44,6 +44,9 @@ import { DE_BLOG_POSTS_07 } from "./deBlogPosts07";
 import { DE_BLOG_POSTS_08 } from "./deBlogPosts08";
 import { DE_BLOG_POSTS_09 } from "./deBlogPosts09";
 import { DE_BLOG_POSTS_10 } from "./deBlogPosts10";
+import { DE_BLOG_POSTS_11 } from "./deBlogPosts11";
+import { DE_BLOG_POSTS_12 } from "./deBlogPosts12";
+import { DE_BLOG_POSTS_13 } from "./deBlogPosts13";
 import { ES_BLOG_POSTS_01 } from "./esBlogPosts01";
 import { ES_BLOG_POSTS_02 } from "./esBlogPosts02";
 import { ES_BLOG_POSTS_03 } from "./esBlogPosts03";
@@ -105,6 +108,9 @@ const DE_BLOG_POSTS: BlogPost[] = [
   ...DE_BLOG_POSTS_08,
   ...DE_BLOG_POSTS_09,
   ...DE_BLOG_POSTS_10,
+  ...DE_BLOG_POSTS_11,
+  ...DE_BLOG_POSTS_12,
+  ...DE_BLOG_POSTS_13,
 ];
 
 const ES_BLOG_POSTS: BlogPost[] = [
